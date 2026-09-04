@@ -1,5 +1,18 @@
-const CACHE_NAME = "prestacar-services-v1";
-const FILES_TO_CACHE = [ "./", "./index.html", "./styles.css", "./script.js", "./manifest.json", "./logo.jpg" ];
+const CACHE_NAME = "prestacar-services-v2"; // Mise à jour de la version du cache
+const FILES_TO_CACHE = [ 
+    "./", 
+    "./index.html", 
+    "./styles.css", 
+    "./script.js", 
+    "./manifest.json", 
+    "./favicon.ico", 
+    "./favicon-16x16.png", 
+    "./favicon-32x32.png", 
+    "./apple-touch-icon.png",
+    "./android-chrome-192x192.png",
+    "./android-chrome-512x512.png",
+    "./logo.jpg" // Conservé pour les images de la page
+];
 
 self.addEventListener("install", (event) => {
     console.log("Prestacar Services : installation du cache.");
