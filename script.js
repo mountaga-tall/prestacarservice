@@ -1,231 +1,284 @@
-/* =========================================================
-   PRESTACAR SERVICES
-   JAVASCRIPT
-========================================================= */
+// ========================================
+// PRESTACAR SERVICES
+// Script principal du site
+// ========================================
 
+document.addEventListener("DOMContentLoaded", () => {
+    // ----------------------------------------
+    // MENU MOBILE
+    // ----------------------------------------
+    const menuToggle = document.querySelector(".menu-toggle");
+    const nav = document.querySelector(".nav");
 
-/* =========================================================
-   MENU MOBILE
-========================================================= */
+    if (menuToggle && nav) {
+        menuToggle.addEventListener("click", () => {
+            nav.classList.toggle("active");
+            menuToggle.classList.toggle("active");
 
-const menuToggle = document.querySelector(".menu-toggle");
-const nav = document.querySelector(".nav");
-const menuLinks = document.querySelectorAll(".menu a");
+            const isOpen = nav.classList.contains("active");
+            menuToggle.setAttribute("aria-expanded", isOpen);
+        });
 
+        // Fermer le menu après avoir cliqué sur un lien
+        const navLinks = nav.querySelectorAll("a");
 
-if (menuToggle && nav) {
+        navLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                nav.classList.remove("active");
+                menuToggle.classList.remove("active");
+                menuToggle.setAttribute("aria-expanded", "false");
+            });
+        });
+    }
 
-    menuToggle.addEventListener("click", () => {
+    // ----------------------------------------
+    // HEADER AU SCROLL
+    // ----------------------------------------
+    const header = document.querySelector(".header");
 
-        nav.classList.toggle("active");
+    if (header) {
+        const updateHeader = () => {
+            if (window.scrollY > 30) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        };
 
-        const isOpen = nav.classList.contains("active");
+        window.addEventListener("scroll", updateHeader);
+        updateHeader();
+    }
 
-        menuToggle.setAttribute(
-            "aria-label",
-            isOpen
-                ? "Fermer le menu"
-                : "Ouvrir le menu"
+    // ----------------------------------------
+    // ANNÉE AUTOMATIQUE DANS LE FOOTER
+    // ----------------------------------------
+    const currentYear = document.querySelector("#current-year");
+
+    if (currentYear) {
+        currentYear.textContent = new Date().getFullYear();
+    }
+
+    // ----------------------------------------
+    // SCROLL DOUX
+    // ----------------------------------------
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (event) => {
+            const targetId = link.getAttribute("href");
+
+            if (!targetId || targetId === "#") {
+                return;
+            }
+
+            const target = document.querySelector(targetId);
+
+            if (target) {
+                event.preventDefault();
+
+                const headerHeight = header
+                    ? header.offsetHeight
+                    : 0;
+
+                const targetPosition =
+                    target.getBoundingClientRect().top +
+                    window.scrollY -
+                    headerHeight;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: "smooth"
+                });
+
+                // Mettre à jour l'URL sans provoquer de saut
+                history.pushState(null, "", targetId);
+            }
+        });
+    });
+
+    // ----------------------------------------
+    // ANIMATION DES ÉLÉMENTS AU SCROLL
+    // ----------------------------------------
+    const animatedElements = document.querySelectorAll(
+        ".pole-card, .service-card, .training-card, .about-content, .contact-content"
+    );
+
+    if ("IntersectionObserver" in window && animatedElements.length > 0) {
+        const observer = new IntersectionObserver(
+            (entries, observerInstance) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observerInstance.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                threshold: 0.15
+            }
         );
 
-    });
+        animatedElements.forEach((element) => {
+            element.classList.add("animate-on-scroll");
+            observer.observe(element);
+        });
+    }
 
-}
+    // ----------------------------------------
+    // FORMULAIRE DE CONTACT
+    // ----------------------------------------
+    const contactForm = document.querySelector("#contact-form");
 
+    if (contactForm) {
+        contactForm.addEventListener("submit", (event) => {
+            event.preventDefault();
 
-/* Fermer le menu lorsqu'on clique sur un lien */
+            const name = document.querySelector("#name");
+            const email = document.querySelector("#email");
+            const phone = document.querySelector("#phone");
+            const service = document.querySelector("#service");
+            const message = document.querySelector("#message");
 
-menuLinks.forEach((link) => {
+            // Vérification des champs
+            if (!name || !email || !message) {
+                return;
+            }
 
-    link.addEventListener("click", () => {
+            if (!name.value.trim()) {
+                showFormMessage("Veuillez renseigner votre nom ou entreprise.", "error");
+                name.focus();
+                return;
+            }
 
-        if (nav) {
-            nav.classList.remove("active");
+            if (!email.value.trim()) {
+                showFormMessage("Veuillez renseigner votre adresse e-mail.", "error");
+                email.focus();
+                return;
+            }
+
+            if (!isValidEmail(email.value.trim())) {
+                showFormMessage("Veuillez renseigner une adresse e-mail valide.", "error");
+                email.focus();
+                return;
+            }
+
+            if (!message.value.trim()) {
+                showFormMessage("Veuillez saisir votre message.", "error");
+                message.focus();
+                return;
+            }
+
+            // Préparation du message
+            const subject = service && service.value
+                ? `Demande de contact - ${service.value}`
+                : "Demande de contact - Prestacar Services";
+
+            const body = `
+Bonjour Prestacar Services,
+
+Nom / Entreprise : ${name.value.trim()}
+E-mail : ${email.value.trim()}
+Téléphone : ${phone ? phone.value.trim() : ""}
+
+Service demandé :
+${service && service.value ? service.value : "Non précisé"}
+
+Message :
+${message.value.trim()}
+            `.trim();
+
+            // Adresse e-mail Prestacar Services
+            const emailAddress = "prestacarservice@gmail.com";
+
+            // Ouverture du logiciel de messagerie
+            const mailtoUrl =
+                `mailto:${emailAddress}` +
+                `?subject=${encodeURIComponent(subject)}` +
+                `&body=${encodeURIComponent(body)}`;
+
+            window.location.href = mailtoUrl;
+
+            showFormMessage(
+                "Votre messagerie va s'ouvrir pour envoyer votre demande.",
+                "success"
+            );
+        });
+    }
+
+    // ----------------------------------------
+    // VALIDATION E-MAIL
+    // ----------------------------------------
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    // ----------------------------------------
+    // MESSAGE FORMULAIRE
+    // ----------------------------------------
+    function showFormMessage(message, type) {
+        let messageElement = document.querySelector(".form-message");
+
+        if (!messageElement && contactForm) {
+            messageElement = document.createElement("div");
+            messageElement.className = "form-message";
+            contactForm.appendChild(messageElement);
         }
 
-        if (menuToggle) {
-            menuToggle.setAttribute(
-                "aria-label",
-                "Ouvrir le menu"
-            );
-        }
-
-    });
-
-});
-
-
-/* =========================================================
-   FORMULAIRE DE CONTACT
-========================================================= */
-
-const form = document.querySelector(".contact-form");
-
-
-if (form) {
-
-    form.addEventListener("submit", function (event) {
-
-        event.preventDefault();
-
-        const name = document
-            .querySelector("#name")
-            .value
-            .trim();
-
-        const email = document
-            .querySelector("#email")
-            .value
-            .trim();
-
-        const phone = document
-            .querySelector("#phone")
-            .value
-            .trim();
-
-        const service = document
-            .querySelector("#service")
-            .value
-            .trim();
-
-        const message = document
-            .querySelector("#message")
-            .value
-            .trim();
-
-
-        if (!name || !email || !message) {
-
-            alert(
-                "Veuillez remplir les champs obligatoires."
-            );
-
+        if (!messageElement) {
             return;
         }
 
+        messageElement.textContent = message;
+        messageElement.className = `form-message ${type}`;
 
-        /*
-         * Pour le moment, le formulaire prépare un message
-         * WhatsApp avec les informations saisies.
-         */
-
-        const whatsappNumber = "2250778615861";
-
-
-        const whatsappMessage =
-            "Bonjour Prestacar Services,%0A%0A" +
-
-            "*Nouvelle demande de contact*%0A%0A" +
-
-            "*Nom / Entreprise :* " +
-            encodeURIComponent(name) +
-
-            "%0A" +
-
-            "*Email :* " +
-            encodeURIComponent(email) +
-
-            "%0A" +
-
-            "*Téléphone :* " +
-            encodeURIComponent(phone || "Non renseigné") +
-
-            "%0A" +
-
-            "*Service :* " +
-            encodeURIComponent(service || "Non précisé") +
-
-            "%0A%0A" +
-
-            "*Message :*%0A" +
-            encodeURIComponent(message);
-
-
-        const whatsappURL =
-            "https://wa.me/" +
-            whatsappNumber +
-            "?text=" +
-            whatsappMessage;
-
-
-        const confirmation = confirm(
-            "Votre demande est prête. Voulez-vous l'envoyer à Prestacar Services via WhatsApp ?"
-        );
-
-
-        if (confirmation) {
-
-            window.open(
-                whatsappURL,
-                "_blank"
-            );
-
-            form.reset();
-
-        }
-
-    });
-
-}
-
-
-/* =========================================================
-   ANNÉE AUTOMATIQUE DU FOOTER
-========================================================= */
-
-const footerYear = document.querySelector(
-    ".footer-bottom p"
-);
-
-if (footerYear) {
-
-    const currentYear = new Date().getFullYear();
-
-    footerYear.innerHTML =
-        "© " +
-        currentYear +
-        " Prestacar Services. Tous droits réservés.";
-
-}
-
-
-/* =========================================================
-   ANIMATION SIMPLE AU SCROLL
-========================================================= */
-
-const animatedElements = document.querySelectorAll(
-    ".pole-card, .service-card, .training-card"
-);
-
-
-const observer = new IntersectionObserver(
-    (entries) => {
-
-        entries.forEach((entry) => {
-
-            if (entry.isIntersecting) {
-
-                entry.target.style.opacity = "1";
-                entry.target.style.transform = "translateY(0)";
-
-            }
-
-        });
-
-    },
-    {
-        threshold: 0.1
+        setTimeout(() => {
+            messageElement.className = "form-message";
+            messageElement.textContent = "";
+        }, 6000);
     }
-);
 
+    // ----------------------------------------
+    // BOUTON RETOUR EN HAUT
+    // ----------------------------------------
+    const backToTop = document.querySelector(".back-to-top");
 
-animatedElements.forEach((element) => {
+    if (backToTop) {
+        const toggleBackToTop = () => {
+            if (window.scrollY > 500) {
+                backToTop.classList.add("show");
+            } else {
+                backToTop.classList.remove("show");
+            }
+        };
 
-    element.style.opacity = "0";
-    element.style.transform = "translateY(20px)";
-    element.style.transition =
-        "opacity 0.6s ease, transform 0.6s ease";
+        window.addEventListener("scroll", toggleBackToTop);
+        toggleBackToTop();
 
-    observer.observe(element);
+        backToTop.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    }
 
+    // ----------------------------------------
+    // SERVICE WORKER / PWA
+    // ----------------------------------------
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker
+                .register("./sw.js")
+                .then((registration) => {
+                    console.log(
+                        "Prestacar Services : Service Worker enregistré.",
+                        registration.scope
+                    );
+                })
+                .catch((error) => {
+                    console.error(
+                        "Prestacar Services : erreur Service Worker.",
+                        error
+                    );
+                });
+        });
+    }
 });
