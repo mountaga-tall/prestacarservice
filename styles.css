@@ -1,3 +1,4 @@
+```css
 /* =========================================================
    PRESTACAR SERVICES
    STYLES PRINCIPAUX
@@ -106,43 +107,48 @@ img {
 }
 
 
-/* LOGO */
+/* =========================================================
+   LOGO IMAGE
+========================================================= */
 
 .logo {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+
+    width: 170px;
+    min-width: 170px;
+
     line-height: 1;
-    min-width: 160px;
 }
 
-.logo-name {
-    font-size: 22px;
-    font-weight: 900;
-    letter-spacing: 1px;
+.logo img {
+    width: auto;
+    height: 58px;
 
-    background: linear-gradient(
-        90deg,
-        var(--red),
-        var(--yellow),
-        var(--green),
-        var(--blue)
-    );
+    max-width: 170px;
 
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    object-fit: contain;
+    object-position: left center;
+
+    display: block;
 }
 
-.logo-subtitle {
-    font-size: 9px;
-    letter-spacing: 4px;
-    font-weight: 700;
-    margin-top: 6px;
-    color: var(--dark);
+.footer-logo {
+    width: 180px;
+    min-width: 180px;
+
+    margin-bottom: 20px;
+}
+
+.footer-logo img {
+    height: 62px;
+    max-width: 180px;
 }
 
 
-/* NAVIGATION */
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
 .nav {
     margin-left: auto;
@@ -169,7 +175,9 @@ img {
 }
 
 
-/* MOBILE BUTTON */
+/* =========================================================
+   MOBILE BUTTON
+========================================================= */
 
 .menu-toggle {
     display: none;
@@ -341,7 +349,9 @@ img {
 }
 
 
-/* HERO CARD */
+/* =========================================================
+   HERO CARD
+========================================================= */
 
 .hero-card {
     position: relative;
@@ -1066,7 +1076,9 @@ img {
 }
 
 
-/* FORM */
+/* =========================================================
+   FORM
+========================================================= */
 
 .contact-form-wrapper {
     padding: 40px;
@@ -1156,10 +1168,6 @@ img {
     gap: 50px;
 }
 
-.footer-logo {
-    margin-bottom: 20px;
-}
-
 .footer-brand p {
     max-width: 300px;
 
@@ -1209,7 +1217,7 @@ img {
 
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE — TABLETTE
 ========================================================= */
 
 @media (max-width: 1050px) {
@@ -1243,6 +1251,10 @@ img {
     }
 }
 
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
 
 @media (max-width: 800px) {
 
@@ -1331,14 +1343,35 @@ img {
 }
 
 
+/* =========================================================
+   RESPONSIVE — PETIT MOBILE
+========================================================= */
+
 @media (max-width: 600px) {
 
     .section {
         padding: 70px 0;
     }
 
-    .logo-name {
-        font-size: 18px;
+    /* LOGO MOBILE */
+    .logo {
+        width: 135px;
+        min-width: 135px;
+    }
+
+    .logo img {
+        height: 48px;
+        max-width: 135px;
+    }
+
+    .footer-logo {
+        width: 155px;
+        min-width: 155px;
+    }
+
+    .footer-logo img {
+        height: 52px;
+        max-width: 155px;
     }
 
     .hero h1 {
@@ -1398,7 +1431,25 @@ img {
 }
 
 
+/* =========================================================
+   RESPONSIVE — TRÈS PETIT ÉCRAN
+========================================================= */
+
 @media (max-width: 400px) {
+
+    .nav-container {
+        gap: 10px;
+    }
+
+    .logo {
+        width: 120px;
+        min-width: 120px;
+    }
+
+    .logo img {
+        height: 44px;
+        max-width: 120px;
+    }
 
     .hero h1 {
         font-size: 36px;
@@ -1413,3 +1464,4 @@ img {
         width: 100%;
     }
 }
+```
