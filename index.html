@@ -1,57 +1,81 @@
-```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Prestacar Services | Solutions pour entreprises</title>
+    <meta name="description"
+        content="Prestacar Services — Développement web et applications, formation professionnelle, langues, relation client, call center, sales, SAV, recouvrement, installation POS, vidéosurveillance et électronique embarquée.">
 
-    <meta
-        name="description"
-        content="Prestacar Services accompagne les entreprises dans le digital, la formation, la relation client, la technologie et la sécurité."
-    >
+    <meta name="keywords"
+        content="Prestacar Services, développement web, applications, formation, call center, relation client, SAV, recouvrement, POS, vidéosurveillance, électronique embarquée, Côte d'Ivoire">
 
+    <meta name="author" content="Prestacar Services">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#e30613">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Prestacar">
+
+    <title>Prestacar Services | Solutions professionnelles</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-    <!-- ================= HEADER ================= -->
+    <!-- ========================================
+         HEADER
+    ========================================= -->
 
     <header class="header">
 
-        <div class="container nav-container">
+        <div class="container header-container">
 
             <!-- LOGO -->
-            <a href="#accueil" class="logo">
-                <img
-                    src="logo.jpg"
-                    alt="Prestacar Services"
-                >
+            <a href="#accueil" class="logo" aria-label="Prestacar Services - Accueil">
+                <img src="logo.jpg" alt="Prestacar Services">
             </a>
 
+            <!-- MENU MOBILE -->
             <button
                 class="menu-toggle"
+                type="button"
                 aria-label="Ouvrir le menu"
                 aria-expanded="false"
+                aria-controls="main-navigation"
             >
-                ☰
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
 
-            <nav class="nav">
-                <ul class="menu">
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#apropos">À propos</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#formations">Formations</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+            <!-- NAVIGATION -->
+            <nav class="nav" id="main-navigation">
 
-            <a href="#contact" class="btn btn-header">
-                Demander un devis
-            </a>
+                <a href="#accueil">Accueil</a>
+
+                <a href="#a-propos">À propos</a>
+
+                <a href="#poles">Nos pôles</a>
+
+                <a href="#services">Services</a>
+
+                <a href="#formations">Formations</a>
+
+                <a href="#contact" class="nav-cta">
+                    Contact
+                </a>
+
+            </nav>
 
         </div>
 
@@ -60,29 +84,29 @@
 
     <main>
 
-        <!-- ================= HERO ================= -->
+        <!-- ========================================
+             HERO
+        ========================================= -->
 
         <section class="hero" id="accueil">
 
-            <div class="container hero-content">
+            <div class="container hero-container">
 
-                <div class="hero-text">
+                <div class="hero-content">
 
-                    <span class="badge">
-                        Solutions professionnelles pour entreprises
+                    <span class="hero-badge">
+                        Votre partenaire de confiance
                     </span>
 
                     <h1>
-                        Votre partenaire pour
-                        <span>digitaliser</span>,
-                        former et développer votre entreprise.
+                        Des solutions professionnelles
+                        <span>pour développer votre entreprise.</span>
                     </h1>
 
                     <p>
-                        Prestacar Services accompagne les entreprises,
-                        institutions et professionnels avec des solutions
-                        adaptées en digital, formation, relation client,
-                        technologie et sécurité.
+                        Prestacar Services vous accompagne dans votre
+                        transformation digitale, la formation de vos équipes,
+                        la relation client et vos solutions techniques.
                     </p>
 
                     <div class="hero-buttons">
@@ -91,7 +115,7 @@
                             Découvrir nos services
                         </a>
 
-                        <a href="#contact" class="btn btn-outline">
+                        <a href="#contact" class="btn btn-secondary">
                             Nous contacter
                         </a>
 
@@ -102,43 +126,20 @@
 
                 <div class="hero-card">
 
-                    <div class="hero-card-top">
-                        <span class="dot red"></span>
-                        <span class="dot yellow"></span>
-                        <span class="dot green"></span>
+                    <div class="hero-card-logo">
+                        <img
+                            src="logo.jpg"
+                            alt="Prestacar Services"
+                        >
                     </div>
 
-                    <div class="hero-card-content">
+                    <h2>
+                        PRESTACAR SERVICES
+                    </h2>
 
-                        <div class="mini-icon">P</div>
-
-                        <h3>PRESTACAR SERVICES</h3>
-
-                        <p>
-                            Une expertise multidisciplinaire au service
-                            de la performance de votre entreprise.
-                        </p>
-
-                        <div class="stats">
-
-                            <div>
-                                <strong>4</strong>
-                                <span>Pôles</span>
-                            </div>
-
-                            <div>
-                                <strong>8+</strong>
-                                <span>Formations</span>
-                            </div>
-
-                            <div>
-                                <strong>360°</strong>
-                                <span>Solutions</span>
-                            </div>
-
-                        </div>
-
-                    </div>
+                    <p>
+                        Digitaliser • Former • Accompagner • Développer
+                    </p>
 
                 </div>
 
@@ -147,26 +148,27 @@
         </section>
 
 
-        <!-- ================= POLES ================= -->
+        <!-- ========================================
+             NOS PÔLES
+        ========================================= -->
 
-        <section class="poles section">
+        <section class="section poles-section" id="poles">
 
             <div class="container">
 
-                <div class="section-heading">
+                <div class="section-title">
 
-                    <span class="section-label">
-                        Notre expertise
+                    <span>
+                        Nos expertises
                     </span>
 
                     <h2>
-                        Des solutions pensées pour votre croissance
+                        Nos pôles d'activités
                     </h2>
 
                     <p>
-                        Nos différents pôles permettent de répondre
-                        aux besoins opérationnels et stratégiques
-                        de votre organisation.
+                        Des compétences complémentaires pour répondre
+                        aux différents besoins de votre entreprise.
                     </p>
 
                 </div>
@@ -174,82 +176,78 @@
 
                 <div class="poles-grid">
 
-                    <article class="pole-card pole-red">
+                    <!-- PÔLE 1 -->
+                    <article class="pole-card">
 
-                        <div class="pole-number">01</div>
+                        <div class="pole-icon">
+                            💻
+                        </div>
 
-                        <div class="pole-icon">☎</div>
-
-                        <h3>Relation Client</h3>
+                        <h3>
+                            Digital & Technologie
+                        </h3>
 
                         <p>
-                            Call center, customer care, support,
-                            SAV, ventes et recouvrement.
+                            Développement de sites web, applications
+                            et solutions digitales adaptées à votre activité.
                         </p>
-
-                        <a href="#services">
-                            En savoir plus →
-                        </a>
 
                     </article>
 
 
-                    <article class="pole-card pole-green">
+                    <!-- PÔLE 2 -->
+                    <article class="pole-card">
 
-                        <div class="pole-number">02</div>
+                        <div class="pole-icon">
+                            🎓
+                        </div>
 
-                        <div class="pole-icon">🎓</div>
-
-                        <h3>Formation</h3>
+                        <h3>
+                            Formation
+                        </h3>
 
                         <p>
-                            Des formations professionnelles adaptées
-                            aux besoins de vos équipes.
+                            Formation professionnelle, langues anglaise
+                            et espagnole et accompagnement des équipes.
                         </p>
-
-                        <a href="#formations">
-                            Voir les formations →
-                        </a>
 
                     </article>
 
 
-                    <article class="pole-card pole-blue">
+                    <!-- PÔLE 3 -->
+                    <article class="pole-card">
 
-                        <div class="pole-number">03</div>
+                        <div class="pole-icon">
+                            📞
+                        </div>
 
-                        <div class="pole-icon">💻</div>
-
-                        <h3>Digital</h3>
+                        <h3>
+                            Relation Client
+                        </h3>
 
                         <p>
-                            Création de sites web, applications
-                            et solutions digitales.
+                            Call center, service après-vente, sales,
+                            recouvrement et gestion de la relation client.
                         </p>
-
-                        <a href="#services">
-                            Découvrir le digital →
-                        </a>
 
                     </article>
 
 
-                    <article class="pole-card pole-yellow">
+                    <!-- PÔLE 4 -->
+                    <article class="pole-card">
 
-                        <div class="pole-number">04</div>
+                        <div class="pole-icon">
+                            ⚙️
+                        </div>
 
-                        <div class="pole-icon">⚙</div>
-
-                        <h3>Technologie & Sécurité</h3>
+                        <h3>
+                            Solutions Techniques
+                        </h3>
 
                         <p>
-                            POS, électronique embarquée et
-                            vidéosurveillance professionnelle.
+                            Installation POS, vidéosurveillance et
+                            solutions d'électronique embarquée.
                         </p>
-
-                        <a href="#services">
-                            Nos solutions →
-                        </a>
 
                     </article>
 
@@ -260,79 +258,85 @@
         </section>
 
 
-        <!-- ================= À PROPOS ================= -->
+        <!-- ========================================
+             À PROPOS
+        ========================================= -->
 
-        <section class="about section" id="apropos">
+        <section class="section about-section" id="a-propos">
 
-            <div class="container about-grid">
+            <div class="container about-container">
 
                 <div class="about-visual">
 
-                    <div class="about-box">
+                    <div class="about-logo">
 
-                        <span>PRESTACAR</span>
-
-                        <strong>SERVICES</strong>
-
-                        <p>
-                            L'expertise au service de votre entreprise.
-                        </p>
+                        <img
+                            src="logo.jpg"
+                            alt="Logo Prestacar Services"
+                        >
 
                     </div>
-
-                    <div class="color-block block-red"></div>
-                    <div class="color-block block-green"></div>
-                    <div class="color-block block-yellow"></div>
-                    <div class="color-block block-blue"></div>
 
                 </div>
 
 
-                <div class="about-text">
+                <div class="about-content">
 
-                    <span class="section-label">
-                        À propos de nous
-                    </span>
+                    <div class="section-title section-title-left">
 
-                    <h2>
-                        Un partenaire unique pour plusieurs besoins.
-                    </h2>
+                        <span>
+                            Qui sommes-nous ?
+                        </span>
+
+                        <h2>
+                            Prestacar Services
+                        </h2>
+
+                    </div>
 
                     <p>
-                        Prestacar Services est une entreprise orientée
-                        vers l'accompagnement des professionnels et
-                        des entreprises.
+                        Prestacar Services est une structure spécialisée
+                        dans l'accompagnement des entreprises et des
+                        professionnels à travers des solutions adaptées
+                        à leurs besoins.
                     </p>
 
                     <p>
-                        Notre objectif est de proposer des solutions
-                        concrètes permettant d'améliorer la performance,
-                        la qualité de service et l'efficacité des équipes.
+                        Notre objectif est de vous permettre de gagner
+                        en efficacité, d'améliorer votre relation avec
+                        vos clients et de développer durablement votre
+                        activité.
                     </p>
 
                     <p>
-                        Grâce à notre approche multidisciplinaire,
-                        nous intervenons aussi bien dans le digital,
-                        la formation, la relation client que dans
-                        les solutions technologiques et de sécurité.
+                        Nous réunissons plusieurs expertises afin de
+                        proposer un accompagnement global, de la
+                        transformation digitale à la formation, en passant
+                        par la relation client et les solutions techniques.
                     </p>
 
 
                     <div class="about-points">
 
-                        <div>
-                            <span>✓</span>
-                            <p>Solutions personnalisées</p>
+                        <div class="about-point">
+                            <strong>✓</strong>
+                            <span>
+                                Solutions adaptées à vos besoins
+                            </span>
                         </div>
 
-                        <div>
-                            <span>✓</span>
-                            <p>Accompagnement professionnel</p>
+                        <div class="about-point">
+                            <strong>✓</strong>
+                            <span>
+                                Accompagnement professionnel
+                            </span>
                         </div>
 
-                        <div>
-                            <span>✓</span>
-                            <p>Approche orientée résultats</p>
+                        <div class="about-point">
+                            <strong>✓</strong>
+                            <span>
+                                Expertise multidisciplinaire
+                            </span>
                         </div>
 
                     </div>
@@ -344,25 +348,27 @@
         </section>
 
 
-        <!-- ================= SERVICES ================= -->
+        <!-- ========================================
+             SERVICES
+        ========================================= -->
 
-        <section class="services section" id="services">
+        <section class="section services-section" id="services">
 
             <div class="container">
 
-                <div class="section-heading">
+                <div class="section-title">
 
-                    <span class="section-label">
-                        Nos services
+                    <span>
+                        Ce que nous faisons
                     </span>
 
                     <h2>
-                        Des services conçus pour les professionnels
+                        Nos services
                     </h2>
 
                     <p>
-                        Nous mettons notre expertise à votre disposition
-                        pour vous aider à développer et optimiser vos activités.
+                        Découvrez nos différentes solutions
+                        professionnelles.
                     </p>
 
                 </div>
@@ -370,73 +376,145 @@
 
                 <div class="services-grid">
 
+                    <!-- SERVICE 1 -->
                     <article class="service-card">
 
-                        <div class="service-icon blue">WEB</div>
-
-                        <span class="service-category">
-                            DIGITAL
-                        </span>
+                        <div class="service-icon">
+                            🌐
+                        </div>
 
                         <h3>
-                            Création de sites web
+                            Développement Web
                         </h3>
 
                         <p>
-                            Sites vitrines, sites professionnels et
-                            plateformes digitales adaptées à votre activité.
+                            Création de sites web modernes,
+                            responsives et adaptés à votre image.
                         </p>
 
                     </article>
 
 
+                    <!-- SERVICE 2 -->
                     <article class="service-card">
 
-                        <div class="service-icon blue">APP</div>
-
-                        <span class="service-category">
-                            DIGITAL
-                        </span>
+                        <div class="service-icon">
+                            📱
+                        </div>
 
                         <h3>
                             Applications
                         </h3>
 
                         <p>
-                            Conception d'applications et de solutions
-                            numériques répondant à vos besoins.
+                            Conception de solutions et applications
+                            adaptées aux besoins de votre entreprise.
                         </p>
 
                     </article>
 
 
+                    <!-- SERVICE 3 -->
                     <article class="service-card">
 
-                        <div class="service-icon yellow">POS</div>
-
-                        <span class="service-category">
-                            TECHNOLOGIE
-                        </span>
+                        <div class="service-icon">
+                            🎓
+                        </div>
 
                         <h3>
-                            Systèmes POS
+                            Formation professionnelle
                         </h3>
 
                         <p>
-                            Installation et mise en place de systèmes
-                            de caisse et solutions POS pour commerces.
+                            Développement des compétences de vos équipes
+                            grâce à des formations adaptées.
                         </p>
 
                     </article>
 
 
+                    <!-- SERVICE 4 -->
                     <article class="service-card">
 
-                        <div class="service-icon red">CCTV</div>
+                        <div class="service-icon">
+                            🇬🇧
+                        </div>
 
-                        <span class="service-category">
-                            SÉCURITÉ
-                        </span>
+                        <h3>
+                            Langues
+                        </h3>
+
+                        <p>
+                            Formations en anglais et en espagnol
+                            pour développer vos compétences linguistiques.
+                        </p>
+
+                    </article>
+
+
+                    <!-- SERVICE 5 -->
+                    <article class="service-card">
+
+                        <div class="service-icon">
+                            📞
+                        </div>
+
+                        <h3>
+                            Call Center
+                        </h3>
+
+                        <p>
+                            Solutions de centre de contacts et
+                            gestion professionnelle de la relation client.
+                        </p>
+
+                    </article>
+
+
+                    <!-- SERVICE 6 -->
+                    <article class="service-card">
+
+                        <div class="service-icon">
+                            💼
+                        </div>
+
+                        <h3>
+                            Sales & SAV
+                        </h3>
+
+                        <p>
+                            Développement commercial, vente et
+                            service après-vente.
+                        </p>
+
+                    </article>
+
+
+                    <!-- SERVICE 7 -->
+                    <article class="service-card">
+
+                        <div class="service-icon">
+                            💰
+                        </div>
+
+                        <h3>
+                            Recouvrement
+                        </h3>
+
+                        <p>
+                            Accompagnement dans la gestion et le suivi
+                            professionnel de vos opérations de recouvrement.
+                        </p>
+
+                    </article>
+
+
+                    <!-- SERVICE 8 -->
+                    <article class="service-card">
+
+                        <div class="service-icon">
+                            📹
+                        </div>
 
                         <h3>
                             Vidéosurveillance
@@ -444,47 +522,26 @@
 
                         <p>
                             Installation de solutions de vidéosurveillance
-                            adaptées aux commerces et entreprises.
+                            pour renforcer la sécurité de vos locaux.
                         </p>
 
                     </article>
 
 
+                    <!-- SERVICE 9 -->
                     <article class="service-card">
 
-                        <div class="service-icon green">IoT</div>
-
-                        <span class="service-category">
-                            TECHNOLOGIE
-                        </span>
+                        <div class="service-icon">
+                            🔧
+                        </div>
 
                         <h3>
-                            Électronique embarquée
+                            Solutions techniques
                         </h3>
 
                         <p>
-                            Solutions et installations électroniques
-                            adaptées à différents environnements professionnels.
-                        </p>
-
-                    </article>
-
-
-                    <article class="service-card">
-
-                        <div class="service-icon red">CRM</div>
-
-                        <span class="service-category">
-                            RELATION CLIENT
-                        </span>
-
-                        <h3>
-                            Relation client
-                        </h3>
-
-                        <p>
-                            Mise en place et accompagnement de vos activités
-                            de relation client et de service après-vente.
+                            Installation POS et solutions d'électronique
+                            embarquée adaptées à vos besoins.
                         </p>
 
                     </article>
@@ -496,25 +553,27 @@
         </section>
 
 
-        <!-- ================= FORMATIONS ================= -->
+        <!-- ========================================
+             FORMATIONS
+        ========================================= -->
 
-        <section class="training section" id="formations">
+        <section class="section training-section" id="formations">
 
             <div class="container">
 
-                <div class="section-heading">
+                <div class="section-title">
 
-                    <span class="section-label">
-                        Formations professionnelles
+                    <span>
+                        Développez vos compétences
                     </span>
 
                     <h2>
-                        Développez les compétences de vos équipes
+                        Nos formations
                     </h2>
 
                     <p>
-                        Des formations pratiques et professionnelles
-                        adaptées aux exigences du monde de l'entreprise.
+                        Des programmes conçus pour accompagner
+                        les professionnels et les entreprises.
                     </p>
 
                 </div>
@@ -523,63 +582,74 @@
                 <div class="training-grid">
 
                     <article class="training-card">
-                        <span>01</span>
-                        <h3>Anglais professionnel</h3>
-                        <p>Formations Corporate & Expert.</p>
-                    </article>
 
-                    <article class="training-card">
-                        <span>02</span>
-                        <h3>Espagnol professionnel</h3>
-                        <p>Formations Corporate & Expert.</p>
-                    </article>
+                        <div class="training-icon">
+                            💻
+                        </div>
 
-                    <article class="training-card">
-                        <span>03</span>
-                        <h3>Personnel de restaurant</h3>
+                        <h3>
+                            Informatique & Digital
+                        </h3>
+
                         <p>
-                            Formation aux bonnes pratiques professionnelles.
+                            Développez vos compétences numériques
+                            et votre maîtrise des outils digitaux.
                         </p>
+
                     </article>
 
-                    <article class="training-card">
-                        <span>04</span>
-                        <h3>Call Center</h3>
-                        <p>
-                            Techniques et pratiques du métier de centre d'appels.
-                        </p>
-                    </article>
 
                     <article class="training-card">
-                        <span>05</span>
-                        <h3>Sales & Vente</h3>
+
+                        <div class="training-icon">
+                            🇬🇧
+                        </div>
+
+                        <h3>
+                            Anglais professionnel
+                        </h3>
+
                         <p>
-                            Développer les performances commerciales.
+                            Améliorez votre communication en anglais
+                            dans un environnement professionnel.
                         </p>
+
                     </article>
 
-                    <article class="training-card">
-                        <span>06</span>
-                        <h3>Customer Care</h3>
-                        <p>
-                            Améliorer l'expérience et la satisfaction client.
-                        </p>
-                    </article>
 
                     <article class="training-card">
-                        <span>07</span>
-                        <h3>Support & SAV</h3>
+
+                        <div class="training-icon">
+                            🇪🇸
+                        </div>
+
+                        <h3>
+                            Espagnol professionnel
+                        </h3>
+
                         <p>
-                            Optimiser le support et le service après-vente.
+                            Développez vos compétences en espagnol
+                            pour vos échanges professionnels.
                         </p>
+
                     </article>
 
+
                     <article class="training-card">
-                        <span>08</span>
-                        <h3>Recouvrement</h3>
+
+                        <div class="training-icon">
+                            📈
+                        </div>
+
+                        <h3>
+                            Relation client & Sales
+                        </h3>
+
                         <p>
-                            Techniques professionnelles de recouvrement.
+                            Formez vos équipes aux techniques de vente,
+                            de communication et de relation client.
                         </p>
+
                     </article>
 
                 </div>
@@ -589,31 +659,29 @@
         </section>
 
 
-        <!-- ================= CTA ================= -->
+        <!-- ========================================
+             CTA
+        ========================================= -->
 
-        <section class="cta">
+        <section class="cta-section">
 
-            <div class="container cta-content">
+            <div class="container cta-container">
 
-                <div>
-
-                    <span class="section-label">
-                        Parlons de votre projet
-                    </span>
+                <div class="cta-content">
 
                     <h2>
-                        Vous avez un projet pour votre entreprise ?
+                        Un projet ? Un besoin ?
                     </h2>
 
                     <p>
-                        Contactez Prestacar Services et discutons
-                        ensemble de la meilleure solution.
+                        Parlons de votre projet et trouvons ensemble
+                        la solution adaptée à votre entreprise.
                     </p>
 
                 </div>
 
-                <a href="#contact" class="btn btn-white">
-                    Demander un devis →
+                <a href="#contact" class="btn btn-light">
+                    Parlons de votre projet
                 </a>
 
             </div>
@@ -621,93 +689,128 @@
         </section>
 
 
-        <!-- ================= CONTACT ================= -->
+        <!-- ========================================
+             CONTACT
+        ========================================= -->
 
-        <section class="contact section" id="contact">
+        <section class="section contact-section" id="contact">
 
-            <div class="container contact-grid">
+            <div class="container">
 
-                <div class="contact-info">
+                <div class="section-title">
 
-                    <span class="section-label">
-                        Contact
+                    <span>
+                        Parlons-nous
                     </span>
 
                     <h2>
-                        Parlons de votre projet
+                        Contactez-nous
                     </h2>
 
                     <p>
-                        Vous souhaitez obtenir un devis, une information
-                        ou discuter d'un projet ? Notre équipe est à votre écoute.
+                        Notre équipe est à votre disposition
+                        pour répondre à vos questions.
                     </p>
-
-
-                    <div class="contact-item">
-
-                        <div class="contact-icon">☎</div>
-
-                        <div>
-                            <span>Téléphone</span>
-                            <strong>07 78 61 58 61</strong>
-                        </div>
-
-                    </div>
-
-
-                    <div class="contact-item">
-
-                        <div class="contact-icon">✉</div>
-
-                        <div>
-                            <span>Email</span>
-                            <strong>prestacarservice@gmail.com</strong>
-                        </div>
-
-                    </div>
-
-
-                    <div class="contact-item">
-
-                        <div class="contact-icon">📍</div>
-
-                        <div>
-                            <span>Localisation</span>
-                            <strong>Côte d'Ivoire</strong>
-                        </div>
-
-                    </div>
 
                 </div>
 
 
-                <div class="contact-form-wrapper">
+                <div class="contact-container">
 
-                    <form class="contact-form">
+                    <!-- INFORMATIONS -->
+                    <div class="contact-content">
+
+                        <div class="contact-item">
+
+                            <div class="contact-icon">
+                                📞
+                            </div>
+
+                            <div>
+                                <h3>
+                                    Téléphone
+                                </h3>
+
+                                <a href="tel:+2250778615861">
+                                    07 78 61 58 61
+                                </a>
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                            <div class="contact-icon">
+                                ✉️
+                            </div>
+
+                            <div>
+                                <h3>
+                                    E-mail
+                                </h3>
+
+                                <a href="mailto:prestacarservice@gmail.com">
+                                    prestacarservice@gmail.com
+                                </a>
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                            <div class="contact-icon">
+                                📍
+                            </div>
+
+                            <div>
+                                <h3>
+                                    Localisation
+                                </h3>
+
+                                <p>
+                                    Côte d'Ivoire
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FORMULAIRE -->
+                    <form
+                        class="contact-form"
+                        id="contact-form"
+                        action="#"
+                        method="post"
+                    >
+
+                        <div class="form-group">
+
+                            <label for="name">
+                                Nom / Entreprise
+                            </label>
+
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Votre nom ou entreprise"
+                                autocomplete="name"
+                                required
+                            >
+
+                        </div>
+
 
                         <div class="form-row">
 
                             <div class="form-group">
 
-                                <label for="name">
-                                    Nom / Entreprise
-                                </label>
-
-                                <input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    placeholder="Votre nom ou entreprise"
-                                    required
-                                >
-
-                            </div>
-
-
-                            <div class="form-group">
-
                                 <label for="email">
-                                    Email
+                                    E-mail
                                 </label>
 
                                 <input
@@ -715,26 +818,28 @@
                                     id="email"
                                     name="email"
                                     placeholder="votre@email.com"
+                                    autocomplete="email"
                                     required
                                 >
 
                             </div>
 
-                        </div>
 
+                            <div class="form-group">
 
-                        <div class="form-group">
+                                <label for="phone">
+                                    Téléphone
+                                </label>
 
-                            <label for="phone">
-                                Téléphone
-                            </label>
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    placeholder="07 XX XX XX XX"
+                                    autocomplete="tel"
+                                >
 
-                            <input
-                                type="tel"
-                                id="phone"
-                                name="phone"
-                                placeholder="Votre numéro de téléphone"
-                            >
+                            </div>
 
                         </div>
 
@@ -745,37 +850,64 @@
                                 Service souhaité
                             </label>
 
-                            <select id="service" name="service">
+                            <select
+                                id="service"
+                                name="service"
+                            >
 
                                 <option value="">
                                     Sélectionnez un service
                                 </option>
 
-                                <option>
-                                    Création de site web
+                                <option value="Développement web">
+                                    Développement web
                                 </option>
 
-                                <option>
-                                    Application
+                                <option value="Applications">
+                                    Applications
                                 </option>
 
-                                <option>
-                                    Formation
+                                <option value="Formation professionnelle">
+                                    Formation professionnelle
                                 </option>
 
-                                <option>
-                                    Système POS
+                                <option value="Anglais">
+                                    Anglais
                                 </option>
 
-                                <option>
+                                <option value="Espagnol">
+                                    Espagnol
+                                </option>
+
+                                <option value="Call center">
+                                    Call center
+                                </option>
+
+                                <option value="Sales">
+                                    Sales
+                                </option>
+
+                                <option value="SAV">
+                                    SAV
+                                </option>
+
+                                <option value="Recouvrement">
+                                    Recouvrement
+                                </option>
+
+                                <option value="Installation POS">
+                                    Installation POS
+                                </option>
+
+                                <option value="Vidéosurveillance">
                                     Vidéosurveillance
                                 </option>
 
-                                <option>
-                                    Relation client
+                                <option value="Électronique embarquée">
+                                    Électronique embarquée
                                 </option>
 
-                                <option>
+                                <option value="Autre">
                                     Autre
                                 </option>
 
@@ -787,14 +919,14 @@
                         <div class="form-group">
 
                             <label for="message">
-                                Votre message
+                                Message
                             </label>
 
                             <textarea
                                 id="message"
                                 name="message"
                                 rows="6"
-                                placeholder="Décrivez votre projet..."
+                                placeholder="Décrivez votre besoin ou votre projet..."
                                 required
                             ></textarea>
 
@@ -803,7 +935,7 @@
 
                         <button
                             type="submit"
-                            class="btn btn-primary btn-submit"
+                            class="btn btn-primary"
                         >
                             Envoyer ma demande
                         </button>
@@ -819,16 +951,21 @@
     </main>
 
 
-    <!-- ================= FOOTER ================= -->
+    <!-- ========================================
+         FOOTER
+    ========================================= -->
 
     <footer class="footer">
 
-        <div class="container footer-content">
+        <div class="container footer-container">
 
-            <div class="footer-brand">
+            <div class="footer-column">
 
-                <!-- LOGO FOOTER -->
-                <a href="#accueil" class="logo footer-logo">
+                <a
+                    href="#accueil"
+                    class="logo footer-logo"
+                    aria-label="Prestacar Services - Accueil"
+                >
                     <img
                         src="logo.jpg"
                         alt="Prestacar Services"
@@ -836,42 +973,51 @@
                 </a>
 
                 <p>
-                    Votre partenaire pour digitaliser, former
-                    et développer votre entreprise.
+                    Votre partenaire pour digitaliser,
+                    former et développer votre entreprise.
                 </p>
 
             </div>
 
 
-            <div class="footer-links">
+            <div class="footer-column">
 
-                <h4>Navigation</h4>
+                <h3>
+                    Navigation
+                </h3>
 
-                <a href="#accueil">Accueil</a>
-                <a href="#apropos">À propos</a>
-                <a href="#services">Services</a>
-                <a href="#formations">Formations</a>
-                <a href="#contact">Contact</a>
+                <a href="#accueil">
+                    Accueil
+                </a>
+
+                <a href="#a-propos">
+                    À propos
+                </a>
+
+                <a href="#poles">
+                    Nos pôles
+                </a>
+
+                <a href="#services">
+                    Services
+                </a>
+
+                <a href="#formations">
+                    Formations
+                </a>
+
+                <a href="#contact">
+                    Contact
+                </a>
 
             </div>
 
 
-            <div class="footer-links">
+            <div class="footer-column">
 
-                <h4>Services</h4>
-
-                <a href="#services">Digital</a>
-                <a href="#services">Technologie</a>
-                <a href="#services">Sécurité</a>
-                <a href="#services">Relation client</a>
-                <a href="#formations">Formation</a>
-
-            </div>
-
-
-            <div class="footer-links">
-
-                <h4>Contact</h4>
+                <h3>
+                    Contact
+                </h3>
 
                 <a href="tel:+2250778615861">
                     07 78 61 58 61
@@ -881,7 +1027,9 @@
                     prestacarservice@gmail.com
                 </a>
 
-                <span>Côte d'Ivoire</span>
+                <span>
+                    Côte d'Ivoire
+                </span>
 
             </div>
 
@@ -893,7 +1041,9 @@
             <div class="container">
 
                 <p>
-                    © 2026 Prestacar Services. Tous droits réservés.
+                    © <span id="current-year">2026</span>
+                    Prestacar Services.
+                    Tous droits réservés.
                 </p>
 
             </div>
@@ -903,8 +1053,11 @@
     </footer>
 
 
+    <!-- ========================================
+         SCRIPT
+    ========================================= -->
+
     <script src="script.js"></script>
 
 </body>
 </html>
-```
