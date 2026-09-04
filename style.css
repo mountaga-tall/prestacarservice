@@ -1,0 +1,687 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #17202a;
+    background: #ffffff;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: min(1150px, 92%);
+    margin: auto;
+}
+
+
+/* ================= HEADER ================= */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255,255,255,.96);
+    border-bottom: 1px solid #eeeeee;
+}
+
+.nav {
+    height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    color: #151515;
+}
+
+.logo-red {
+    color: #e30613;
+}
+
+.logo small {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #555;
+    text-transform: uppercase;
+}
+
+.menu {
+    display: flex;
+    gap: 28px;
+}
+
+.menu a {
+    font-size: 14px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.menu a:hover {
+    color: #e30613;
+}
+
+.btn {
+    display: inline-block;
+    background: #e30613;
+    color: white;
+    padding: 14px 24px;
+    border-radius: 6px;
+    font-weight: 700;
+    border: 2px solid #e30613;
+    transition: .3s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    opacity: .9;
+}
+
+.btn-small {
+    padding: 10px 18px;
+    font-size: 13px;
+}
+
+.btn-outline {
+    background: transparent;
+    color: #e30613;
+}
+
+.btn-white {
+    background: white;
+    color: #e30613;
+    border-color: white;
+}
+
+.menu-toggle {
+    display: none;
+    border: 0;
+    background: none;
+    font-size: 25px;
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    background:
+        linear-gradient(120deg, #f7f7f7 0%, #ffffff 60%);
+    padding: 110px 0;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    align-items: center;
+    gap: 70px;
+}
+
+.badge,
+.section-title span,
+.section-label {
+    color: #e30613;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 5vw, 68px);
+    line-height: 1.05;
+    margin: 18px 0 25px;
+    max-width: 800px;
+}
+
+.hero h1 span {
+    color: #e30613;
+}
+
+.hero-text p {
+    max-width: 650px;
+    color: #666;
+    font-size: 18px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 35px;
+    flex-wrap: wrap;
+}
+
+.hero-card {
+    min-height: 370px;
+    border-radius: 25px;
+    padding: 50px;
+    background: #151515;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 25px 70px rgba(0,0,0,.15);
+}
+
+.card-icon {
+    font-size: 65px;
+    margin-bottom: 20px;
+}
+
+.hero-card h3 {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.hero-card p {
+    color: #cccccc;
+}
+
+.colors {
+    display: flex;
+    margin-top: 40px;
+}
+
+.colors span {
+    width: 45px;
+    height: 8px;
+}
+
+.colors span:nth-child(1) {
+    background: #e30613;
+}
+
+.colors span:nth-child(2) {
+    background: #009b4d;
+}
+
+.colors span:nth-child(3) {
+    background: #f4c400;
+}
+
+.colors span:nth-child(4) {
+    background: #0072bc;
+}
+
+
+/* ================= SECTIONS ================= */
+
+section {
+    padding: 100px 0;
+}
+
+.section-title {
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto 55px;
+}
+
+.section-title h2 {
+    font-size: 42px;
+    line-height: 1.15;
+    margin: 12px 0;
+}
+
+.section-title p {
+    color: #666;
+}
+
+
+/* ================= PÔLES ================= */
+
+.poles {
+    background: #f8f8f8;
+}
+
+.poles-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.pole {
+    position: relative;
+    background: white;
+    padding: 35px;
+    min-height: 350px;
+    border-radius: 12px;
+    overflow: hidden;
+    border-top: 5px solid;
+}
+
+.pole-red {
+    border-color: #e30613;
+}
+
+.pole-green {
+    border-color: #009b4d;
+}
+
+.pole-yellow {
+    border-color: #f4c400;
+}
+
+.pole-blue {
+    border-color: #0072bc;
+}
+
+.pole-number {
+    color: #ddd;
+    font-size: 45px;
+    font-weight: 900;
+}
+
+.pole .icon {
+    font-size: 38px;
+    margin: 15px 0;
+}
+
+.pole h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.pole p {
+    color: #666;
+    font-size: 14px;
+}
+
+.pole a {
+    display: inline-block;
+    margin-top: 20px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+
+/* ================= ABOUT ================= */
+
+.about-grid {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.about-image {
+    min-height: 450px;
+    border-radius: 20px;
+    background: linear-gradient(145deg,#111,#333);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-box {
+    width: 70%;
+    padding: 45px 25px;
+    text-align: center;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.2);
+}
+
+.about-box strong {
+    display: block;
+    font-size: 35px;
+}
+
+.about-box span {
+    letter-spacing: 5px;
+    font-size: 12px;
+}
+
+.mini-colors {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.mini-colors i {
+    width: 30px;
+    height: 7px;
+}
+
+.mini-colors i:nth-child(1) {
+    background: #e30613;
+}
+
+.mini-colors i:nth-child(2) {
+    background: #009b4d;
+}
+
+.mini-colors i:nth-child(3) {
+    background: #f4c400;
+}
+
+.mini-colors i:nth-child(4) {
+    background: #0072bc;
+}
+
+.about-text h2 {
+    font-size: 42px;
+    line-height: 1.15;
+    margin: 15px 0 25px;
+}
+
+.about-text p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.advantages {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.advantages strong {
+    color: #009b4d;
+    margin-right: 8px;
+}
+
+
+/* ================= SERVICES ================= */
+
+.services {
+    background: #f8f8f8;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.service {
+    background: white;
+    padding: 35px;
+    border-radius: 12px;
+    transition: .3s;
+}
+
+.service:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 40px rgba(0,0,0,.08);
+}
+
+.service-icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.service h3 {
+    margin-bottom: 10px;
+    font-size: 21px;
+}
+
+.service p {
+    color: #666;
+}
+
+
+/* ================= FORMATION ================= */
+
+.training {
+    background: #111;
+    color: white;
+}
+
+.training .section-title p {
+    color: #aaa;
+}
+
+.training .section-title h2 {
+    color: white;
+}
+
+.training-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.training-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #1d1d1d;
+    padding: 22px;
+    border-radius: 10px;
+}
+
+.training-item:first-letter {
+    font-size: 30px;
+}
+
+.training-item h3 {
+    font-size: 17px;
+}
+
+.training-item p {
+    color: #999;
+    font-size: 13px;
+}
+
+
+/* ================= CTA ================= */
+
+.cta {
+    text-align: center;
+    background: #e30613;
+    color: white;
+}
+
+.cta h2 {
+    font-size: 45px;
+}
+
+.cta p {
+    margin: 15px 0 30px;
+}
+
+
+/* ================= CONTACT ================= */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+}
+
+.contact h2 {
+    font-size: 45px;
+    margin: 15px 0;
+}
+
+.contact p {
+    color: #666;
+}
+
+.contact-info {
+    margin-top: 30px;
+}
+
+.contact-info p {
+    margin: 15px 0;
+    color: #222;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: inherit;
+    outline: none;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    border-color: #e30613;
+}
+
+.contact-form button {
+    cursor: pointer;
+}
+
+
+/* ================= FOOTER ================= */
+
+.footer {
+    background: #111;
+    color: white;
+    padding: 60px 0 20px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.footer-logo {
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.footer-logo span {
+    color: #e30613;
+}
+
+.footer p {
+    color: #999;
+    margin-top: 10px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.footer-links a:hover {
+    color: #e30613;
+}
+
+.copyright {
+    text-align: center;
+    border-top: 1px solid #333;
+    margin-top: 40px;
+    padding-top: 20px;
+    color: #777;
+    font-size: 13px;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+
+    .menu {
+        display: none;
+        position: absolute;
+        top: 78px;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        padding: 25px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.1);
+    }
+
+    .menu.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav > .btn {
+        display: none;
+    }
+
+    .hero-content,
+    .about-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .poles-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-card {
+        min-height: 300px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    section {
+        padding: 70px 0;
+    }
+
+    .hero {
+        padding: 70px 0;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .section-title h2,
+    .about-text h2,
+    .contact h2 {
+        font-size: 32px;
+    }
+
+    .poles-grid,
+    .services-grid,
+    .training-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .advantages {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+    }
+
+}
