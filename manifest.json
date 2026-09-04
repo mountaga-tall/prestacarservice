@@ -1,0 +1,31 @@
+{
+  "name": "Prestacar Services",
+  "short_name": "Prestacar",
+  "description": "Prestacar Services — Solutions professionnelles en développement web, applications, formation, relation client, call center, sales, SAV, recouvrement, installation POS, vidéosurveillance et électronique embarquée.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#e30613",
+  "lang": "fr-CI",
+  "categories": [
+    "business",
+    "productivity",
+    "education"
+  ],
+  "icons": [
+    {
+      "src": "./logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "./logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
