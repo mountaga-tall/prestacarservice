@@ -1,1199 +1,1118 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
 
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <title>Prestacar Services | Solutions Professionnelles</title>
 
     <meta name="description"
-          content="Prestacar Services — Développement web, formation, relation client, solutions techniques et sécurité.">
+        content="Prestacar Services accompagne les entreprises et particuliers avec des solutions professionnelles en digitalisation, formation, relation client, technique et sécurité.">
 
-    <meta name="theme-color" content="#FF2A43">
+    <meta name="theme-color" content="#080b14">
 
-    <!-- PWA -->
-    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="logo.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <title>Prestacar Services | Solutions Digitales & Stratégiques</title>
+    <meta name="apple-mobile-web-app-status-bar-style"
+        content="black-translucent">
 
-    <!-- Google Fonts -->
+    <!-- LOGO RÉEL DU PROJET -->
+    <link rel="icon" href="./logo.jpg" type="image/jpeg">
+
+    <link rel="manifest" href="./manifest.json">
+
+    <link rel="stylesheet" href="./styles.css">
+
+    <!-- Polices -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<!-- =========================================================
-     HEADER
-========================================================= -->
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
-<header class="header" id="site-header">
+    <header class="site-header" id="header">
 
-    <div class="container header-container">
+        <div class="container nav-container">
 
-        <a href="#accueil" class="logo" aria-label="Prestacar Services">
+            <a href="#accueil" class="brand">
 
-            <img
-                src="logo.svg"
-                data-logo-fallback="logo.png"
-                data-logo-fallback-2="logo.jpg"
-                alt="Prestacar Services"
-                class="logo-image"
-                loading="eager"
-                decoding="async"
-            >
+                <div class="brand-logo-wrap">
+                    <img
+                        src="./logo.jpg"
+                        alt="Prestacar Services"
+                        class="brand-logo">
+                </div>
 
-        </a>
+                <div class="brand-text">
+                    <strong>PRESTACAR</strong>
+                    <span>SERVICES</span>
+                </div>
 
-        <button
-            class="menu-toggle"
-            type="button"
-            aria-label="Ouvrir le menu"
-            aria-expanded="false"
-            aria-controls="main-navigation">
-
-            <span></span>
-            <span></span>
-            <span></span>
-
-        </button>
-
-        <nav class="nav" id="main-navigation">
-
-            <ul class="menu">
-
-                <li>
-                    <a href="#accueil">Accueil</a>
-                </li>
-
-                <li>
-                    <a href="#a-propos">À propos</a>
-                </li>
-
-                <li>
-                    <a href="#poles">Expertises</a>
-                </li>
-
-                <li>
-                    <a href="#services">Services</a>
-                </li>
-
-                <li>
-                    <a href="#contact" class="btn btn-header">
-                        Démarrer un projet
-                    </a>
-                </li>
-
-            </ul>
-
-        </nav>
-
-    </div>
-
-</header>
+            </a>
 
 
-<main>
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Ouvrir le menu"
+                aria-expanded="false">
 
-<!-- =========================================================
-     HERO
-========================================================= -->
+                <span></span>
+                <span></span>
+                <span></span>
 
-<section class="hero" id="accueil">
+            </button>
 
-    <div class="hero-grid"></div>
 
-    <div class="hero-orb hero-orb-red"></div>
-    <div class="hero-orb hero-orb-blue"></div>
+            <nav class="main-nav" id="mainNav">
 
-    <div class="hero-particles">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
+                <a href="#accueil">Accueil</a>
+                <a href="#expertise">Expertise</a>
+                <a href="#apropos">À propos</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
 
-    <div class="container hero-container">
+                <a
+                    href="https://wa.me/2250778615861"
+                    target="_blank"
+                    rel="noopener"
+                    class="nav-whatsapp">
 
-        <div class="hero-content reveal">
+                    WhatsApp
 
-            <div class="hero-badge">
-                <span class="badge-dot"></span>
-                Excellence digitale & stratégique
-            </div>
-
-            <h1>
-                Propulsez votre entreprise vers de
-                <span>nouveaux sommets.</span>
-            </h1>
-
-            <p>
-                Digitalisation, formation, relation client,
-                solutions techniques et sécurité.
-                <strong>Prestacar Services</strong> accompagne
-                votre croissance de A à Z.
-            </p>
-
-            <div class="hero-buttons">
-
-                <a href="#services" class="btn btn-glow">
-                    Découvrir nos solutions
-                    <span>→</span>
                 </a>
 
-                <a href="#contact" class="btn btn-outline-light">
-                    Discutons-en
-                    <span>↗</span>
-                </a>
-
-            </div>
-
-            <div class="hero-trust">
-
-                <div class="trust-item">
-                    <strong>360°</strong>
-                    <span>Accompagnement</span>
-                </div>
-
-                <div class="trust-line"></div>
-
-                <div class="trust-item">
-                    <strong>100%</strong>
-                    <span>Engagement</span>
-                </div>
-
-                <div class="trust-line"></div>
-
-                <div class="trust-item">
-                    <strong>24/7</strong>
-                    <span>Réactivité</span>
-                </div>
-
-            </div>
+            </nav>
 
         </div>
 
+    </header>
 
-        <!-- VISUEL HERO -->
 
-        <div class="hero-visual reveal reveal-delay-1">
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
 
-            <div class="visual-glow"></div>
+    <main>
 
-            <div class="glass-card main-glass-card">
+        <section class="hero" id="accueil">
 
-                <div class="card-top">
+            <div class="hero-bg">
 
-                    <div class="dots">
-                        <span class="dot-red"></span>
-                        <span class="dot-yellow"></span>
-                        <span class="dot-green"></span>
-                    </div>
+                <div class="orb orb-one"></div>
+                <div class="orb orb-two"></div>
+                <div class="orb orb-three"></div>
 
-                    <span class="card-status">
-                        ● ONLINE
-                    </span>
+                <div class="grid-overlay"></div>
+
+                <div class="particles">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
 
                 </div>
 
-                <div class="card-body">
+            </div>
+
+
+            <div class="container hero-container">
+
+                <div class="hero-content reveal">
+
+                    <div class="hero-badge">
+                        <span class="badge-dot"></span>
+                        SOLUTIONS PROFESSIONNELLES
+                    </div>
+
+                    <h1>
+
+                        Votre partenaire pour
+                        <span>transformer</span>
+                        vos ambitions en résultats.
+
+                    </h1>
+
+                    <p class="hero-description">
+
+                        Prestacar Services propose des solutions
+                        professionnelles en digitalisation, formation,
+                        relation client, solutions techniques et sécurité.
+
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+                        <a href="#services" class="btn btn-primary">
+
+                            Découvrir nos services
+
+                            <span>→</span>
+
+                        </a>
+
+                        <a href="#contact" class="btn btn-outline">
+
+                            Nous contacter
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="hero-stats">
+
+                        <div class="hero-stat">
+
+                            <strong>5+</strong>
+                            <span>Domaines d'expertise</span>
+
+                        </div>
+
+                        <div class="stat-line"></div>
+
+                        <div class="hero-stat">
+
+                            <strong>100%</strong>
+                            <span>Engagement</span>
+
+                        </div>
+
+                        <div class="stat-line"></div>
+
+                        <div class="hero-stat">
+
+                            <strong>24/7</strong>
+                            <span>Disponibilité</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HERO LOGO -->
+
+                <div class="hero-visual reveal">
 
                     <div class="hero-logo-container">
 
                         <div class="logo-ring ring-one"></div>
                         <div class="logo-ring ring-two"></div>
+                        <div class="logo-ring ring-three"></div>
+
+                        <div class="logo-glow"></div>
 
                         <div class="hero-logo">
 
                             <img
-                                src="logo.svg"
-                                data-logo-fallback="logo.png"
-                                data-logo-fallback-2="logo.jpg"
-                                alt="Prestacar"
-                            >
+                                src="./logo.jpg"
+                                alt="Logo Prestacar Services">
 
                         </div>
 
                     </div>
 
-                    <span class="mini-label">
-                        PRESTACAR SERVICES
+
+                    <div class="floating-card floating-card-one">
+
+                        <span class="floating-icon">⚡</span>
+
+                        <div>
+                            <strong>Performance</strong>
+                            <small>Des solutions efficaces</small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="floating-card floating-card-two">
+
+                        <span class="floating-icon">✓</span>
+
+                        <div>
+                            <strong>Professionnalisme</strong>
+                            <small>Une approche structurée</small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="floating-card floating-card-three">
+
+                        <span class="floating-icon">◆</span>
+
+                        <div>
+                            <strong>Innovation</strong>
+                            <small>Des solutions modernes</small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             EXPERTISE
+        ====================================================== -->
+
+        <section class="expertise section" id="expertise">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <span class="section-kicker">
+                        NOTRE EXPERTISE
                     </span>
 
                     <h2>
-                        Votre partenaire
-                        <span>360°</span>
+                        Des solutions pensées pour
+                        <span>faire la différence.</span>
                     </h2>
 
                     <p>
-                        Technologie. Humain. Performance.
-                        Sécurité.
+                        Nous combinons expertise, technologie et
+                        accompagnement humain pour répondre aux
+                        besoins réels des professionnels.
                     </p>
 
+                </div>
 
-                    <div class="performance">
 
-                        <div class="performance-header">
-                            <span>Innovation</span>
-                            <strong>95%</strong>
+                <div class="expertise-grid">
+
+
+                    <article class="modern-card reveal">
+
+                        <div class="card-icon icon-red">
+                            💻
                         </div>
 
-                        <div class="progress-track">
-                            <div
-                                class="progress-fill progress-red"
-                                data-width="95%">
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="performance">
-
-                        <div class="performance-header">
-                            <span>Performance</span>
-                            <strong>100%</strong>
-                        </div>
-
-                        <div class="progress-track">
-                            <div
-                                class="progress-fill progress-blue"
-                                data-width="100%">
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- CARTE FLOTTANTE -->
-
-            <div class="floating-card floating-card-one">
-
-                <span class="floating-icon">⚡</span>
-
-                <div>
-                    <strong>Innovation</strong>
-                    <small>Solutions modernes</small>
-                </div>
-
-            </div>
-
-
-            <div class="floating-card floating-card-two">
-
-                <span class="floating-icon green-icon">✓</span>
-
-                <div>
-                    <strong>Expertise</strong>
-                    <small>Accompagnement premium</small>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="hero-scroll">
-        <span>SCROLL</span>
-        <div class="scroll-line"></div>
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     POLES
-========================================================= -->
-
-<section class="section poles-section" id="poles">
-
-    <div class="container">
-
-        <div class="section-title reveal">
-
-            <span class="gradient-text">
-                Nos fondations
-            </span>
-
-            <h2>
-                4 Pôles d'Excellence
-            </h2>
-
-            <p>
-                Une combinaison d'expertises conçue pour
-                répondre aux besoins réels des entreprises.
-            </p>
-
-        </div>
-
-
-        <div class="poles-grid">
-
-            <article class="modern-card reveal">
-
-                <div class="card-number">01</div>
-
-                <div class="card-icon gradient-blue">
-                    <span>💻</span>
-                </div>
-
-                <h3>Digital & Tech</h3>
-
-                <p>
-                    Sites web, applications, plateformes
-                    digitales et solutions sur-mesure
-                    performantes.
-                </p>
-
-                <a href="#services" class="card-link">
-                    Explorer <span>→</span>
-                </a>
-
-            </article>
-
-
-            <article class="modern-card reveal reveal-delay-1">
-
-                <div class="card-number">02</div>
-
-                <div class="card-icon gradient-red">
-                    <span>🎓</span>
-                </div>
-
-                <h3>Formation</h3>
-
-                <p>
-                    Formations professionnelles, montée
-                    en compétence, langues et accompagnement
-                    des équipes.
-                </p>
-
-                <a href="#services" class="card-link">
-                    Explorer <span>→</span>
-                </a>
-
-            </article>
-
-
-            <article class="modern-card reveal reveal-delay-2">
-
-                <div class="card-number">03</div>
-
-                <div class="card-icon gradient-yellow">
-                    <span>📞</span>
-                </div>
-
-                <h3>Relation Client</h3>
-
-                <p>
-                    Call center, télévente, SAV, fidélisation
-                    et recouvrement stratégique.
-                </p>
-
-                <a href="#services" class="card-link">
-                    Explorer <span>→</span>
-                </a>
-
-            </article>
-
-
-            <article class="modern-card reveal reveal-delay-3">
-
-                <div class="card-number">04</div>
-
-                <div class="card-icon gradient-green">
-                    <span>⚙️</span>
-                </div>
-
-                <h3>Infrastructures</h3>
-
-                <p>
-                    POS, électronique embarquée,
-                    vidéosurveillance et solutions
-                    techniques.
-                </p>
-
-                <a href="#services" class="card-link">
-                    Explorer <span>→</span>
-                </a>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     ABOUT
-========================================================= -->
-
-<section class="section about-section" id="a-propos">
-
-    <div class="about-background"></div>
-
-    <div class="container about-container">
-
-        <div class="about-visual reveal">
-
-            <div class="about-logo-card">
-
-                <div class="about-grid"></div>
-
-                <div class="about-logo-glow"></div>
-
-                <img
-                    src="logo.svg"
-                    data-logo-fallback="logo.png"
-                    data-logo-fallback-2="logo.jpg"
-                    alt="Logo Prestacar Services"
-                    class="about-logo"
-                    loading="lazy"
-                >
-
-            </div>
-
-
-            <div class="experience-badge float-anim">
-
-                <strong>100%</strong>
-
-                <span>
-                    Engagement
-                </span>
-
-            </div>
-
-
-            <div class="about-floating-label">
-                <span>PRESTACAR</span>
-                <strong>360°</strong>
-            </div>
-
-        </div>
-
-
-        <div class="about-text reveal reveal-delay-1">
-
-            <span class="gradient-text">
-                L'ADN Prestacar
-            </span>
-
-            <h2>
-                Nous transformons vos défis
-                en <span>opportunités.</span>
-            </h2>
-
-            <p>
-                Prestacar Services n'est pas simplement
-                un prestataire. Nous sommes un partenaire
-                stratégique pour accompagner les entreprises
-                dans leur transformation.
-            </p>
-
-            <p>
-                Notre approche combine technologie,
-                expertise humaine, performance commerciale
-                et sécurité afin de construire des solutions
-                réellement adaptées à chaque organisation.
-            </p>
-
-
-            <ul class="feature-list">
-
-                <li>
-                    <i class="icon-check">✓</i>
-                    <span>Stratégies sur-mesure et agiles.</span>
-                </li>
-
-                <li>
-                    <i class="icon-check">✓</i>
-                    <span>Accompagnement de A à Z.</span>
-                </li>
-
-                <li>
-                    <i class="icon-check">✓</i>
-                    <span>Technologies modernes et méthodes éprouvées.</span>
-                </li>
-
-                <li>
-                    <i class="icon-check">✓</i>
-                    <span>Vision orientée résultats.</span>
-                </li>
-
-            </ul>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     SERVICES
-========================================================= -->
-
-<section class="section services-section" id="services">
-
-    <div class="container">
-
-        <div class="section-title center reveal">
-
-            <span class="gradient-text">
-                Catalogue de solutions
-            </span>
-
-            <h2>
-                Une expertise à
-                <span>360 degrés.</span>
-            </h2>
-
-            <p>
-                Des solutions pensées pour digitaliser,
-                développer, sécuriser et accélérer votre
-                activité.
-            </p>
-
-        </div>
-
-
-        <div class="services-grid">
-
-
-            <article class="service-box service-large reveal">
-
-                <div class="service-icon">
-                    🌐
-                </div>
-
-                <div class="service-content">
-
-                    <span class="service-tag">
-                        DIGITAL
-                    </span>
-
-                    <h3>
-                        Web & Applications
-                    </h3>
-
-                    <p>
-                        Création d'écosystèmes digitaux
-                        performants, responsives, modernes
-                        et rapides.
-                    </p>
-
-                    <a href="#contact">
-                        Démarrer <span>→</span>
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <article class="service-box reveal reveal-delay-1">
-
-                <div class="service-icon">
-                    <span class="flags">
-                        🇬🇧 🇪🇸
-                    </span>
-                </div>
-
-                <div class="service-content">
-
-                    <span class="service-tag">
-                        FORMATION
-                    </span>
-
-                    <h3>
-                        Langues & Compétences
-                    </h3>
-
-                    <p>
-                        Anglais, espagnol et formations
-                        métiers pour améliorer la productivité.
-                    </p>
-
-                    <a href="#contact">
-                        Démarrer <span>→</span>
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <article class="service-box reveal reveal-delay-2">
-
-                <div class="service-icon">
-                    🎧
-                </div>
-
-                <div class="service-content">
-
-                    <span class="service-tag">
-                        BPO
-                    </span>
-
-                    <h3>
-                        BPO & Call Center
-                    </h3>
-
-                    <p>
-                        Externalisation de la relation client,
-                        télémarketing, SAV et gestion des litiges.
-                    </p>
-
-                    <a href="#contact">
-                        Démarrer <span>→</span>
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <article class="service-box reveal reveal-delay-3">
-
-                <div class="service-icon">
-                    📈
-                </div>
-
-                <div class="service-content">
-
-                    <span class="service-tag">
-                        BUSINESS
-                    </span>
-
-                    <h3>
-                        Sales & Recouvrement
-                    </h3>
-
-                    <p>
-                        Conversion commerciale, optimisation
-                        des ventes et amélioration de la trésorerie.
-                    </p>
-
-                    <a href="#contact">
-                        Démarrer <span>→</span>
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <article class="service-box reveal reveal-delay-4">
-
-                <div class="service-icon">
-                    📹
-                </div>
-
-                <div class="service-content">
-
-                    <span class="service-tag">
-                        SÉCURITÉ
-                    </span>
-
-                    <h3>
-                        Vidéosurveillance
-                    </h3>
-
-                    <p>
-                        Sécurisation des infrastructures avec
-                        matériel haute définition et monitoring.
-                    </p>
-
-                    <a href="#contact">
-                        Démarrer <span>→</span>
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <article class="service-box reveal reveal-delay-5">
-
-                <div class="service-icon">
-                    💳
-                </div>
-
-                <div class="service-content">
-
-                    <span class="service-tag">
-                        TECHNIQUE
-                    </span>
-
-                    <h3>
-                        POS & Électronique
-                    </h3>
-
-                    <p>
-                        Installation de terminaux de paiement
-                        et équipements électroniques embarqués.
-                    </p>
-
-                    <a href="#contact">
-                        Démarrer <span>→</span>
-                    </a>
-
-                </div>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     CTA
-========================================================= -->
-
-<section class="cta-premium reveal">
-
-    <div class="cta-noise"></div>
-
-    <div class="cta-orb cta-orb-one"></div>
-    <div class="cta-orb cta-orb-two"></div>
-
-    <div class="container cta-container">
-
-        <span class="cta-label">
-            PRÊT À PASSER À L'ACTION ?
-        </span>
-
-        <h2>
-            Donnez une nouvelle dimension
-            à votre <span>entreprise.</span>
-        </h2>
-
-        <p>
-            Parlons de vos objectifs et construisons
-            ensemble une solution adaptée à votre réalité.
-        </p>
-
-        <a href="#contact" class="btn btn-white-glow">
-            Démarrer mon projet
-            <span>→</span>
-        </a>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     CONTACT
-========================================================= -->
-
-<section class="section contact-section" id="contact">
-
-    <div class="container">
-
-        <div class="contact-wrapper">
-
-
-            <div class="contact-info reveal">
-
-                <span class="gradient-text">
-                    Contact
-                </span>
-
-                <h2>
-                    Parlons de votre
-                    <span>avenir.</span>
-                </h2>
-
-                <p>
-                    Un projet digital ? Une formation ?
-                    Un besoin en relation client ou en
-                    infrastructure ?
-                </p>
-
-                <p>
-                    Notre équipe est disponible pour
-                    étudier votre besoin.
-                </p>
-
-
-                <div class="contact-cards">
-
-                    <a
-                        href="tel:+2250778615861"
-                        class="contact-mini-card">
-
-                        <div class="contact-icon">
-                            📱
-                        </div>
-
-                        <div>
-                            <span class="label">
-                                Appelez-nous
-                            </span>
-
-                            <strong>
-                                07 78 61 58 61
-                            </strong>
-                        </div>
-
-                        <span class="contact-arrow">
-                            →
-                        </span>
-
-                    </a>
-
-
-                    <a
-                        href="mailto:prestacarservice@gmail.com"
-                        class="contact-mini-card">
-
-                        <div class="contact-icon">
-                            ✉️
-                        </div>
-
-                        <div>
-                            <span class="label">
-                                Écrivez-nous
-                            </span>
-
-                            <strong>
-                                prestacarservice@gmail.com
-                            </strong>
-                        </div>
-
-                        <span class="contact-arrow">
-                            →
-                        </span>
-
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <form
-                class="glass-form reveal reveal-delay-1"
-                id="contact-form">
-
-                <div class="form-header">
-
-                    <span class="form-number">
-                        01
-                    </span>
-
-                    <div>
-                        <span class="gradient-text">
-                            Votre projet
-                        </span>
+                        <span class="card-number">01</span>
 
                         <h3>
-                            Envoyer un message
+                            Digitalisation
                         </h3>
+
+                        <p>
+                            Nous aidons les entreprises à moderniser
+                            leurs outils, processus et présence digitale.
+                        </p>
+
+                        <a href="#contact">
+                            En savoir plus →
+                        </a>
+
+                    </article>
+
+
+                    <article class="modern-card reveal">
+
+                        <div class="card-icon icon-blue">
+                            🎓
+                        </div>
+
+                        <span class="card-number">02</span>
+
+                        <h3>
+                            Formation
+                        </h3>
+
+                        <p>
+                            Des formations adaptées aux besoins
+                            professionnels pour développer les compétences.
+                        </p>
+
+                        <a href="#contact">
+                            En savoir plus →
+                        </a>
+
+                    </article>
+
+
+                    <article class="modern-card reveal">
+
+                        <div class="card-icon icon-orange">
+                            🤝
+                        </div>
+
+                        <span class="card-number">03</span>
+
+                        <h3>
+                            Relation client
+                        </h3>
+
+                        <p>
+                            Amélioration de l'expérience client,
+                            satisfaction et fidélisation.
+                        </p>
+
+                        <a href="#contact">
+                            En savoir plus →
+                        </a>
+
+                    </article>
+
+
+                    <article class="modern-card reveal">
+
+                        <div class="card-icon icon-green">
+                            ⚙️
+                        </div>
+
+                        <span class="card-number">04</span>
+
+                        <h3>
+                            Solutions techniques
+                        </h3>
+
+                        <p>
+                            Des solutions techniques adaptées à vos
+                            contraintes et à votre environnement.
+                        </p>
+
+                        <a href="#contact">
+                            En savoir plus →
+                        </a>
+
+                    </article>
+
+
+                    <article class="modern-card reveal">
+
+                        <div class="card-icon icon-purple">
+                            🛡️
+                        </div>
+
+                        <span class="card-number">05</span>
+
+                        <h3>
+                            Sécurité
+                        </h3>
+
+                        <p>
+                            Des solutions et conseils pour renforcer
+                            la sécurité de vos activités.
+                        </p>
+
+                        <a href="#contact">
+                            En savoir plus →
+                        </a>
+
+                    </article>
+
+
+                    <article class="modern-card premium-card reveal">
+
+                        <div class="card-icon icon-gold">
+                            🚀
+                        </div>
+
+                        <span class="card-number">06</span>
+
+                        <h3>
+                            Accompagnement
+                        </h3>
+
+                        <p>
+                            Un accompagnement personnalisé pour
+                            structurer et accélérer vos projets.
+                        </p>
+
+                        <a href="#contact">
+                            Démarrer un projet →
+                        </a>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             À PROPOS
+        ====================================================== -->
+
+        <section class="about section" id="apropos">
+
+            <div class="container about-grid">
+
+
+                <div class="about-visual reveal">
+
+                    <div class="about-logo-card">
+
+                        <div class="about-glow"></div>
+
+                        <div class="about-logo-circle">
+
+                            <img
+                                src="./logo.jpg"
+                                alt="Prestacar Services">
+
+                        </div>
+
+                        <div class="about-card-line"></div>
+
+                        <span>
+                            PRESTACAR SERVICES
+                        </span>
+
+                        <small>
+                            Solutions professionnelles
+                        </small>
+
                     </div>
 
                 </div>
 
 
-                <div class="form-group">
+                <div class="about-content reveal">
 
-                    <label for="name">
-                        Nom / Entreprise
-                    </label>
+                    <span class="section-kicker">
+                        À PROPOS
+                    </span>
 
-                    <input
-                        type="text"
-                        id="name"
-                        placeholder="Votre nom ou entreprise"
-                        autocomplete="name"
-                        required
-                    >
+                    <h2>
+                        Plus qu'un prestataire,
+                        <span>un partenaire.</span>
+                    </h2>
+
+                    <p>
+                        Prestacar Services accompagne les entreprises,
+                        entrepreneurs et particuliers dans leurs projets
+                        en apportant des solutions concrètes, modernes
+                        et adaptées.
+                    </p>
+
+                    <p>
+                        Notre approche repose sur l'écoute,
+                        la rigueur, l'innovation et la recherche
+                        permanente de résultats.
+                    </p>
+
+
+                    <div class="about-points">
+
+                        <div class="about-point">
+
+                            <span>✓</span>
+
+                            <div>
+                                <strong>
+                                    Approche personnalisée
+                                </strong>
+
+                                <p>
+                                    Chaque projet bénéficie d'une
+                                    approche adaptée à ses besoins.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="about-point">
+
+                            <span>✓</span>
+
+                            <div>
+                                <strong>
+                                    Solutions concrètes
+                                </strong>
+
+                                <p>
+                                    Nous privilégions les solutions
+                                    directement applicables.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="about-point">
+
+                            <span>✓</span>
+
+                            <div>
+                                <strong>
+                                    Orientation résultats
+                                </strong>
+
+                                <p>
+                                    Notre objectif est de créer
+                                    une valeur mesurable.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             SERVICES
+        ====================================================== -->
+
+        <section class="services section" id="services">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <span class="section-kicker">
+                        NOS SERVICES
+                    </span>
+
+                    <h2>
+                        Une offre conçue autour
+                        de vos <span>besoins.</span>
+                    </h2>
 
                 </div>
 
 
-                <div class="form-row">
+                <div class="services-grid">
 
-                    <div class="form-group">
 
-                        <label for="email">
-                            E-mail
-                        </label>
+                    <div class="service-box reveal">
 
-                        <input
-                            type="email"
-                            id="email"
-                            placeholder="votre@email.com"
-                            autocomplete="email"
-                            required
-                        >
+                        <div class="service-icon">
+                            💻
+                        </div>
+
+                        <div class="service-content">
+
+                            <span>01</span>
+
+                            <h3>
+                                Digitalisation
+                            </h3>
+
+                            <p>
+                                Sites web, outils numériques,
+                                automatisation et accompagnement digital.
+                            </p>
+
+                        </div>
 
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="service-box reveal">
 
-                        <label for="phone">
-                            Téléphone
-                        </label>
+                        <div class="service-icon">
+                            🎯
+                        </div>
 
-                        <input
-                            type="tel"
-                            id="phone"
-                            placeholder="Votre numéro"
-                            autocomplete="tel"
-                        >
+                        <div class="service-content">
+
+                            <span>02</span>
+
+                            <h3>
+                                Conseil & stratégie
+                            </h3>
+
+                            <p>
+                                Analyse, conseil et accompagnement
+                                stratégique pour vos projets.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="service-box reveal">
+
+                        <div class="service-icon">
+                            🎓
+                        </div>
+
+                        <div class="service-content">
+
+                            <span>03</span>
+
+                            <h3>
+                                Formation
+                            </h3>
+
+                            <p>
+                                Développement des compétences et
+                                formations professionnelles.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="service-box reveal">
+
+                        <div class="service-icon">
+                            ❤️
+                        </div>
+
+                        <div class="service-content">
+
+                            <span>04</span>
+
+                            <h3>
+                                Expérience client
+                            </h3>
+
+                            <p>
+                                Relation client, satisfaction,
+                                fidélisation et optimisation du parcours.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="service-box reveal">
+
+                        <div class="service-icon">
+                            ⚙️
+                        </div>
+
+                        <div class="service-content">
+
+                            <span>05</span>
+
+                            <h3>
+                                Technique
+                            </h3>
+
+                            <p>
+                                Solutions techniques adaptées
+                                aux besoins de votre activité.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="service-box reveal">
+
+                        <div class="service-icon">
+                            🛡️
+                        </div>
+
+                        <div class="service-content">
+
+                            <span>06</span>
+
+                            <h3>
+                                Sécurité
+                            </h3>
+
+                            <p>
+                                Conseil et solutions pour renforcer
+                                la sécurité de vos activités.
+                            </p>
+
+                        </div>
 
                     </div>
 
                 </div>
 
+            </div>
 
-                <div class="form-group">
+        </section>
 
-                    <label for="service">
-                        Service
-                    </label>
 
-                    <select id="service" required>
+        <!-- =====================================================
+             CTA
+        ====================================================== -->
 
-                        <option value="" disabled selected>
-                            Sélectionnez un service
-                        </option>
+        <section class="cta-section">
 
-                        <option value="Web / Application">
-                            Développement Web / Application
-                        </option>
+            <div class="container">
 
-                        <option value="Formation">
-                            Formation professionnelle / Langues
-                        </option>
+                <div class="cta-box reveal">
 
-                        <option value="Call Center">
-                            Call Center / SAV / Recouvrement
-                        </option>
+                    <div class="cta-glow"></div>
 
-                        <option value="Technique">
-                            Vidéosurveillance / POS / Électronique
-                        </option>
+                    <div class="cta-content">
 
-                    </select>
+                        <span class="section-kicker">
+                            UN PROJET ?
+                        </span>
+
+                        <h2>
+                            Parlons de votre
+                            <span>prochain projet.</span>
+                        </h2>
+
+                        <p>
+                            Expliquez-nous votre besoin et nous
+                            vous aiderons à identifier la meilleure
+                            solution.
+                        </p>
+
+                        <a href="#contact" class="btn btn-white">
+                            Démarrer la discussion →
+                        </a>
+
+                    </div>
+
+                    <div class="cta-decoration">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CONTACT
+        ====================================================== -->
+
+        <section class="contact section" id="contact">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <span class="section-kicker">
+                        CONTACT
+                    </span>
+
+                    <h2>
+                        Construisons quelque chose
+                        de <span>solide.</span>
+                    </h2>
 
                 </div>
 
 
-                <div class="form-group">
+                <div class="contact-grid">
 
-                    <label for="message">
-                        Votre projet
-                    </label>
 
-                    <textarea
-                        id="message"
-                        rows="5"
-                        placeholder="Décrivez-nous votre besoin..."
-                        required>
-                    </textarea>
+                    <div class="contact-info reveal">
+
+                        <div class="contact-item">
+
+                            <div class="contact-icon">
+                                📞
+                            </div>
+
+                            <div>
+                                <span>Téléphone</span>
+
+                                <a href="tel:+2250778615861">
+                                    07 78 61 58 61
+                                </a>
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                            <div class="contact-icon">
+                                ✉️
+                            </div>
+
+                            <div>
+                                <span>Email</span>
+
+                                <a href="mailto:prestacarservice@gmail.com">
+                                    prestacarservice@gmail.com
+                                </a>
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                            <div class="contact-icon">
+                                💬
+                            </div>
+
+                            <div>
+                                <span>WhatsApp</span>
+
+                                <a
+                                    href="https://wa.me/2250778615861"
+                                    target="_blank"
+                                    rel="noopener">
+
+                                    Nous écrire sur WhatsApp
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <form class="contact-form reveal" id="contactForm">
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="name">
+                                    Nom
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    placeholder="Votre nom"
+                                    required>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="email">
+                                    Email
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="votre@email.com"
+                                    required>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="subject">
+                                Sujet
+                            </label>
+
+                            <input
+                                type="text"
+                                id="subject"
+                                name="subject"
+                                placeholder="Comment pouvons-nous vous aider ?"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="message">
+                                Message
+                            </label>
+
+                            <textarea
+                                id="message"
+                                name="message"
+                                rows="6"
+                                placeholder="Décrivez votre projet..."
+                                required></textarea>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary form-submit">
+
+                            Envoyer le message
+
+                            <span>→</span>
+
+                        </button>
+
+                        <div
+                            class="form-message"
+                            id="formMessage">
+                        </div>
+
+                    </form>
 
                 </div>
 
+            </div>
 
-                <button
-                    type="submit"
-                    class="btn btn-glow w-100">
+        </section>
 
-                    Envoyer ma demande
-                    <span>→</span>
+    </main>
 
-                </button>
 
-                <small class="form-note">
-                    Votre demande sera préparée pour un
-                    contact rapide avec Prestacar Services.
-                </small>
+    <!-- =====================================================
+         WHATSAPP FLOAT
+    ====================================================== -->
 
-            </form>
+    <a
+        href="https://wa.me/2250778615861"
+        class="whatsapp-float"
+        target="_blank"
+        rel="noopener"
+        aria-label="Contacter Prestacar Services sur WhatsApp">
 
+        <span>💬</span>
+
+        <div class="whatsapp-tooltip">
+            Contactez-nous
         </div>
 
-    </div>
-
-</section>
-
-</main>
+    </a>
 
 
-<!-- =========================================================
-     WHATSAPP
-========================================================= -->
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
 
-<a
-    href="https://wa.me/2250778615861"
-    class="whatsapp-float"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Discuter sur WhatsApp">
+    <footer class="footer">
 
-    <span>💬</span>
-
-    <i></i>
-
-</a>
+        <div class="container footer-grid">
 
 
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
-<footer class="footer">
-
-    <div class="container footer-content">
-
-
-        <div class="brand-col">
-
-            <a href="#accueil" class="footer-brand">
+            <div class="footer-brand">
 
                 <img
-                    src="logo.svg"
-                    data-logo-fallback="logo.png"
-                    data-logo-fallback-2="logo.jpg"
-                    alt="Prestacar Services"
-                    class="footer-logo"
-                    loading="lazy"
-                >
+                    src="./logo.jpg"
+                    alt="Prestacar Services">
 
-            </a>
+                <p>
+                    Des solutions professionnelles pour
+                    accompagner vos projets et votre croissance.
+                </p>
 
-            <p>
-                Digitaliser. Former. Sécuriser.
-                Développer.
-            </p>
-
-        </div>
+            </div>
 
 
-        <div class="links-col">
+            <div class="footer-links">
 
-            <h4>
-                Navigation
-            </h4>
+                <h4>
+                    Navigation
+                </h4>
 
-            <a href="#accueil">
-                Accueil
-            </a>
+                <a href="#accueil">
+                    Accueil
+                </a>
 
-            <a href="#a-propos">
-                L'entreprise
-            </a>
+                <a href="#expertise">
+                    Expertise
+                </a>
 
-            <a href="#poles">
-                Expertises
-            </a>
+                <a href="#apropos">
+                    À propos
+                </a>
 
-            <a href="#services">
-                Nos solutions
-            </a>
+                <a href="#services">
+                    Services
+                </a>
 
-        </div>
+                <a href="#contact">
+                    Contact
+                </a>
 
-
-        <div class="links-col">
-
-            <h4>
-                Services
-            </h4>
-
-            <a href="#services">
-                Web & Applications
-            </a>
-
-            <a href="#services">
-                Formation
-            </a>
-
-            <a href="#services">
-                Relation Client
-            </a>
-
-            <a href="#services">
-                Sécurité & Technique
-            </a>
-
-        </div>
+            </div>
 
 
-        <div class="links-col">
+            <div class="footer-links">
 
-            <h4>
-                Contact
-            </h4>
+                <h4>
+                    Contact
+                </h4>
 
-            <a href="tel:+2250778615861">
-                07 78 61 58 61
-            </a>
+                <a href="tel:+2250778615861">
+                    07 78 61 58 61
+                </a>
 
-            <a href="mailto:prestacarservice@gmail.com">
-                prestacarservice@gmail.com
-            </a>
+                <a href="mailto:prestacarservice@gmail.com">
+                    prestacarservice@gmail.com
+                </a>
 
-            <a href="#contact">
-                Démarrer un projet
-            </a>
+                <a
+                    href="https://wa.me/2250778615861"
+                    target="_blank"
+                    rel="noopener">
+
+                    WhatsApp
+
+                </a>
+
+            </div>
 
         </div>
 
-    </div>
+
+        <div class="footer-bottom">
+
+            <div class="container">
+
+                <p>
+                    © <span id="year"></span>
+                    Prestacar Services.
+                    Tous droits réservés.
+                </p>
+
+                <span>
+                    Excellence • Innovation • Résultats
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
 
 
-    <div class="footer-bottom">
-
-        <p>
-            © <span id="current-year">2026</span>
-            Prestacar Services.
-            Tous droits réservés.
-        </p>
-
-        <span>
-            Côte d'Ivoire • Abidjan
-        </span>
-
-    </div>
-
-</footer>
-
-
-<script src="script.js"></script>
+    <script src="./script.js"></script>
 
 </body>
+
 </html>
