@@ -2,289 +2,1198 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Prestacar Services — Développement web, formation, relation client, solutions techniques.">
-    
-    <!-- PWA & Favicons optimisés -->
-    <link rel="manifest" href="manifest.json">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Prestacar Services — Développement web, formation, relation client, solutions techniques et sécurité.">
+
     <meta name="theme-color" content="#FF2A43">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="logo.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    
+
     <title>Prestacar Services | Solutions Digitales & Stratégiques</title>
-    
-    <!-- Polices Google -->
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <header class="header">
-        <div class="container header-container">
-            <a href="#accueil" class="logo">
-                <picture>
-                    <source srcset="logo.webp" type="image/webp">
-                    <source srcset="logo.png" type="image/png">
-                    <img src="logo.jpg" alt="Prestacar" loading="lazy"> 
-                </picture>
-            </a>
-            <button class="menu-toggle" type="button" aria-label="Ouvrir le menu">
-                <span></span><span></span><span></span>
-            </button>
-            <nav class="nav" id="main-navigation">
-                <ul class="menu">
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#a-propos">À propos</a></li>
-                    <li><a href="#poles">Expertises</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#contact" class="btn btn-header">Démarrer un projet</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <main>
-        <!-- HERO SECTION -->
-        <section class="hero" id="accueil">
-            <div class="hero-bg-shapes"></div>
-            <div class="container hero-container">
-                <div class="hero-content reveal">
-                    <span class="hero-badge">✨ L'excellence au service de votre croissance</span>
-                    <h1>Propulsez votre entreprise vers de <span>nouveaux sommets.</span></h1>
-                    <p>Digitalisation, formation de haut niveau, gestion de la relation client et sécurité. Prestacar Services est l'architecte de votre réussite.</p>
-                    <div class="hero-buttons">
-                        <a href="#services" class="btn btn-glow">Découvrir nos solutions</a>
-                        <a href="#contact" class="btn btn-outline-light">Discutons-en →</a>
-                    </div>
+<body>
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="header" id="site-header">
+
+    <div class="container header-container">
+
+        <a href="#accueil" class="logo" aria-label="Prestacar Services">
+
+            <img
+                src="logo.svg"
+                data-logo-fallback="logo.png"
+                data-logo-fallback-2="logo.jpg"
+                alt="Prestacar Services"
+                class="logo-image"
+                loading="eager"
+                decoding="async"
+            >
+
+        </a>
+
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Ouvrir le menu"
+            aria-expanded="false"
+            aria-controls="main-navigation">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+        <nav class="nav" id="main-navigation">
+
+            <ul class="menu">
+
+                <li>
+                    <a href="#accueil">Accueil</a>
+                </li>
+
+                <li>
+                    <a href="#a-propos">À propos</a>
+                </li>
+
+                <li>
+                    <a href="#poles">Expertises</a>
+                </li>
+
+                <li>
+                    <a href="#services">Services</a>
+                </li>
+
+                <li>
+                    <a href="#contact" class="btn btn-header">
+                        Démarrer un projet
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main>
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero" id="accueil">
+
+    <div class="hero-grid"></div>
+
+    <div class="hero-orb hero-orb-red"></div>
+    <div class="hero-orb hero-orb-blue"></div>
+
+    <div class="hero-particles">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="container hero-container">
+
+        <div class="hero-content reveal">
+
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Excellence digitale & stratégique
+            </div>
+
+            <h1>
+                Propulsez votre entreprise vers de
+                <span>nouveaux sommets.</span>
+            </h1>
+
+            <p>
+                Digitalisation, formation, relation client,
+                solutions techniques et sécurité.
+                <strong>Prestacar Services</strong> accompagne
+                votre croissance de A à Z.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#services" class="btn btn-glow">
+                    Découvrir nos solutions
+                    <span>→</span>
+                </a>
+
+                <a href="#contact" class="btn btn-outline-light">
+                    Discutons-en
+                    <span>↗</span>
+                </a>
+
+            </div>
+
+            <div class="hero-trust">
+
+                <div class="trust-item">
+                    <strong>360°</strong>
+                    <span>Accompagnement</span>
                 </div>
-                <div class="hero-visual reveal reveal-delay-1">
-                    <div class="glass-card main-glass-card">
-                        <div class="card-header">
-                            <div class="dots"><span class="red"></span><span class="yellow"></span><span class="green"></span></div>
+
+                <div class="trust-line"></div>
+
+                <div class="trust-item">
+                    <strong>100%</strong>
+                    <span>Engagement</span>
+                </div>
+
+                <div class="trust-line"></div>
+
+                <div class="trust-item">
+                    <strong>24/7</strong>
+                    <span>Réactivité</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- VISUEL HERO -->
+
+        <div class="hero-visual reveal reveal-delay-1">
+
+            <div class="visual-glow"></div>
+
+            <div class="glass-card main-glass-card">
+
+                <div class="card-top">
+
+                    <div class="dots">
+                        <span class="dot-red"></span>
+                        <span class="dot-yellow"></span>
+                        <span class="dot-green"></span>
+                    </div>
+
+                    <span class="card-status">
+                        ● ONLINE
+                    </span>
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="hero-logo-container">
+
+                        <div class="logo-ring ring-one"></div>
+                        <div class="logo-ring ring-two"></div>
+
+                        <div class="hero-logo">
+
+                            <img
+                                src="logo.svg"
+                                data-logo-fallback="logo.png"
+                                data-logo-fallback-2="logo.jpg"
+                                alt="Prestacar"
+                            >
+
                         </div>
-                        <div class="card-body">
-                            <div class="floating-icon">🚀</div>
-                            <h2>Prestacar 360°</h2>
-                            <p>Une synergie parfaite entre technologie, humain et sécurité.</p>
-                            <div class="progress-bars">
-                                <div class="bar-group"><div class="bar-label">Innovation</div><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div></div>
-                                <div class="bar-group"><div class="bar-label">Performance</div><div class="bar-track"><div class="bar-fill" style="width:100%; background:var(--green)"></div></div></div>
+
+                    </div>
+
+                    <span class="mini-label">
+                        PRESTACAR SERVICES
+                    </span>
+
+                    <h2>
+                        Votre partenaire
+                        <span>360°</span>
+                    </h2>
+
+                    <p>
+                        Technologie. Humain. Performance.
+                        Sécurité.
+                    </p>
+
+
+                    <div class="performance">
+
+                        <div class="performance-header">
+                            <span>Innovation</span>
+                            <strong>95%</strong>
+                        </div>
+
+                        <div class="progress-track">
+                            <div
+                                class="progress-fill progress-red"
+                                data-width="95%">
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- POLES SECTION -->
-        <section class="section poles-section" id="poles">
-            <div class="container">
-                <div class="section-title reveal">
-                    <span class="gradient-text">Nos fondations</span>
-                    <h2>4 Pôles d'Excellence</h2>
-                </div>
-                <div class="poles-grid">
-                    <article class="modern-card reveal">
-                        <div class="card-icon gradient-blue">💻</div>
-                        <h3>Digital & Tech</h3>
-                        <p>Développement de sites web, d'applications sur-mesure et solutions digitales premium.</p>
-                    </article>
-                    <article class="modern-card reveal reveal-delay-1">
-                        <div class="card-icon gradient-red">🎓</div>
-                        <h3>Formation</h3>
-                        <p>Montée en compétence de vos équipes, formations continues et apprentissage des langues.</p>
-                    </article>
-                    <article class="modern-card reveal reveal-delay-2">
-                        <div class="card-icon gradient-yellow">📞</div>
-                        <h3>Relation Client</h3>
-                        <p>Call center externe, télévente, service client irréprochable et recouvrement stratégique.</p>
-                    </article>
-                    <article class="modern-card reveal reveal-delay-3">
-                        <div class="card-icon gradient-green">⚙️</div>
-                        <h3>Infrastructures</h3>
-                        <p>Déploiement de solutions POS, électronique embarquée et vidéosurveillance avancée.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
+                    </div>
 
-        <!-- ABOUT SECTION -->
-        <section class="section about-section" id="a-propos">
-            <div class="container about-container">
-                <div class="about-images reveal">
-                    <div class="image-wrapper">
-                        <picture>
-                            <source srcset="logo.webp" type="image/webp">
-                            <source srcset="logo.png" type="image/png">
-                            <img src="logo.jpg" alt="Logo Prestacar" loading="lazy">
-                        </picture>
-                    </div>
-                    <div class="experience-badge float-anim">
-                        <strong>100%</strong>
-                        <span>Engagement</span>
-                    </div>
-                </div>
-                <div class="about-text reveal reveal-delay-1">
-                    <span class="gradient-text">L'ADN Prestacar</span>
-                    <h2>Nous transformons vos défis en opportunités.</h2>
-                    <p>Prestacar Services n'est pas qu'un simple prestataire, c'est le partenaire stratégique de votre évolution. Nous combinons des expertises pluridisciplinaires pour offrir une réponse globale aux entreprises modernes.</p>
-                    <ul class="feature-list">
-                        <li><i class="icon-check">✓</i> Stratégies sur-mesure et agiles.</li>
-                        <li><i class="icon-check">✓</i> Accompagnement de A à Z par des experts.</li>
-                        <li><i class="icon-check">✓</i> Technologies de pointe et méthodes éprouvées.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
 
-        <!-- SERVICES SECTION -->
-        <section class="section services-section" id="services">
-            <div class="container">
-                <div class="section-title center reveal">
-                    <span class="gradient-text">Catalogue de solutions</span>
-                    <h2>Une expertise à 360 degrés</h2>
-                </div>
-                <div class="masonry-grid">
-                    <div class="service-box reveal">
-                        <div class="box-icon">🌐</div>
-                        <h3>Web & App</h3>
-                        <p>Création d'écosystèmes digitaux performants, responsives et ultra-rapides.</p>
-                    </div>
-                    
-                    <div class="service-box reveal reveal-delay-1">
-                        <div class="box-icon flags-container">
-                            <span class="flag-icon" role="img" aria-label="Anglais">🇬🇧</span>
-                            <span class="flag-icon" role="img" aria-label="Espagnol">🇪🇸</span>
+                    <div class="performance">
+
+                        <div class="performance-header">
+                            <span>Performance</span>
+                            <strong>100%</strong>
                         </div>
-                        <h3>Langues & Compétences</h3>
-                        <p>Anglais, espagnol et formations métiers pour booster la productivité.</p>
+
+                        <div class="progress-track">
+                            <div
+                                class="progress-fill progress-blue"
+                                data-width="100%">
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div class="service-box reveal reveal-delay-2">
-                        <div class="box-icon">🎧</div>
-                        <h3>BPO & Call Center</h3>
-                        <p>Externalisation de la relation client, télémarketing, SAV et gestion des litiges.</p>
-                    </div>
-                    <div class="service-box reveal reveal-delay-3">
-                        <div class="box-icon">📈</div>
-                        <h3>Sales & Recouvrement</h3>
-                        <p>Stratégies de conversion commerciale et optimisation de votre trésorerie.</p>
-                    </div>
-                    <div class="service-box reveal reveal-delay-4">
-                        <div class="box-icon">📹</div>
-                        <h3>Vidéosurveillance</h3>
-                        <p>Sécurisation de vos infrastructures avec du matériel haute définition et monitoring.</p>
-                    </div>
-                    <div class="service-box reveal reveal-delay-5">
-                        <div class="box-icon">💳</div>
-                        <h3>POS & Électronique</h3>
-                        <p>Installation de terminaux de paiement et équipements électroniques embarqués.</p>
-                    </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- CTA SECTION -->
-        <section class="cta-premium reveal">
-            <div class="cta-bg"></div>
-            <div class="container cta-container">
-                <h2>Prêt à accélérer votre croissance ?</h2>
-                <p>Ne laissez pas vos concurrents prendre de l'avance. Contactez nos experts dès aujourd'hui.</p>
-                <a href="#contact" class="btn btn-white-glow">Démarrer mon projet</a>
             </div>
-        </section>
 
-        <!-- CONTACT SECTION -->
-        <section class="section contact-section" id="contact">
-            <div class="container">
-                <div class="contact-wrapper">
-                    <div class="contact-info reveal">
-                        <span class="gradient-text">Contact</span>
-                        <h2>Parlons de votre avenir.</h2>
-                        <p>Nos bureaux sont en Côte d'Ivoire, mais notre portée est globale. Écrivez-nous.</p>
-                        
-                        <div class="contact-cards">
-                            <a href="tel:+2250778615861" class="contact-mini-card">
-                                <div class="icon">📱</div>
-                                <div>
-                                    <span class="label">Appelez-nous</span>
-                                    <strong>07 78 61 58 61</strong>
-                                </div>
-                            </a>
-                            <a href="mailto:prestacarservice@gmail.com" class="contact-mini-card">
-                                <div class="icon">✉️</div>
-                                <div>
-                                    <span class="label">Écrivez-nous</span>
-                                    <strong>prestacarservice@gmail.com</strong>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <form class="glass-form reveal reveal-delay-1" id="contact-form">
-                        <h3>Envoyer un message</h3>
-                        <div class="form-group">
-                            <input type="text" id="name" placeholder="Nom complet ou Entreprise" required>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group"><input type="email" id="email" placeholder="Adresse e-mail" required></div>
-                            <div class="form-group"><input type="tel" id="phone" placeholder="Téléphone"></div>
-                        </div>
-                        <div class="form-group">
-                            <select id="service" required>
-                                <option value="" disabled selected>De quel service avez-vous besoin ?</option>
-                                <option value="Web/App">Développement Web / Application</option>
-                                <option value="Formation">Formation professionnelle / Langues</option>
-                                <option value="Call Center">Call center / SAV / Recouvrement</option>
-                                <option value="Technique">Vidéosurveillance / POS / Électronique</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" rows="4" placeholder="Parlez-nous de votre projet..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-glow w-100">Envoyer ma demande</button>
-                    </form>
+
+            <!-- CARTE FLOTTANTE -->
+
+            <div class="floating-card floating-card-one">
+
+                <span class="floating-icon">⚡</span>
+
+                <div>
+                    <strong>Innovation</strong>
+                    <small>Solutions modernes</small>
                 </div>
-            </div>
-        </section>
-    </main>
 
-    <!-- BOUTON FLOTTANT WHATSAPP -->
-    <a href="https://wa.me/2250778615861" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Discuter sur WhatsApp">
-        💬
-    </a>
+            </div>
 
-    <footer class="footer">
-        <div class="container footer-content">
-            <div class="brand-col">
-                <picture>
-                    <source srcset="logo.webp" type="image/webp">
-                    <source srcset="logo.png" type="image/png">
-                    <img src="logo.jpg" alt="Prestacar" class="footer-logo" loading="lazy">
-                </picture>
-                <p>Digitaliser. Former. Sécuriser. Développer.</p>
+
+            <div class="floating-card floating-card-two">
+
+                <span class="floating-icon green-icon">✓</span>
+
+                <div>
+                    <strong>Expertise</strong>
+                    <small>Accompagnement premium</small>
+                </div>
+
             </div>
-            <div class="links-col">
-                <h4>Navigation</h4>
-                <a href="#accueil">Accueil</a>
-                <a href="#a-propos">L'entreprise</a>
-                <a href="#services">Nos solutions</a>
-            </div>
-            <div class="links-col">
-                <h4>Légal</h4>
-                <a href="#">Mentions légales</a>
-                <a href="#">Politique de confidentialité</a>
-            </div>
+
         </div>
-        <div class="footer-bottom">
-            <p>© <span id="current-year">2026</span> Prestacar Services. Conçu pour l'excellence.</p>
+
+    </div>
+
+
+    <div class="hero-scroll">
+        <span>SCROLL</span>
+        <div class="scroll-line"></div>
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     POLES
+========================================================= -->
+
+<section class="section poles-section" id="poles">
+
+    <div class="container">
+
+        <div class="section-title reveal">
+
+            <span class="gradient-text">
+                Nos fondations
+            </span>
+
+            <h2>
+                4 Pôles d'Excellence
+            </h2>
+
+            <p>
+                Une combinaison d'expertises conçue pour
+                répondre aux besoins réels des entreprises.
+            </p>
+
         </div>
-    </footer>
-    <script src="script.js"></script>
+
+
+        <div class="poles-grid">
+
+            <article class="modern-card reveal">
+
+                <div class="card-number">01</div>
+
+                <div class="card-icon gradient-blue">
+                    <span>💻</span>
+                </div>
+
+                <h3>Digital & Tech</h3>
+
+                <p>
+                    Sites web, applications, plateformes
+                    digitales et solutions sur-mesure
+                    performantes.
+                </p>
+
+                <a href="#services" class="card-link">
+                    Explorer <span>→</span>
+                </a>
+
+            </article>
+
+
+            <article class="modern-card reveal reveal-delay-1">
+
+                <div class="card-number">02</div>
+
+                <div class="card-icon gradient-red">
+                    <span>🎓</span>
+                </div>
+
+                <h3>Formation</h3>
+
+                <p>
+                    Formations professionnelles, montée
+                    en compétence, langues et accompagnement
+                    des équipes.
+                </p>
+
+                <a href="#services" class="card-link">
+                    Explorer <span>→</span>
+                </a>
+
+            </article>
+
+
+            <article class="modern-card reveal reveal-delay-2">
+
+                <div class="card-number">03</div>
+
+                <div class="card-icon gradient-yellow">
+                    <span>📞</span>
+                </div>
+
+                <h3>Relation Client</h3>
+
+                <p>
+                    Call center, télévente, SAV, fidélisation
+                    et recouvrement stratégique.
+                </p>
+
+                <a href="#services" class="card-link">
+                    Explorer <span>→</span>
+                </a>
+
+            </article>
+
+
+            <article class="modern-card reveal reveal-delay-3">
+
+                <div class="card-number">04</div>
+
+                <div class="card-icon gradient-green">
+                    <span>⚙️</span>
+                </div>
+
+                <h3>Infrastructures</h3>
+
+                <p>
+                    POS, électronique embarquée,
+                    vidéosurveillance et solutions
+                    techniques.
+                </p>
+
+                <a href="#services" class="card-link">
+                    Explorer <span>→</span>
+                </a>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section class="section about-section" id="a-propos">
+
+    <div class="about-background"></div>
+
+    <div class="container about-container">
+
+        <div class="about-visual reveal">
+
+            <div class="about-logo-card">
+
+                <div class="about-grid"></div>
+
+                <div class="about-logo-glow"></div>
+
+                <img
+                    src="logo.svg"
+                    data-logo-fallback="logo.png"
+                    data-logo-fallback-2="logo.jpg"
+                    alt="Logo Prestacar Services"
+                    class="about-logo"
+                    loading="lazy"
+                >
+
+            </div>
+
+
+            <div class="experience-badge float-anim">
+
+                <strong>100%</strong>
+
+                <span>
+                    Engagement
+                </span>
+
+            </div>
+
+
+            <div class="about-floating-label">
+                <span>PRESTACAR</span>
+                <strong>360°</strong>
+            </div>
+
+        </div>
+
+
+        <div class="about-text reveal reveal-delay-1">
+
+            <span class="gradient-text">
+                L'ADN Prestacar
+            </span>
+
+            <h2>
+                Nous transformons vos défis
+                en <span>opportunités.</span>
+            </h2>
+
+            <p>
+                Prestacar Services n'est pas simplement
+                un prestataire. Nous sommes un partenaire
+                stratégique pour accompagner les entreprises
+                dans leur transformation.
+            </p>
+
+            <p>
+                Notre approche combine technologie,
+                expertise humaine, performance commerciale
+                et sécurité afin de construire des solutions
+                réellement adaptées à chaque organisation.
+            </p>
+
+
+            <ul class="feature-list">
+
+                <li>
+                    <i class="icon-check">✓</i>
+                    <span>Stratégies sur-mesure et agiles.</span>
+                </li>
+
+                <li>
+                    <i class="icon-check">✓</i>
+                    <span>Accompagnement de A à Z.</span>
+                </li>
+
+                <li>
+                    <i class="icon-check">✓</i>
+                    <span>Technologies modernes et méthodes éprouvées.</span>
+                </li>
+
+                <li>
+                    <i class="icon-check">✓</i>
+                    <span>Vision orientée résultats.</span>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SERVICES
+========================================================= -->
+
+<section class="section services-section" id="services">
+
+    <div class="container">
+
+        <div class="section-title center reveal">
+
+            <span class="gradient-text">
+                Catalogue de solutions
+            </span>
+
+            <h2>
+                Une expertise à
+                <span>360 degrés.</span>
+            </h2>
+
+            <p>
+                Des solutions pensées pour digitaliser,
+                développer, sécuriser et accélérer votre
+                activité.
+            </p>
+
+        </div>
+
+
+        <div class="services-grid">
+
+
+            <article class="service-box service-large reveal">
+
+                <div class="service-icon">
+                    🌐
+                </div>
+
+                <div class="service-content">
+
+                    <span class="service-tag">
+                        DIGITAL
+                    </span>
+
+                    <h3>
+                        Web & Applications
+                    </h3>
+
+                    <p>
+                        Création d'écosystèmes digitaux
+                        performants, responsives, modernes
+                        et rapides.
+                    </p>
+
+                    <a href="#contact">
+                        Démarrer <span>→</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="service-box reveal reveal-delay-1">
+
+                <div class="service-icon">
+                    <span class="flags">
+                        🇬🇧 🇪🇸
+                    </span>
+                </div>
+
+                <div class="service-content">
+
+                    <span class="service-tag">
+                        FORMATION
+                    </span>
+
+                    <h3>
+                        Langues & Compétences
+                    </h3>
+
+                    <p>
+                        Anglais, espagnol et formations
+                        métiers pour améliorer la productivité.
+                    </p>
+
+                    <a href="#contact">
+                        Démarrer <span>→</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="service-box reveal reveal-delay-2">
+
+                <div class="service-icon">
+                    🎧
+                </div>
+
+                <div class="service-content">
+
+                    <span class="service-tag">
+                        BPO
+                    </span>
+
+                    <h3>
+                        BPO & Call Center
+                    </h3>
+
+                    <p>
+                        Externalisation de la relation client,
+                        télémarketing, SAV et gestion des litiges.
+                    </p>
+
+                    <a href="#contact">
+                        Démarrer <span>→</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="service-box reveal reveal-delay-3">
+
+                <div class="service-icon">
+                    📈
+                </div>
+
+                <div class="service-content">
+
+                    <span class="service-tag">
+                        BUSINESS
+                    </span>
+
+                    <h3>
+                        Sales & Recouvrement
+                    </h3>
+
+                    <p>
+                        Conversion commerciale, optimisation
+                        des ventes et amélioration de la trésorerie.
+                    </p>
+
+                    <a href="#contact">
+                        Démarrer <span>→</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="service-box reveal reveal-delay-4">
+
+                <div class="service-icon">
+                    📹
+                </div>
+
+                <div class="service-content">
+
+                    <span class="service-tag">
+                        SÉCURITÉ
+                    </span>
+
+                    <h3>
+                        Vidéosurveillance
+                    </h3>
+
+                    <p>
+                        Sécurisation des infrastructures avec
+                        matériel haute définition et monitoring.
+                    </p>
+
+                    <a href="#contact">
+                        Démarrer <span>→</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="service-box reveal reveal-delay-5">
+
+                <div class="service-icon">
+                    💳
+                </div>
+
+                <div class="service-content">
+
+                    <span class="service-tag">
+                        TECHNIQUE
+                    </span>
+
+                    <h3>
+                        POS & Électronique
+                    </h3>
+
+                    <p>
+                        Installation de terminaux de paiement
+                        et équipements électroniques embarqués.
+                    </p>
+
+                    <a href="#contact">
+                        Démarrer <span>→</span>
+                    </a>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CTA
+========================================================= -->
+
+<section class="cta-premium reveal">
+
+    <div class="cta-noise"></div>
+
+    <div class="cta-orb cta-orb-one"></div>
+    <div class="cta-orb cta-orb-two"></div>
+
+    <div class="container cta-container">
+
+        <span class="cta-label">
+            PRÊT À PASSER À L'ACTION ?
+        </span>
+
+        <h2>
+            Donnez une nouvelle dimension
+            à votre <span>entreprise.</span>
+        </h2>
+
+        <p>
+            Parlons de vos objectifs et construisons
+            ensemble une solution adaptée à votre réalité.
+        </p>
+
+        <a href="#contact" class="btn btn-white-glow">
+            Démarrer mon projet
+            <span>→</span>
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CONTACT
+========================================================= -->
+
+<section class="section contact-section" id="contact">
+
+    <div class="container">
+
+        <div class="contact-wrapper">
+
+
+            <div class="contact-info reveal">
+
+                <span class="gradient-text">
+                    Contact
+                </span>
+
+                <h2>
+                    Parlons de votre
+                    <span>avenir.</span>
+                </h2>
+
+                <p>
+                    Un projet digital ? Une formation ?
+                    Un besoin en relation client ou en
+                    infrastructure ?
+                </p>
+
+                <p>
+                    Notre équipe est disponible pour
+                    étudier votre besoin.
+                </p>
+
+
+                <div class="contact-cards">
+
+                    <a
+                        href="tel:+2250778615861"
+                        class="contact-mini-card">
+
+                        <div class="contact-icon">
+                            📱
+                        </div>
+
+                        <div>
+                            <span class="label">
+                                Appelez-nous
+                            </span>
+
+                            <strong>
+                                07 78 61 58 61
+                            </strong>
+                        </div>
+
+                        <span class="contact-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="mailto:prestacarservice@gmail.com"
+                        class="contact-mini-card">
+
+                        <div class="contact-icon">
+                            ✉️
+                        </div>
+
+                        <div>
+                            <span class="label">
+                                Écrivez-nous
+                            </span>
+
+                            <strong>
+                                prestacarservice@gmail.com
+                            </strong>
+                        </div>
+
+                        <span class="contact-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <form
+                class="glass-form reveal reveal-delay-1"
+                id="contact-form">
+
+                <div class="form-header">
+
+                    <span class="form-number">
+                        01
+                    </span>
+
+                    <div>
+                        <span class="gradient-text">
+                            Votre projet
+                        </span>
+
+                        <h3>
+                            Envoyer un message
+                        </h3>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Nom / Entreprise
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Votre nom ou entreprise"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            E-mail
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="votre@email.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Téléphone
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="Votre numéro"
+                            autocomplete="tel"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="service">
+                        Service
+                    </label>
+
+                    <select id="service" required>
+
+                        <option value="" disabled selected>
+                            Sélectionnez un service
+                        </option>
+
+                        <option value="Web / Application">
+                            Développement Web / Application
+                        </option>
+
+                        <option value="Formation">
+                            Formation professionnelle / Langues
+                        </option>
+
+                        <option value="Call Center">
+                            Call Center / SAV / Recouvrement
+                        </option>
+
+                        <option value="Technique">
+                            Vidéosurveillance / POS / Électronique
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="message">
+                        Votre projet
+                    </label>
+
+                    <textarea
+                        id="message"
+                        rows="5"
+                        placeholder="Décrivez-nous votre besoin..."
+                        required>
+                    </textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-glow w-100">
+
+                    Envoyer ma demande
+                    <span>→</span>
+
+                </button>
+
+                <small class="form-note">
+                    Votre demande sera préparée pour un
+                    contact rapide avec Prestacar Services.
+                </small>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================================================
+     WHATSAPP
+========================================================= -->
+
+<a
+    href="https://wa.me/2250778615861"
+    class="whatsapp-float"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Discuter sur WhatsApp">
+
+    <span>💬</span>
+
+    <i></i>
+
+</a>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+    <div class="container footer-content">
+
+
+        <div class="brand-col">
+
+            <a href="#accueil" class="footer-brand">
+
+                <img
+                    src="logo.svg"
+                    data-logo-fallback="logo.png"
+                    data-logo-fallback-2="logo.jpg"
+                    alt="Prestacar Services"
+                    class="footer-logo"
+                    loading="lazy"
+                >
+
+            </a>
+
+            <p>
+                Digitaliser. Former. Sécuriser.
+                Développer.
+            </p>
+
+        </div>
+
+
+        <div class="links-col">
+
+            <h4>
+                Navigation
+            </h4>
+
+            <a href="#accueil">
+                Accueil
+            </a>
+
+            <a href="#a-propos">
+                L'entreprise
+            </a>
+
+            <a href="#poles">
+                Expertises
+            </a>
+
+            <a href="#services">
+                Nos solutions
+            </a>
+
+        </div>
+
+
+        <div class="links-col">
+
+            <h4>
+                Services
+            </h4>
+
+            <a href="#services">
+                Web & Applications
+            </a>
+
+            <a href="#services">
+                Formation
+            </a>
+
+            <a href="#services">
+                Relation Client
+            </a>
+
+            <a href="#services">
+                Sécurité & Technique
+            </a>
+
+        </div>
+
+
+        <div class="links-col">
+
+            <h4>
+                Contact
+            </h4>
+
+            <a href="tel:+2250778615861">
+                07 78 61 58 61
+            </a>
+
+            <a href="mailto:prestacarservice@gmail.com">
+                prestacarservice@gmail.com
+            </a>
+
+            <a href="#contact">
+                Démarrer un projet
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © <span id="current-year">2026</span>
+            Prestacar Services.
+            Tous droits réservés.
+        </p>
+
+        <span>
+            Côte d'Ivoire • Abidjan
+        </span>
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
 </body>
 </html>
