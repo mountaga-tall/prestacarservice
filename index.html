@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Prestacar Services — Développement web, formation, relation client, solutions techniques.">
     
-    <!-- PWA & Favicons -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#FF2A43">
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="shortcut icon" href="favicon.ico">
@@ -15,7 +15,6 @@
     
     <title>Prestacar Services | Solutions Digitales & Stratégiques</title>
     
-    <!-- Polices Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -26,9 +25,13 @@
     <header class="header">
         <div class="container header-container">
             <a href="#accueil" class="logo">
-                <img src="logo.jpg" alt="Prestacar">
+                <picture>
+                    <source srcset="logo.webp" type="image/webp">
+                    <source srcset="logo.png" type="image/png">
+                    <img src="logo.jpg" alt="Prestacar" loading="lazy"> 
+                </picture>
             </a>
-            <button class="menu-toggle" type="button">
+            <button class="menu-toggle" type="button" aria-label="Ouvrir le menu">
                 <span></span><span></span><span></span>
             </button>
             <nav class="nav" id="main-navigation">
@@ -44,7 +47,6 @@
     </header>
 
     <main>
-        <!-- HERO SECTION -->
         <section class="hero" id="accueil">
             <div class="hero-bg-shapes"></div>
             <div class="container hero-container">
@@ -76,7 +78,6 @@
             </div>
         </section>
 
-        <!-- POLES SECTION -->
         <section class="section poles-section" id="poles">
             <div class="container">
                 <div class="section-title reveal">
@@ -108,12 +109,15 @@
             </div>
         </section>
 
-        <!-- ABOUT SECTION -->
         <section class="section about-section" id="a-propos">
             <div class="container about-container">
                 <div class="about-images reveal">
                     <div class="image-wrapper">
-                        <img src="logo.jpg" alt="Logo Prestacar">
+                        <picture>
+                            <source srcset="logo.webp" type="image/webp">
+                            <source srcset="logo.png" type="image/png">
+                            <img src="logo.jpg" alt="Logo Prestacar" loading="lazy">
+                        </picture>
                     </div>
                     <div class="experience-badge float-anim">
                         <strong>100%</strong>
@@ -133,7 +137,6 @@
             </div>
         </section>
 
-        <!-- SERVICES SECTION -->
         <section class="section services-section" id="services">
             <div class="container">
                 <div class="section-title center reveal">
@@ -146,11 +149,16 @@
                         <h3>Web & App</h3>
                         <p>Création d'écosystèmes digitaux performants, responsives et ultra-rapides.</p>
                     </div>
+                    
                     <div class="service-box reveal reveal-delay-1">
-                        <div class="box-icon">🇬🇧</div>
+                        <div class="box-icon flags-container">
+                            <span class="flag-icon" role="img" aria-label="Anglais">🇬🇧</span>
+                            <span class="flag-icon" role="img" aria-label="Espagnol">🇪🇸</span>
+                        </div>
                         <h3>Langues & Compétences</h3>
                         <p>Anglais, espagnol et formations métiers pour booster la productivité.</p>
                     </div>
+
                     <div class="service-box reveal reveal-delay-2">
                         <div class="box-icon">🎧</div>
                         <h3>BPO & Call Center</h3>
@@ -175,7 +183,6 @@
             </div>
         </section>
 
-        <!-- CTA SECTION -->
         <section class="cta-premium reveal">
             <div class="cta-bg"></div>
             <div class="container cta-container">
@@ -185,7 +192,6 @@
             </div>
         </section>
 
-        <!-- CONTACT SECTION -->
         <section class="section contact-section" id="contact">
             <div class="container">
                 <div class="contact-wrapper">
@@ -240,7 +246,6 @@
         </section>
     </main>
 
-    <!-- BOUTON FLOTTANT WHATSAPP -->
     <a href="https://wa.me/2250778615861" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Discuter sur WhatsApp">
         💬
     </a>
@@ -248,7 +253,11 @@
     <footer class="footer">
         <div class="container footer-content">
             <div class="brand-col">
-                <img src="logo.jpg" alt="Prestacar" class="footer-logo">
+                <picture>
+                    <source srcset="logo.webp" type="image/webp">
+                    <source srcset="logo.png" type="image/png">
+                    <img src="logo.jpg" alt="Prestacar" class="footer-logo" loading="lazy">
+                </picture>
                 <p>Digitaliser. Former. Sécuriser. Développer.</p>
             </div>
             <div class="links-col">
