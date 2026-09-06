@@ -1,58 +1,52 @@
-const CACHE_NAME = "prestacar-services-v2"; // Mise à jour de la version du cache
-const FILES_TO_CACHE = [ 
-    "./", 
-    "./index.html", 
-    "./styles.css", 
-    "./script.js", 
-    "./manifest.json", 
-    "./favicon.ico", 
-    "./favicon-16x16.png", 
-    "./favicon-32x32.png", 
-    "./apple-touch-icon.png",
-    "./android-chrome-192x192.png",
-    "./android-chrome-512x512.png",
-    "./logo.jpg" // Conservé pour les images de la page
+const CACHE_NAME = 'prestacar-cache-v1';
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/styles.css',
+  '/script.js',
+  '/manifest.json',
+  '/logo.png',
+  '/logo.jpg'
 ];
 
-self.addEventListener("install", (event) => {
-    console.log("Prestacar Services : installation du cache.");
-    event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then((cache) => cache.addAll(FILES_TO_CACHE))
-            .then(() => self.skipWaiting())
-    );
+// 1. Installation du Service Worker et mise en cache des fichiers
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then((cache) => {
+        console.log('Fichiers mis en cache avec succès');
+        return cache.addAll(urlsToCache);
+      })
+  );
 });
 
-self.addEventListener("activate", (event) => {
-    console.log("Prestacar Services : activation du Service Worker.");
-    event.waitUntil(
-        caches.keys()
-            .then((cacheNames) => Promise.all(
-                cacheNames.filter((name) => name !== CACHE_NAME).map((name) => caches.delete(name))
-            ))
-            .then(() => self.clients.claim())
-    );
+// 2. Interception des requêtes (Sert le cache si disponible, sinon va sur le réseau)
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request)
+      .then((response) => {
+        // Retourne la version en cache si elle existe
+        if (response) {
+          return response;
+        }
+        // Sinon, fait la requête sur le réseau
+        return fetch(event.request);
+      })
+  );
 });
 
-self.addEventListener("fetch", (event) => {
-    if (event.request.method !== "GET") return;
-
-    event.respondWith(
-        caches.match(event.request).then((cachedResponse) => {
-            if (cachedResponse) return cachedResponse;
-            return fetch(event.request).then((networkResponse) => {
-                if (!networkResponse || networkResponse.status !== 200 || networkResponse.type === "opaque") {
-                    return networkResponse;
-                }
-                const responseToCache = networkResponse.clone();
-                caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseToCache));
-                return networkResponse;
-            }).catch(() => {
-                if (event.request.destination === "document") return caches.match("./index.html");
-                return new Response("Contenu indisponible hors connexion.", {
-                    status: 503, statusText: "Service Unavailable", headers: { "Content-Type": "text/plain; charset=utf-8" }
-                });
-            });
+// 3. Activation et nettoyage des anciens caches (lors d'une mise à jour)
+self.addEventListener('activate', (event) => {
+  const cacheWhitelist = [CACHE_NAME];
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          if (cacheWhitelist.indexOf(cacheName) === -1) {
+            return caches.delete(cacheName);
+          }
         })
-    );
+      );
+    })
+  );
 });
