@@ -1,472 +1,598 @@
-/* =========================================================
+/* ==========================================================
    PRESTACAR SERVICES
-   PREMIUM JAVASCRIPT
-========================================================= */
+   PREMIUM JS V3
+========================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
-
-    /* =====================================================
-       1. LOGO FALLBACK
-       logo.svg → logo.png → logo.jpg
-    ===================================================== */
-
-    const logoImages =
-        document.querySelectorAll("img[data-logo-fallback]");
-
-    logoImages.forEach((img) => {
-
-        let fallbackStep = 0;
-
-        img.addEventListener("error", () => {
-
-            fallbackStep++;
-
-            if (fallbackStep === 1) {
-
-                const fallback =
-                    img.dataset.logoFallback;
-
-                if (fallback) {
-                    img.src = fallback;
-                }
-
-            } else if (fallbackStep === 2) {
-
-                const fallback2 =
-                    img.dataset.logoFallback2;
-
-                if (fallback2) {
-                    img.src = fallback2;
-                }
-
-            }
-
-        });
-
-    });
+"use strict";
 
 
-    /* =====================================================
-       2. MENU MOBILE
-    ===================================================== */
+/* ==========================================================
+   ELEMENTS
+========================================================== */
 
-    const menuToggle =
-        document.querySelector(".menu-toggle");
+const header =
+    document.getElementById("header");
 
-    const nav =
-        document.getElementById("main-navigation");
+const menuToggle =
+    document.getElementById("menuToggle");
 
-    if (menuToggle && nav) {
+const mainNav =
+    document.getElementById("mainNav");
 
-        menuToggle.addEventListener("click", () => {
+const contactForm =
+    document.getElementById("contactForm");
 
-            const isOpen =
-                nav.classList.toggle("active");
+const formMessage =
+    document.getElementById("formMessage");
 
-            menuToggle.classList.toggle(
-                "active",
-                isOpen
-            );
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                isOpen
-            );
-
-            document.body.classList.toggle(
-                "menu-open",
-                isOpen
-            );
-
-        });
+const yearElement =
+    document.getElementById("year");
 
 
-        const navLinks =
-            nav.querySelectorAll("a");
+/* ==========================================================
+   ANNÉE AUTOMATIQUE
+========================================================== */
 
-        navLinks.forEach((link) => {
+if (yearElement) {
 
-            link.addEventListener("click", () => {
+    yearElement.textContent =
+        new Date().getFullYear();
 
-                nav.classList.remove("active");
+}
 
-                menuToggle.classList.remove("active");
 
-                menuToggle.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
+/* ==========================================================
+   HEADER AU SCROLL
+========================================================== */
 
-                document.body.classList.remove(
-                    "menu-open"
-                );
+function updateHeader() {
 
-            });
+    if (!header) return;
 
-        });
+    if (window.scrollY > 40) {
+
+        header.classList.add("scrolled");
+
+    } else {
+
+        header.classList.remove("scrolled");
 
     }
 
+}
 
-    /* =====================================================
-       3. HEADER AU SCROLL
-    ===================================================== */
+window.addEventListener(
+    "scroll",
+    updateHeader,
+    { passive: true }
+);
 
-    const header =
-        document.querySelector(".header");
+updateHeader();
 
-    const handleHeaderScroll = () => {
 
-        if (!header) return;
+/* ==========================================================
+   MENU MOBILE
+========================================================== */
 
-        if (window.scrollY > 50) {
+function openMenu() {
 
-            header.classList.add("scrolled");
+    if (!mainNav || !menuToggle) return;
 
-        } else {
+    mainNav.classList.add("active");
 
-            header.classList.remove("scrolled");
+    menuToggle.classList.add("active");
+
+    menuToggle.setAttribute(
+        "aria-expanded",
+        "true"
+    );
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+function closeMenu() {
+
+    if (!mainNav || !menuToggle) return;
+
+    mainNav.classList.remove("active");
+
+    menuToggle.classList.remove("active");
+
+    menuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+if (menuToggle) {
+
+    menuToggle.addEventListener(
+        "click",
+        () => {
+
+            const isOpen =
+                mainNav.classList.contains("active");
+
+            if (isOpen) {
+
+                closeMenu();
+
+            } else {
+
+                openMenu();
+
+            }
+
+        }
+    );
+
+}
+
+
+if (mainNav) {
+
+    mainNav
+        .querySelectorAll("a")
+        .forEach(link => {
+
+            link.addEventListener(
+                "click",
+                closeMenu
+            );
+
+        });
+
+}
+
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (event.key === "Escape") {
+
+            closeMenu();
 
         }
 
-    };
-
-    window.addEventListener(
-        "scroll",
-        handleHeaderScroll,
-        { passive: true }
-    );
-
-    handleHeaderScroll();
+    }
+);
 
 
-    /* =====================================================
-       4. SCROLL REVEAL
-    ===================================================== */
+/* ==========================================================
+   REVEAL AU SCROLL
+========================================================== */
 
-    const revealElements =
-        document.querySelectorAll(".reveal");
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+
+if ("IntersectionObserver" in window) {
 
     const revealObserver =
         new IntersectionObserver(
             (entries, observer) => {
 
-                entries.forEach((entry) => {
+                entries.forEach(
+                    entry => {
 
-                    if (entry.isIntersecting) {
+                        if (
+                            entry.isIntersecting
+                        ) {
 
-                        entry.target.classList.add(
-                            "active"
-                        );
+                            entry.target.classList.add(
+                                "active"
+                            );
 
-                        observer.unobserve(
-                            entry.target
-                        );
+                            observer.unobserve(
+                                entry.target
+                            );
+
+                        }
 
                     }
-
-                });
+                );
 
             },
             {
                 threshold: 0.12,
-
-                rootMargin:
-                    "0px 0px -60px 0px"
+                rootMargin: "0px 0px -50px 0px"
             }
         );
 
 
-    revealElements.forEach((element) => {
+    revealElements.forEach(
+        element => {
 
-        revealObserver.observe(element);
+            revealObserver.observe(
+                element
+            );
 
-    });
+        }
+    );
 
+} else {
 
-    /* =====================================================
-       5. BARRES DE PERFORMANCE
-    ===================================================== */
+    revealElements.forEach(
+        element => {
 
-    const progressBars =
-        document.querySelectorAll(
-            ".progress-fill"
-        );
+            element.classList.add(
+                "active"
+            );
 
+        }
+    );
 
-    const progressObserver =
-        new IntersectionObserver(
-            (entries, observer) => {
-
-                entries.forEach((entry) => {
-
-                    if (!entry.isIntersecting)
-                        return;
-
-                    const bar =
-                        entry.target;
-
-                    const width =
-                        bar.dataset.width;
-
-                    if (width) {
-
-                        setTimeout(() => {
-
-                            bar.style.width =
-                                width;
-
-                        }, 250);
-
-                    }
-
-                    observer.unobserve(bar);
-
-                });
-
-            },
-            {
-                threshold: 0.5
-            }
-        );
+}
 
 
-    progressBars.forEach((bar) => {
+/* ==========================================================
+   DÉLAI PROGRESSIF DES CARTES
+========================================================== */
 
-        progressObserver.observe(bar);
+document
+    .querySelectorAll(
+        ".expertise-grid .modern-card, .services-grid .service-box"
+    )
+    .forEach(
+        (element, index) => {
 
-    });
+            element.style.transitionDelay =
+                `${index * 70}ms`;
+
+        }
+    );
 
 
-    /* =====================================================
-       6. EFFET 3D SUR LA CARTE HERO
-    ===================================================== */
+/* ==========================================================
+   EFFET 3D HERO
+========================================================== */
 
-    const glassCard =
-        document.querySelector(
-            ".main-glass-card"
-        );
+const heroVisual =
+    document.querySelector(".hero-visual");
 
 
-    if (
-        glassCard &&
-        window.matchMedia(
-            "(hover: hover)"
-        ).matches
-    ) {
+const heroLogo =
+    document.querySelector(".hero-logo");
 
-        glassCard.addEventListener(
+
+if (
+    heroVisual &&
+    heroLogo &&
+    window.matchMedia("(pointer:fine)").matches
+) {
+
+    heroVisual.addEventListener(
+        "mousemove",
+        event => {
+
+            const rect =
+                heroVisual.getBoundingClientRect();
+
+            const x =
+                event.clientX - rect.left;
+
+            const y =
+                event.clientY - rect.top;
+
+            const centerX =
+                rect.width / 2;
+
+            const centerY =
+                rect.height / 2;
+
+            const rotateX =
+                ((y - centerY) / centerY) * -6;
+
+            const rotateY =
+                ((x - centerX) / centerX) * 6;
+
+            heroLogo.style.transform =
+                `translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+        }
+    );
+
+
+    heroVisual.addEventListener(
+        "mouseleave",
+        () => {
+
+            heroLogo.style.transform =
+                "";
+
+        }
+    );
+
+}
+
+
+/* ==========================================================
+   EFFET TILT CARTES
+========================================================== */
+
+const tiltCards =
+    document.querySelectorAll(
+        ".modern-card, .service-box"
+    );
+
+
+if (
+    window.matchMedia("(pointer:fine)").matches
+) {
+
+    tiltCards.forEach(card => {
+
+        card.addEventListener(
             "mousemove",
-            (event) => {
+            event => {
 
                 const rect =
-                    glassCard.getBoundingClientRect();
+                    card.getBoundingClientRect();
 
                 const x =
-                    event.clientX -
-                    rect.left;
+                    event.clientX - rect.left;
 
                 const y =
-                    event.clientY -
-                    rect.top;
-
-                const centerX =
-                    rect.width / 2;
-
-                const centerY =
-                    rect.height / 2;
+                    event.clientY - rect.top;
 
                 const rotateX =
-                    ((y - centerY) /
-                        centerY) * -5;
+                    ((y - rect.height / 2) /
+                        (rect.height / 2)) * -2.5;
 
                 const rotateY =
-                    ((x - centerX) /
-                        centerX) * 5;
+                    ((x - rect.width / 2) /
+                        (rect.width / 2)) * 2.5;
 
-                glassCard.style.transform =
-                    `
-                    perspective(1200px)
-                    rotateX(${rotateX}deg)
-                    rotateY(${rotateY}deg)
-                    translateY(-5px)
-                    `;
+                card.style.transform =
+                    `perspective(900px) translateY(-10px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
             }
         );
 
 
-        glassCard.addEventListener(
+        card.addEventListener(
             "mouseleave",
             () => {
 
-                glassCard.style.transform =
+                card.style.transform =
                     "";
 
             }
         );
 
-    }
+    });
+
+}
 
 
-    /* =====================================================
-       7. ANNÉE AUTOMATIQUE
-    ===================================================== */
+/* ==========================================================
+   EFFET SOURIS GLOBAL
+========================================================== */
 
-    const yearElement =
-        document.getElementById(
-            "current-year"
-        );
+if (
+    window.matchMedia("(pointer:fine)").matches
+) {
 
-    if (yearElement) {
+    document.addEventListener(
+        "pointermove",
+        event => {
 
-        yearElement.textContent =
-            new Date().getFullYear();
+            document.documentElement.style.setProperty(
+                "--mouse-x",
+                `${event.clientX}px`
+            );
 
-    }
+            document.documentElement.style.setProperty(
+                "--mouse-y",
+                `${event.clientY}px`
+            );
 
+        },
+        { passive: true }
+    );
 
-    /* =====================================================
-       8. FORMULAIRE
-    ===================================================== */
-
-    const contactForm =
-        document.getElementById(
-            "contact-form"
-        );
-
-
-    if (contactForm) {
-
-        contactForm.addEventListener(
-            "submit",
-            (event) => {
-
-                event.preventDefault();
-
-                const button =
-                    contactForm.querySelector(
-                        'button[type="submit"]'
-                    );
-
-                if (!button) return;
-
-                const originalHTML =
-                    button.innerHTML;
-
-                button.disabled = true;
-
-                button.innerHTML =
-                    `
-                    Préparation de votre demande
-                    <span>✓</span>
-                    `;
-
-                button.style.background =
-                    "var(--green)";
+}
 
 
-                setTimeout(() => {
+/* ==========================================================
+   FORMULAIRE
+========================================================== */
 
-                    button.disabled = false;
+if (contactForm) {
 
-                    button.innerHTML =
-                        originalHTML;
+    contactForm.addEventListener(
+        "submit",
+        event => {
 
-                    button.style.background =
-                        "";
+            event.preventDefault();
 
-                    /*
-                     * Pour l'instant le formulaire
-                     * ne possède pas de backend.
-                     *
-                     * On remet simplement le formulaire
-                     * à zéro après validation.
-                     */
+            const submitButton =
+                contactForm.querySelector(
+                    ".form-submit"
+                );
+
+            if (submitButton) {
+
+                submitButton.disabled =
+                    true;
+
+                submitButton.style.opacity =
+                    ".65";
+
+                submitButton.innerHTML =
+                    "Envoi en cours...";
+
+            }
+
+
+            setTimeout(
+                () => {
+
+                    if (formMessage) {
+
+                        formMessage.textContent =
+                            "Merci ! Votre demande a bien été prise en compte.";
+
+                    }
+
 
                     contactForm.reset();
 
-                }, 2500);
 
-            }
-        );
+                    if (submitButton) {
 
-    }
+                        submitButton.disabled =
+                            false;
 
+                        submitButton.style.opacity =
+                            "1";
 
-    /* =====================================================
-       9. SERVICE WORKER / PWA
-    ===================================================== */
+                        submitButton.innerHTML =
+                            "Envoyer le message <span>→</span>";
 
-    if ("serviceWorker" in navigator) {
+                    }
 
-        window.addEventListener(
-            "load",
-            () => {
+                },
+                900
+            );
 
-                navigator.serviceWorker
-                    .register("sw.js")
-                    .then((registration) => {
+        }
+    );
 
-                        console.log(
-                            "Prestacar PWA active :",
-                            registration.scope
-                        );
-
-                    })
-                    .catch((error) => {
-
-                        console.warn(
-                            "Service Worker non disponible :",
-                            error
-                        );
-
-                    });
-
-            }
-        );
-
-    }
+}
 
 
-    /* =====================================================
-       10. SMOOTH SCROLL
-    ===================================================== */
+/* ==========================================================
+   SMOOTH SCROLL
+========================================================== */
 
-    document
-        .querySelectorAll('a[href^="#"]')
-        .forEach((anchor) => {
+document
+    .querySelectorAll(
+        'a[href^="#"]'
+    )
+    .forEach(
+        link => {
 
-            anchor.addEventListener(
+            link.addEventListener(
                 "click",
-                (event) => {
+                event => {
 
                     const targetId =
-                        anchor.getAttribute("href");
+                        link.getAttribute("href");
 
                     if (
                         !targetId ||
                         targetId === "#"
                     ) {
+
                         return;
+
                     }
+
 
                     const target =
                         document.querySelector(
                             targetId
                         );
 
+
                     if (!target) return;
+
 
                     event.preventDefault();
 
-                    target.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
+
+                    const headerHeight =
+                        header
+                            ? header.offsetHeight
+                            : 0;
+
+
+                    const targetPosition =
+                        target.getBoundingClientRect().top +
+                        window.scrollY -
+                        headerHeight -
+                        20;
+
+
+                    window.scrollTo(
+                        {
+                            top: targetPosition,
+                            behavior: "smooth"
+                        }
+                    );
 
                 }
             );
 
-        });
+        }
+    );
 
-});
+
+/* ==========================================================
+   SERVICE WORKER
+========================================================== */
+
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener(
+        "load",
+        () => {
+
+            navigator.serviceWorker
+                .register("./sw.js")
+                .then(
+                    registration => {
+
+                        console.log(
+                            "Prestacar Services : Service Worker actif.",
+                            registration.scope
+                        );
+
+                        /*
+                         * Vérifie régulièrement si une
+                         * nouvelle version est disponible.
+                         */
+
+                        registration.update();
+
+                    }
+                )
+                .catch(
+                    error => {
+
+                        console.warn(
+                            "Service Worker non disponible :",
+                            error
+                        );
+
+                    }
+                );
+
+        }
+    );
+
+}
+
+
+/* ==========================================================
+   LOG
+========================================================== */
+
+console.log(
+    "%c PRESTACAR SERVICES ",
+    "background:#ff2448;color:white;font-weight:bold;padding:8px 12px;border-radius:6px;"
+);
+
+console.log(
+    "Version Premium V3 chargée."
+);
