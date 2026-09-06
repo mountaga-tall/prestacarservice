@@ -1,223 +1,201 @@
-/* =========================================================
+/* ==========================================================
    PRESTACAR SERVICES
-   SERVICE WORKER / PWA
-========================================================= */
+   SERVICE WORKER V3
+========================================================== */
 
-const CACHE_NAME = "prestacar-cache-v2";
+const CACHE_NAME =
+    "prestacar-services-v3";
 
-const CORE_FILES = [
+
+const APP_SHELL = [
+
     "./",
     "./index.html",
     "./styles.css",
     "./script.js",
     "./manifest.json",
-    "./logo.svg",
-    "./logo.png",
     "./logo.jpg"
+
 ];
 
 
-/* =========================================================
+/* ==========================================================
    INSTALLATION
-========================================================= */
+========================================================== */
 
 self.addEventListener(
     "install",
-    (event) => {
+    event => {
 
         event.waitUntil(
 
             caches
                 .open(CACHE_NAME)
-                .then(async (cache) => {
-
-                    /*
-                     * On met chaque fichier en cache
-                     * individuellement.
-                     *
-                     * Si un fichier n'existe pas,
-                     * cela ne bloque pas toute
-                     * l'installation du Service Worker.
-                     */
-
-                    await Promise.all(
-
-                        CORE_FILES.map(
-                            async (url) => {
-
-                                try {
-
-                                    const response =
-                                        await fetch(
-                                            url,
-                                            {
-                                                cache:
-                                                    "no-cache"
-                                            }
-                                        );
-
-                                    if (
-                                        response.ok
-                                    ) {
-
-                                        await cache.put(
-                                            url,
-                                            response
-                                        );
-
-                                    }
-
-                                } catch (error) {
-
-                                    console.warn(
-                                        "Fichier non mis en cache :",
-                                        url
-                                    );
-
-                                }
-
-                            }
+                .then(
+                    cache =>
+                        cache.addAll(
+                            APP_SHELL
                         )
-
-                    );
-
-                })
+                )
+                .then(
+                    () =>
+                        self.skipWaiting()
+                )
 
         );
-
-        self.skipWaiting();
 
     }
 );
 
 
-/* =========================================================
+/* ==========================================================
    ACTIVATION
-========================================================= */
+========================================================== */
 
 self.addEventListener(
     "activate",
-    (event) => {
+    event => {
 
         event.waitUntil(
 
             caches
                 .keys()
-                .then((cacheNames) => {
+                .then(
+                    cacheNames => {
 
-                    return Promise.all(
+                        return Promise.all(
 
-                        cacheNames.map(
-                            (cacheName) => {
+                            cacheNames
+                                .filter(
+                                    cacheName =>
+                                        cacheName !==
+                                        CACHE_NAME
+                                )
+                                .map(
+                                    cacheName =>
+                                        caches.delete(
+                                            cacheName
+                                        )
+                                )
 
-                                if (
-                                    cacheName !==
-                                    CACHE_NAME
-                                ) {
+                        );
 
-                                    return caches.delete(
-                                        cacheName
-                                    );
-
-                                }
-
-                                return null;
-
-                            }
-                        )
-
-                    );
-
-                })
+                    }
+                )
+                .then(
+                    () =>
+                        self.clients.claim()
+                )
 
         );
-
-        self.clients.claim();
 
     }
 );
 
 
-/* =========================================================
+/* ==========================================================
    FETCH
-========================================================= */
+========================================================== */
 
 self.addEventListener(
     "fetch",
-    (event) => {
-
-        /*
-         * On ne traite que les requêtes GET.
-         */
+    event => {
 
         if (
             event.request.method !==
             "GET"
         ) {
+
             return;
+
         }
 
 
         event.respondWith(
 
-            caches
-                .match(event.request)
-                .then((cachedResponse) => {
+            fetch(event.request)
 
-                    if (cachedResponse) {
+                .then(
+                    response => {
 
-                        return cachedResponse;
+                        /*
+                         * Mise en cache des ressources
+                         * provenant du même domaine.
+                         */
 
-                    }
+                        if (
+                            response &&
+                            response.status === 200
+                        ) {
 
+                            const requestURL =
+                                new URL(
+                                    event.request.url
+                                );
 
-                    return fetch(
-                        event.request
-                    )
-                        .then((networkResponse) => {
-
-                            /*
-                             * On ne met en cache
-                             * que les réponses valides.
-                             */
 
                             if (
-                                networkResponse &&
-                                networkResponse.status === 200
+                                requestURL.origin ===
+                                self.location.origin
                             ) {
 
                                 const responseClone =
-                                    networkResponse.clone();
+                                    response.clone();
+
 
                                 caches
-                                    .open(CACHE_NAME)
-                                    .then((cache) => {
+                                    .open(
+                                        CACHE_NAME
+                                    )
+                                    .then(
+                                        cache => {
 
-                                        cache.put(
-                                            event.request,
-                                            responseClone
-                                        );
+                                            cache.put(
+                                                event.request,
+                                                responseClone
+                                            );
 
-                                    });
+                                        }
+                                    );
 
                             }
 
-                            return networkResponse;
+                        }
 
-                        })
-                        .catch(() => {
 
-                            /*
-                             * Fallback hors-ligne
-                             */
+                        return response;
 
-                            return caches.match(
-                                "./index.html"
+                    }
+                )
+
+                .catch(
+                    () => {
+
+                        return caches
+                            .match(
+                                event.request
+                            )
+                            .then(
+                                cachedResponse => {
+
+                                    if (
+                                        cachedResponse
+                                    ) {
+
+                                        return cachedResponse;
+
+                                    }
+
+
+                                    return caches.match(
+                                        "./index.html"
+                                    );
+
+                                }
                             );
 
-                        });
-
-                })
+                    }
+                )
 
         );
 
