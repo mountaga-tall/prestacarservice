@@ -604,7 +604,7 @@ console.log(
 );
 
 console.log(
-    "Version Premium V3 chargée."
+    "Version Premium Marketing chargée."
 );
 
 
