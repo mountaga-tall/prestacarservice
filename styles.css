@@ -3500,3 +3500,55 @@ textarea {
     }
 
 }
+
+
+/* ==========================================================
+   LANGUAGE SWITCH
+========================================================== */
+
+.lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: auto;
+    margin-right: 16px;
+    padding: 3px;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 999px;
+    background: rgba(255,255,255,.045);
+    backdrop-filter: blur(14px);
+}
+
+.lang-switch button {
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: #aeb6c7;
+    padding: 7px 10px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.lang-switch button:hover {
+    color: white;
+}
+
+.lang-switch button.active {
+    color: white;
+    background: linear-gradient(135deg, var(--red), #ff5c48);
+    box-shadow: 0 5px 16px rgba(255,36,72,.20);
+}
+
+@media (max-width: 768px) {
+    .lang-switch {
+        margin-right: 8px;
+    }
+
+    .lang-switch button {
+        padding: 6px 9px;
+        font-size: 9px;
+    }
+}
