@@ -714,6 +714,7 @@ const languageTranslations = new Map([
     ["Comment pouvons-nous vous aider ?", "How can we help you?"],
     ["Décrivez votre projet...", "Describe your project..."],
     ["Envoyer le message", "Send message"],
+    ["Nous écrire sur WhatsApp", "Message us on WhatsApp"],
     ["Contacter Prestacar Services sur WhatsApp", "Contact Prestacar Services on WhatsApp"],
     ["Contactez-nous", "Contact us"],
     ["Des solutions professionnelles pour", "Professional solutions to"],
