@@ -1,10 +1,10 @@
 /* ==========================================================
    PRESTACAR SERVICES
-   SERVICE WORKER V3
+   SERVICE WORKER V7
 ========================================================== */
 
 const CACHE_NAME =
-    "prestacar-services-v6";
+    "prestacar-services-v7";
 
 
 const APP_SHELL = [
