@@ -4,7 +4,7 @@
 ========================================================== */
 
 const CACHE_NAME =
-    "prestacar-services-v5";
+    "prestacar-services-v6";
 
 
 const APP_SHELL = [
@@ -14,7 +14,7 @@ const APP_SHELL = [
     "./styles.css",
     "./script.js",
     "./manifest.json",
-    "./logo.jpg"
+    "./logo.jpg?v=5"
 
 ];
 
