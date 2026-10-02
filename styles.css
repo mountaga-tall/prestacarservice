@@ -2483,6 +2483,20 @@ textarea {
 }
 
 
+.whatsapp-icon{
+    display:grid;
+    place-items:center;
+    width:32px;
+    height:32px;
+}
+
+.whatsapp-icon svg{
+    display:block;
+    width:30px;
+    height:30px;
+    fill:#fff;
+}
+
 .whatsapp-float:hover {
 
     transform:
