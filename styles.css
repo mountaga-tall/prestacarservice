@@ -3556,3 +3556,232 @@ textarea {
         font-size: 9px;
     }
 }
+
+/* ==========================================================
+   MARKETING MAX / WOW EFFECT
+========================================================== */
+.marketing-band{
+    position:relative;
+    overflow:hidden;
+    padding:34px 0;
+    background:linear-gradient(90deg,rgba(255,36,72,.14),rgba(40,124,255,.10),rgba(255,255,255,.025));
+    border-top:1px solid rgba(255,255,255,.08);
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+.marketing-band::before{
+    content:"";
+    position:absolute;
+    width:420px;height:420px;
+    left:-240px;top:-300px;
+    border-radius:50%;
+    background:rgba(255,36,72,.18);
+    filter:blur(60px);
+}
+.marketing-band-inner{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:60px;
+    align-items:end;
+}
+.marketing-band h2{
+    margin-top:8px;
+    max-width:760px;
+    font-family:"Montserrat",sans-serif;
+    font-size:clamp(28px,4vw,46px);
+    line-height:1.05;
+    letter-spacing:-.03em;
+}
+.marketing-band p{
+    color:var(--muted);
+    font-size:15px;
+    max-width:520px;
+}
+.hero{
+    position:relative;
+}
+.hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:radial-gradient(520px circle at var(--mouse-x,50%) var(--mouse-y,30%),rgba(255,255,255,.08),transparent 65%);
+    mix-blend-mode:screen;
+}
+.hero-highlights{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:24px 0 6px;
+}
+.hero-highlights span{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:9px 13px;
+    border:1px solid rgba(255,255,255,.11);
+    border-radius:999px;
+    color:#dbe2ef;
+    background:rgba(255,255,255,.045);
+    backdrop-filter:blur(12px);
+    font-size:11px;
+    font-weight:700;
+}
+.hero-highlights span::first-letter{color:var(--green)}
+.impact{
+    background:linear-gradient(180deg,rgba(255,255,255,.02),transparent);
+}
+.impact-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+.impact-card{
+    position:relative;
+    overflow:hidden;
+    min-height:290px;
+    padding:34px;
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:28px;
+    background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.025));
+    box-shadow:0 25px 80px rgba(0,0,0,.20);
+    transition:transform 500ms cubic-bezier(.2,.8,.2,1),border-color 300ms ease,box-shadow 300ms ease;
+}
+.impact-card::after{
+    content:"";
+    position:absolute;
+    width:170px;height:170px;
+    right:-70px;bottom:-90px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(255,36,72,.35),transparent 68%);
+    filter:blur(8px);
+}
+.impact-card:hover{
+    transform:translateY(-10px);
+    border-color:rgba(255,255,255,.20);
+    box-shadow:0 35px 90px rgba(0,0,0,.34),0 0 50px rgba(255,36,72,.06);
+}
+.impact-index{
+    position:absolute;
+    right:24px;top:24px;
+    font-family:"Montserrat",sans-serif;
+    font-size:11px;
+    letter-spacing:.16em;
+    color:#71798b;
+}
+.impact-icon{
+    display:grid;
+    place-items:center;
+    width:58px;height:58px;
+    margin-bottom:28px;
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,.10);
+    background:linear-gradient(135deg,rgba(255,36,72,.18),rgba(40,124,255,.16));
+    font-size:24px;
+}
+.impact-card h3{
+    font-family:"Montserrat",sans-serif;
+    font-size:21px;
+    margin-bottom:10px;
+}
+.impact-card p{
+    color:var(--muted);
+    font-size:14px;
+    max-width:350px;
+}
+.method{
+    background:radial-gradient(circle at 85% 10%,rgba(40,124,255,.08),transparent 28%),var(--bg-soft);
+}
+.method-grid{
+    position:relative;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:0;
+    margin-top:10px;
+}
+.method-grid::before{
+    content:"";
+    position:absolute;
+    left:10%;right:10%;top:36px;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
+}
+.method-step{
+    position:relative;
+    padding:0 22px;
+    text-align:center;
+}
+.method-step span{
+    position:relative;
+    z-index:1;
+    display:grid;
+    place-items:center;
+    width:72px;height:72px;
+    margin:0 auto 22px;
+    border-radius:50%;
+    background:#0c111d;
+    border:1px solid rgba(255,255,255,.13);
+    box-shadow:0 0 0 8px rgba(255,255,255,.02),0 18px 50px rgba(0,0,0,.25);
+    color:white;
+    font-family:"Montserrat",sans-serif;
+    font-weight:800;
+}
+.method-step h3{
+    margin-bottom:8px;
+    font-family:"Montserrat",sans-serif;
+}
+.method-step p{
+    color:var(--muted);
+    font-size:13px;
+}
+.wow-cta{
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:30px;
+    margin-top:80px;
+    padding:48px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:32px;
+    background:linear-gradient(120deg,rgba(255,36,72,.16),rgba(40,124,255,.11) 55%,rgba(255,255,255,.035));
+    box-shadow:0 35px 100px rgba(0,0,0,.26);
+}
+.wow-cta::before{
+    content:"";
+    position:absolute;
+    width:320px;height:320px;
+    right:-110px;top:-170px;
+    border-radius:50%;
+    background:rgba(255,36,72,.18);
+    filter:blur(45px);
+}
+.wow-cta h2{
+    margin-top:8px;
+    max-width:700px;
+    font-family:"Montserrat",sans-serif;
+    font-size:clamp(28px,4vw,48px);
+    line-height:1.05;
+    letter-spacing:-.03em;
+}
+.wow-cta p{
+    margin-top:12px;
+    max-width:650px;
+    color:var(--muted);
+}
+.wow-cta .btn{position:relative;z-index:1;white-space:nowrap}
+@media (max-width:900px){
+    .marketing-band-inner{grid-template-columns:1fr;gap:15px}
+    .impact-grid{grid-template-columns:1fr}
+    .method-grid{grid-template-columns:repeat(2,1fr);gap:42px 0}
+    .method-grid::before{display:none}
+    .wow-cta{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:600px){
+    .marketing-band{padding:28px 0}
+    .marketing-band h2{font-size:31px}
+    .hero-highlights{gap:8px}
+    .hero-highlights span{font-size:10px}
+    .method-grid{grid-template-columns:1fr}
+    .wow-cta{padding:34px 24px}
+}
