@@ -30,7 +30,7 @@ const yearElement =
 
 
 /* ==========================================================
-   ANNÉE AUTOMATIQUE
+   AUTOMATIC YEAR
 ========================================================== */
 
 if (yearElement) {
@@ -42,7 +42,7 @@ if (yearElement) {
 
 
 /* ==========================================================
-   HEADER AU SCROLL
+   HEADER ON SCROLL
 ========================================================== */
 
 function updateHeader() {
@@ -71,7 +71,7 @@ updateHeader();
 
 
 /* ==========================================================
-   MENU MOBILE
+   MOBILE MENU
 ========================================================== */
 
 function openMenu() {
@@ -168,7 +168,7 @@ document.addEventListener(
 
 
 /* ==========================================================
-   REVEAL AU SCROLL
+   SCROLL REVEAL
 ========================================================== */
 
 const revealElements =
@@ -235,7 +235,7 @@ if ("IntersectionObserver" in window) {
 
 
 /* ==========================================================
-   DÉLAI PROGRESSIF DES CARTES
+   PROGRESSIVE CARD DELAY
 ========================================================== */
 
 document
@@ -253,7 +253,7 @@ document
 
 
 /* ==========================================================
-   EFFET 3D HERO
+   3D HERO EFFECT
 ========================================================== */
 
 const heroVisual =
@@ -316,7 +316,7 @@ if (
 
 
 /* ==========================================================
-   EFFET TILT CARTES
+   CARD TILT EFFECT
 ========================================================== */
 
 const tiltCards =
@@ -375,7 +375,7 @@ if (
 
 
 /* ==========================================================
-   EFFET SOURIS GLOBAL
+   GLOBAL MOUSE EFFECT
 ========================================================== */
 
 if (
@@ -404,7 +404,7 @@ if (
 
 
 /* ==========================================================
-   FORMULAIRE
+   FORM
 ========================================================== */
 
 if (contactForm) {
@@ -429,7 +429,7 @@ if (contactForm) {
                     ".65";
 
                 submitButton.innerHTML =
-                    "Envoi en cours...";
+                    "Sending...";
 
             }
 
@@ -440,7 +440,7 @@ if (contactForm) {
                     if (formMessage) {
 
                         formMessage.textContent =
-                            "Merci ! Votre demande a bien été prise en compte.";
+                            "Thank you! Your request has been received.";
 
                     }
 
@@ -554,13 +554,13 @@ if ("serviceWorker" in navigator) {
                     registration => {
 
                         console.log(
-                            "Prestacar Services : Service Worker actif.",
+                            "Prestacar Services : Service Worker active.",
                             registration.scope
                         );
 
                         /*
-                         * Vérifie régulièrement si une
-                         * nouvelle version est disponible.
+                         * Regularly checks whether a
+                         * new version is available.
                          */
 
                         registration.update();
@@ -571,7 +571,7 @@ if ("serviceWorker" in navigator) {
                     error => {
 
                         console.warn(
-                            "Service Worker non disponible :",
+                            "Service Worker unavailable:",
                             error
                         );
 
@@ -594,5 +594,5 @@ console.log(
 );
 
 console.log(
-    "Version Premium V3 chargée."
+    "Premium V3 loaded."
 );
