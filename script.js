@@ -617,6 +617,7 @@ const languageState = {
 };
 
 const languageTranslations = new Map([
+    ["Solutions professionnelles", "Professional solutions"],
     ["SOLUTIONS PROFESSIONNELLES", "PROFESSIONAL SOLUTIONS"],
     ["Votre partenaire pour", "Your partner for"],
     ["transformer", "turning"],
@@ -779,25 +780,29 @@ const pageMeta = {
     ]
 };
 
+const sortedTranslations = [...languageTranslations.entries()]
+    .sort((a, b) => b[0].length - a[0].length);
+
+function replaceFrenchText(value) {
+    let result = value;
+
+    sortedTranslations.forEach(([fr, en]) => {
+        result = result.split(fr).join(en);
+    });
+
+    return result;
+}
+
 function translateTextNodes(language) {
     originalTextNodes.forEach((original, node) => {
-        const source = normalizeLanguageText(original);
-
-        if (!source) {
+        if (!normalizeLanguageText(original)) {
             node.nodeValue = original;
             return;
         }
-
-        if (language === "fr") {
-            node.nodeValue = original;
-            return;
-        }
-
-        const translated = languageTranslations.get(source);
 
         node.nodeValue =
-            translated
-                ? preserveWhitespace(original, translated)
+            language === "en"
+                ? replaceFrenchText(original)
                 : original;
     });
 }
@@ -805,14 +810,12 @@ function translateTextNodes(language) {
 function translateAttributes(language) {
     originalAttributes.forEach((attrs, element) => {
         Object.entries(attrs).forEach(([name, original]) => {
-            const translated =
+            element.setAttribute(
+                name,
                 language === "en"
-                    ? languageTranslations.get(
-                        normalizeLanguageText(original)
-                    ) || original
-                    : original;
-
-            element.setAttribute(name, translated);
+                    ? replaceFrenchText(original)
+                    : original
+            );
         });
     });
 }
