@@ -1,14 +1,14 @@
 {
     "name": "Prestacar Services",
     "short_name": "Prestacar",
-    "description": "Professional solutions in digitalization, training, customer relations, technical services, and security.",
+    "description": "Solutions professionnelles en digitalisation, formation, relation client, technique et sécurité.",
     "start_url": "./",
     "scope": "./",
     "display": "standalone",
     "background_color": "#070a12",
     "theme_color": "#ff2448",
     "orientation": "portrait-primary",
-    "lang": "en",
+    "lang": "fr",
     "icons": [
         {
             "src": "./logo.jpg",
