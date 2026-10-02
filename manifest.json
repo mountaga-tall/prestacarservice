@@ -2,7 +2,7 @@
     "name": "Prestacar Services",
     "short_name": "Prestacar",
     "description": "Solutions professionnelles en digitalisation, formation, relation client, technique et sécurité.",
-    "start_url": "./",
+    "start_url": "./fr/",
     "scope": "./",
     "display": "standalone",
     "background_color": "#070a12",
