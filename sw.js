@@ -1,10 +1,10 @@
 /* ==========================================================
    PRESTACAR SERVICES
-   SERVICE WORKER V8
+   SERVICE WORKER V9
 ========================================================== */
 
 const CACHE_NAME =
-    "prestacar-services-v8";
+    "prestacar-services-v9";
 
 
 const APP_SHELL = [
@@ -14,7 +14,19 @@ const APP_SHELL = [
     "./styles.css",
     "./script.js",
     "./manifest.json",
-    "./logo.jpg?v=5"
+    "./logo.jpg?v=5",
+    "./fr/",
+    "./fr/services/",
+    "./fr/erc/",
+    "./fr/formation-linguistique/",
+    "./fr/marketing-digital/",
+    "./fr/electronique-embarquee/",
+    "./en/",
+    "./en/services/",
+    "./en/erc/",
+    "./en/formation-linguistique/",
+    "./en/marketing-digital/",
+    "./en/electronique-embarquee/"
 
 ];
 
