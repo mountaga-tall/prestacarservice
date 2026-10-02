@@ -1,7 +1,7 @@
 {
     "name": "Prestacar Services",
     "short_name": "Prestacar",
-    "description": "Solutions professionnelles en digitalisation, formation, relation client, technique et sécurité.",
+    "description": "Prestacar Services — solutions concrètes en digitalisation, conseil, formation, expérience client, technique et sécurité.",
     "start_url": "./fr/",
     "scope": "./",
     "display": "standalone",
