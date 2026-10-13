@@ -22,6 +22,7 @@
 <div class="form-group"><label for="catalogueSearch">Search services…</label><input id="catalogueSearch" type="search" placeholder="Search services…" autocomplete="off"></div>
 <div class="form-group"><label for="catalogueCategory">Filter by category</label><select id="catalogueCategory"><option value="all">All categories</option><option value="erc">Outsourced customer relations</option><option value="language">Language training</option><option value="personnel">Staff training</option><option value="web">Websites & online presence</option><option value="social">Social media</option><option value="seo">SEO & local visibility</option><option value="design">Design & visual identity</option><option value="print">Printing & physical materials</option><option value="embedded">Embedded electronics</option></select></div>
 </div>
+<div id="catalogueFeedback" class="catalogue-feedback" aria-live="polite"></div>
 <div id="catalogueNoResults" class="catalogue-empty-results" hidden></div>
 <div id="catalogueProductGroups"><section class="catalogue-category-section" data-group-category="erc"><div class="catalogue-group-heading"><h3>Outsourced customer relations</h3><span>3 options</span></div><div class="catalogue-grid"><article class="catalogue-card reveal" data-product-id="erc-support" data-category="erc" data-search="outsourced management & multichannel support phone answering, technical support, customer service and satisfaction follow-up. outsourced customer relations">
 <div class="catalogue-card-top"><span class="catalogue-category">Outsourced customer relations</span><span class="catalogue-price">Quote required</span></div>
@@ -362,7 +363,7 @@ group.hidden=!group.querySelector(".catalogue-card:not([hidden])");
 noResults.hidden=visible>0;noResults.textContent=visible?"":"No services match your search.";
 }
 document.querySelectorAll(".cart-add").forEach(button=>button.addEventListener("click",()=>{
-const id=button.dataset.productId;if(!productMap[id])return;cart[id]=Math.min(99,(cart[id]||0)+1);save();render();feedback.textContent="WhatsApp will open with your selection. Review the message and send it there.";document.getElementById("panier").scrollIntoView({behavior:"smooth",block:"start"});
+const id=button.dataset.productId;if(!productMap[id])return;cart[id]=Math.min(99,(cart[id]||0)+1);save();render();const status=document.getElementById("catalogueFeedback");if(status){const l=document.documentElement.lang;status.textContent=(l==="en"?"Added to cart: ":l==="es"?"Añadido al carrito: ":"Ajouté au panier : ")+productMap[id].name+" ("+cart[id]+")";}
 }));
 whatsapp.addEventListener("click",event=>{if(!Object.keys(cart).some(id=>productMap[id]&&cart[id]>0)){event.preventDefault();feedback.textContent=labels.noItems;}});
 const requestedCategory=new URLSearchParams(window.location.search).get("category");if(requestedCategory)categorySelect.value=requestedCategory;search.addEventListener("input",filterProducts);categorySelect.addEventListener("change",filterProducts);
