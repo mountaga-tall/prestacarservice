@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head><body><header class="site-header" id="header"><div class="container nav-container">
 <a href="../../es/" class="brand"><div class="brand-logo-wrap"><img src="../../logo.jpg?v=5" alt="PrestaCAR Services" class="brand-logo"></div><div class="brand-text"><strong>PRESTACAR</strong><span>SERVICES</span></div></a>
-<div class="lang-switch" aria-label="Idiomas"><a href="[object Object]" >FR</a><a href="../../en/services/" >EN</a><a href="../../es/services/" class="active" aria-current="page">ES</a></div><button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button><nav class="main-nav" id="mainNav">
+<div class="lang-switch" aria-label="Idiomas"><a href="../../fr/services/" >FR</a><a href="../../en/services/" >EN</a><a href="../../es/services/" class="active" aria-current="page">ES</a></div><button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button><nav class="main-nav" id="mainNav">
 <a href="../../es/">Inicio</a>
 <a href="../../es/services/">Servicios</a>
 <a href="../../es/realisaciones/">Proyectos</a>
@@ -350,8 +350,8 @@ controls.append(minus,qty,plus,remove);line.append(copy,controls);cartRoot.appen
 if(sum>0){totalRoot.textContent=(hasMin?labels.from+" ":"")+money(sum);totalNote.textContent=hasQuote?labels.quoteNote:(hasMin?labels.quoteNote:"");}
 else{totalRoot.textContent=labels.noFixed;totalNote.textContent=labels.quoteNote;}
 const lines=ids.map(id=>"- "+cart[id]+" × "+productMap[id].name+" — "+productMap[id].price);
-if(sum>0)lines.push("\\n"+labels.subtotal+": "+(hasMin?labels.from+" ":"")+money(sum)+(hasQuote?" ("+labels.quoteNote+")":""));
-whatsapp.href="https://wa.me/2250778615861?text="+encodeURIComponent(labels.lead+"\\n\\n"+lines.join("\\n"));
+if(sum>0)lines.push("\n"+labels.subtotal+": "+(hasMin?labels.from+" ":"")+money(sum)+(hasQuote?" ("+labels.quoteNote+")":""));
+whatsapp.href="https://wa.me/2250778615861?text="+encodeURIComponent(labels.lead+"\n\n"+lines.join("\n"));
 whatsapp.setAttribute("aria-disabled","false");
 }
 function filterProducts(){
@@ -373,7 +373,7 @@ document.querySelectorAll(".cart-add").forEach(button=>button.addEventListener("
 const id=button.dataset.productId;if(!productMap[id])return;cart[id]=Math.min(99,(cart[id]||0)+1);save();render();feedback.textContent="WhatsApp se abrirá con su selección. Revise el mensaje y envíelo allí.";document.getElementById("panier").scrollIntoView({behavior:"smooth",block:"start"});
 }));
 whatsapp.addEventListener("click",event=>{if(!Object.keys(cart).some(id=>productMap[id]&&cart[id]>0)){event.preventDefault();feedback.textContent=labels.noItems;}});
-search.addEventListener("input",filterProducts);categorySelect.addEventListener("change",filterProducts);
+const requestedCategory=new URLSearchParams(window.location.search).get("category");if(requestedCategory)categorySelect.value=requestedCategory;search.addEventListener("input",filterProducts);categorySelect.addEventListener("change",filterProducts);
 render();filterProducts();
 })();
 </script>
