@@ -369,7 +369,7 @@ document.querySelectorAll(".cart-add").forEach(button=>button.addEventListener("
 const id=button.dataset.productId;if(!productMap[id])return;cart[id]=Math.min(99,(cart[id]||0)+1);save();render();const symbol=button.querySelector("span");if(symbol){symbol.textContent="✓";button.classList.add("is-added");window.setTimeout(()=>{symbol.textContent="＋";button.classList.remove("is-added");},1100);}const status=document.getElementById("catalogueFeedback");if(status){const l=document.documentElement.lang;status.textContent=(l==="en"?"Added to cart: ":l==="es"?"Añadido al carrito: ":"Ajouté au panier : ")+productMap[id].name+" ("+cart[id]+")";}
 }));
 whatsapp.addEventListener("click",event=>{if(!Object.keys(cart).some(id=>productMap[id]&&cart[id]>0)){event.preventDefault();feedback.textContent=labels.noItems;}});
-const requestedCategory=new URLSearchParams(window.location.search).get("category");if(requestedCategory)categorySelect.value=requestedCategory;search.addEventListener("input",filterProducts);categorySelect.addEventListener("change",filterProducts);
+const requestedCategory=new URLSearchParams(window.location.search).get("category");if(requestedCategory&&Array.from(categorySelect.options).some(option=>option.value===requestedCategory))categorySelect.value=requestedCategory;search.addEventListener("input",filterProducts);categorySelect.addEventListener("change",filterProducts);
 render();filterProducts();
 })();
 </script>
