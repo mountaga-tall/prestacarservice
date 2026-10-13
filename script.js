@@ -412,7 +412,9 @@ if (contactForm) {
         event.preventDefault();
 
         const values = new FormData(contactForm);
-        const isEnglish = document.documentElement.lang === "en";
+        const language = document.documentElement.lang || "fr";
+        const isEnglish = language === "en";
+        const isSpanish = language === "es";
         const name = String(values.get("name") || "").trim();
         const email = String(values.get("email") || "").trim();
         const subject = String(values.get("subject") || "").trim();
@@ -426,6 +428,15 @@ if (contactForm) {
                 "Email: " + email,
                 "Subject: " + subject,
                 "Message: " + message
+            ].join("\n")
+            : isSpanish
+            ? [
+                "Hola Prestacar Services, quisiera realizar una solicitud.",
+                "",
+                "Nombre: " + name,
+                "Correo electrónico: " + email,
+                "Asunto: " + subject,
+                "Mensaje: " + message
             ].join("\n")
             : [
                 "Bonjour Prestacar Services, je souhaite faire une demande.",
@@ -441,6 +452,8 @@ if (contactForm) {
         if (formMessage) {
             formMessage.textContent = isEnglish
                 ? "Opening WhatsApp with your pre-filled request…"
+                : isSpanish
+                ? "Abriendo WhatsApp con su solicitud preparada…"
                 : "Ouverture de WhatsApp avec votre demande préremplie…";
         }
 
