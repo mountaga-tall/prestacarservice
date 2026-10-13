@@ -4247,3 +4247,35 @@ textarea {
     .cart-line { grid-template-columns: 1fr; gap: 12px; }
     .cart-line-controls { justify-content: flex-start; }
 }
+
+/* Affinements catalogue officiel — filtres, devis et langues */
+.catalogue-card[hidden], [data-group-category][hidden], .catalogue-empty-results[hidden] { display: none !important; }
+.catalogue-tools {
+    display: grid; grid-template-columns: minmax(0,1.35fr) minmax(220px,.65fr);
+    gap: 16px; max-width: 920px; margin: 0 auto 30px;
+}
+.catalogue-tools .form-group { margin: 0; }
+.catalogue-tools label { display: block; margin-bottom: 8px; color: #e9edf6; font-size: 11px; font-weight: 700; }
+.catalogue-tools input, .catalogue-tools select {
+    width: 100%; min-height: 48px; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 12px; background: rgba(255,255,255,.055); color: #f7f8fc; font: inherit; font-size: 12px;
+}
+.catalogue-tools select option { background: #101722; color: #fff; }
+.catalogue-category-section { margin-top: 36px; }
+.catalogue-group-heading { display:flex; align-items:center; justify-content:space-between; gap:14px; margin:0 0 17px; }
+.catalogue-group-heading h3 { margin:0; color:#f7f8fc; font-family:"Montserrat",sans-serif; font-size:clamp(17px,2.1vw,23px); letter-spacing:-.025em; }
+.catalogue-group-heading > span { color:var(--muted); font-size:10px; white-space:nowrap; }
+.catalogue-category-section .catalogue-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.catalogue-eur { display:block; align-self:center; color:var(--muted); font-size:10px; font-weight:600; margin: -10px 0 15px; }
+.catalogue-price { max-width:100%; white-space:normal; text-align:right; }
+.catalogue-card-top { align-items:flex-start; }
+.catalogue-empty-results { margin:24px auto; max-width:700px; padding:24px; border:1px dashed var(--border); border-radius:16px; color:var(--muted); text-align:center; font-size:13px; }
+.catalogue-location { margin-top:17px !important; color:rgba(255,255,255,.62) !important; font-size:11px !important; }
+.cart-summary-total small { display:block; margin-top:8px; color:var(--muted); font-size:10px; line-height:1.65; }
+@media (max-width:950px) {
+ .catalogue-category-section .catalogue-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media (max-width:620px) {
+ .catalogue-tools, .catalogue-category-section .catalogue-grid { grid-template-columns:1fr; }
+ .catalogue-group-heading { align-items:flex-start; }
+}
