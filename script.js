@@ -404,76 +404,49 @@ if (
 
 
 /* ==========================================================
-   FORMULAIRE
+   FORMULAIRE — TRANSMISSION VIA WHATSAPP
 ========================================================== */
 
 if (contactForm) {
+    contactForm.addEventListener("submit", event => {
+        event.preventDefault();
 
-    contactForm.addEventListener(
-        "submit",
-        event => {
+        const values = new FormData(contactForm);
+        const isEnglish = document.documentElement.lang === "en";
+        const name = String(values.get("name") || "").trim();
+        const email = String(values.get("email") || "").trim();
+        const subject = String(values.get("subject") || "").trim();
+        const message = String(values.get("message") || "").trim();
 
-            event.preventDefault();
+        const whatsappMessage = isEnglish
+            ? [
+                "Hello Prestacar Services, I would like to make a request.",
+                "",
+                "Name: " + name,
+                "Email: " + email,
+                "Subject: " + subject,
+                "Message: " + message
+            ].join("\n")
+            : [
+                "Bonjour Prestacar Services, je souhaite faire une demande.",
+                "",
+                "Nom : " + name,
+                "Email : " + email,
+                "Sujet : " + subject,
+                "Message : " + message
+            ].join("\n");
 
-            const submitButton =
-                contactForm.querySelector(
-                    ".form-submit"
-                );
+        const whatsappUrl = "https://wa.me/2250778615861?text=" + encodeURIComponent(whatsappMessage);
 
-            if (submitButton) {
-
-                submitButton.disabled =
-                    true;
-
-                submitButton.style.opacity =
-                    ".65";
-
-                submitButton.innerHTML =
-                    document.documentElement.lang === "en"
-                        ? "Sending..."
-                        : "Envoi en cours...";
-
-            }
-
-
-            setTimeout(
-                () => {
-
-                    if (formMessage) {
-
-                        formMessage.textContent =
-                            document.documentElement.lang === "en"
-                                ? "Thank you! Your request has been received."
-                                : "Merci ! Votre demande a bien été prise en compte.";
-
-                    }
-
-
-                    contactForm.reset();
-
-
-                    if (submitButton) {
-
-                        submitButton.disabled =
-                            false;
-
-                        submitButton.style.opacity =
-                            "1";
-
-                        submitButton.innerHTML =
-                            document.documentElement.lang === "en"
-                                ? "Send message <span>→</span>"
-                                : "Envoyer le message <span>→</span>";
-
-                    }
-
-                },
-                900
-            );
-
+        if (formMessage) {
+            formMessage.textContent = isEnglish
+                ? "Opening WhatsApp with your pre-filled request…"
+                : "Ouverture de WhatsApp avec votre demande préremplie…";
         }
-    );
 
+        /* WhatsApp opens with the request; the visitor confirms sending it there. */
+        window.location.href = whatsappUrl;
+    });
 }
 
 
