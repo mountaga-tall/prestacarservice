@@ -22,6 +22,7 @@
 <div class="form-group"><label for="catalogueSearch">Buscar un servicio…</label><input id="catalogueSearch" type="search" placeholder="Buscar un servicio…" autocomplete="off"></div>
 <div class="form-group"><label for="catalogueCategory">Filtrar por categoría</label><select id="catalogueCategory"><option value="all">Todas las categorías</option><option value="erc">Externalización de la relación con clientes</option><option value="language">Formación lingüística</option><option value="personnel">Formación del personal</option><option value="web">Sitios web y presencia digital</option><option value="social">Redes sociales</option><option value="seo">SEO y visibilidad local</option><option value="design">Diseño e identidad visual</option><option value="print">Impresión y soportes físicos</option><option value="embedded">Electrónica embarcada</option></select></div>
 </div>
+<div id="catalogueFeedback" class="catalogue-feedback" aria-live="polite"></div>
 <div id="catalogueNoResults" class="catalogue-empty-results" hidden></div>
 <div id="catalogueProductGroups"><section class="catalogue-category-section" data-group-category="erc"><div class="catalogue-group-heading"><h3>Externalización de la relación con clientes</h3><span>3 opciónes</span></div><div class="catalogue-grid"><article class="catalogue-card reveal" data-product-id="erc-support" data-category="erc" data-search="gestión externalizada y soporte multicanal atención telefónica, soporte técnico, atención al cliente y seguimiento de satisfacción. externalización de la relación con clientes">
 <div class="catalogue-card-top"><span class="catalogue-category">Externalización de la relación con clientes</span><span class="catalogue-price">Presupuesto</span></div>
@@ -362,7 +363,7 @@ group.hidden=!group.querySelector(".catalogue-card:not([hidden])");
 noResults.hidden=visible>0;noResults.textContent=visible?"":"No hay servicios que coincidan con su búsqueda.";
 }
 document.querySelectorAll(".cart-add").forEach(button=>button.addEventListener("click",()=>{
-const id=button.dataset.productId;if(!productMap[id])return;cart[id]=Math.min(99,(cart[id]||0)+1);save();render();feedback.textContent="WhatsApp se abrirá con su selección. Revise el mensaje y envíelo allí.";document.getElementById("panier").scrollIntoView({behavior:"smooth",block:"start"});
+const id=button.dataset.productId;if(!productMap[id])return;cart[id]=Math.min(99,(cart[id]||0)+1);save();render();const status=document.getElementById("catalogueFeedback");if(status){const l=document.documentElement.lang;status.textContent=(l==="en"?"Added to cart: ":l==="es"?"Añadido al carrito: ":"Ajouté au panier : ")+productMap[id].name+" ("+cart[id]+")";}
 }));
 whatsapp.addEventListener("click",event=>{if(!Object.keys(cart).some(id=>productMap[id]&&cart[id]>0)){event.preventDefault();feedback.textContent=labels.noItems;}});
 const requestedCategory=new URLSearchParams(window.location.search).get("category");if(requestedCategory)categorySelect.value=requestedCategory;search.addEventListener("input",filterProducts);categorySelect.addEventListener("change",filterProducts);
