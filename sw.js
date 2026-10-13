@@ -4,7 +4,7 @@
 ========================================================== */
 
 const CACHE_NAME =
-    "prestacar-services-v12";
+    "prestacar-services-v13";
 
 
 const APP_SHELL = [
@@ -17,6 +17,8 @@ const APP_SHELL = [
     "./logo.jpg?v=5",
     "./fr/",
     "./fr/services/",
+    "./fr/realisations/",
+    "./fr/references/",
     "./fr/erc/",
     "./fr/formation-linguistique/",
     "./fr/marketing-digital/",
@@ -27,6 +29,8 @@ const APP_SHELL = [
     "./fr/electronique-embarquee/",
     "./en/",
     "./en/services/",
+    "./en/realisations/",
+    "./en/references/",
     "./en/erc/",
     "./en/formation-linguistique/",
     "./en/marketing-digital/",
