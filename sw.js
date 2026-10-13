@@ -4,7 +4,7 @@
 ========================================================== */
 
 const CACHE_NAME =
-    "prestacar-services-v13";
+    "prestacar-services-v14";
 
 
 const APP_SHELL = [
@@ -34,7 +34,15 @@ const APP_SHELL = [
     "./en/erc/",
     "./en/formation-linguistique/",
     "./en/marketing-digital/",
-    "./en/electronique-embarquee/"
+    "./en/electronique-embarquee/",
+    "./es/",
+    "./es/services/",
+    "./es/realisaciones/",
+    "./es/referencias/",
+    "./es/erc/",
+    "./es/formation-linguistique/",
+    "./es/marketing-digital/",
+    "./es/electronique-embarquee/",
 
 ];
 
