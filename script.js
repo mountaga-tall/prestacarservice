@@ -541,12 +541,13 @@ if ("serviceWorker" in navigator) {
         () => {
 
             const rootScript = document.querySelector('script[src*="script.js"]');
-            const rootPath = rootScript
-                ? new URL(rootScript.getAttribute("src"), window.location.href).pathname.split("/script.js")[0]
-                : "";
+            const scriptUrl = rootScript
+                ? new URL(rootScript.getAttribute("src"), window.location.href)
+                : new URL("./script.js", window.location.href);
+            const serviceWorkerUrl = new URL("./sw.js", scriptUrl);
             navigator.serviceWorker
                 .register(
-                    (rootPath || ".") + "/sw.js"
+                    serviceWorkerUrl.pathname + serviceWorkerUrl.search
                 )
                 .then(
                     registration => {
