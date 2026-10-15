@@ -91,7 +91,7 @@ function openMenu() {
     menuBackdrop.classList.add("active");
     document.body.style.overflow = "hidden";
     const firstLink = mainNav.querySelector("a");
-    if (firstLink && window.matchMedia("(max-width: 950px)").matches) {
+    if (firstLink && window.matchMedia("(max-width: 1180px)").matches) {
         window.setTimeout(() => firstLink.focus({ preventScroll: true }), 80);
     }
 }
@@ -120,7 +120,7 @@ if (menuToggle && mainNav) {
         if (event.key === "Escape" && mainNav.classList.contains("active")) closeMenu({ restoreFocus: true });
     });
     window.addEventListener("resize", () => {
-        if (window.matchMedia("(min-width: 951px)").matches) closeMenu();
+        if (window.matchMedia("(min-width: 1181px)").matches) closeMenu();
     }, { passive: true });
 }
 
