@@ -117,7 +117,32 @@ if (menuToggle && mainNav) {
     mainNav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => closeMenu()));
     menuBackdrop.addEventListener("click", () => closeMenu({ restoreFocus: true }));
     document.addEventListener("keydown", event => {
-        if (event.key === "Escape" && mainNav.classList.contains("active")) closeMenu({ restoreFocus: true });
+        if (!mainNav.classList.contains("active")) return;
+
+        if (event.key === "Escape") {
+            event.preventDefault();
+            closeMenu({ restoreFocus: true });
+            return;
+        }
+
+        if (event.key !== "Tab") return;
+
+        const focusableItems = Array.from(
+            mainNav.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')
+        ).filter(element => element.getClientRects().length > 0);
+
+        if (!focusableItems.length) return;
+
+        const firstItem = focusableItems[0];
+        const lastItem = focusableItems[focusableItems.length - 1];
+
+        if (event.shiftKey && document.activeElement === firstItem) {
+            event.preventDefault();
+            lastItem.focus();
+        } else if (!event.shiftKey && document.activeElement === lastItem) {
+            event.preventDefault();
+            firstItem.focus();
+        }
     });
     window.addEventListener("resize", () => {
         if (window.matchMedia("(min-width: 1181px)").matches) closeMenu();
