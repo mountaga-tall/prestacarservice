@@ -206,18 +206,41 @@ self.addEventListener(
                             .then(
                                 cachedResponse => {
 
-                                    if (
-                                        cachedResponse
-                                    ) {
-
+                                    if (cachedResponse) {
                                         return cachedResponse;
-
                                     }
 
+                                    /*
+                                     * En mode hors ligne, ne renvoyer la page HTML
+                                     * de secours qu'à une navigation du même domaine.
+                                     * Une image, une police, un script ou une requête
+                                     * externe non disponible doit rester en échec,
+                                     * jamais recevoir du HTML à la place.
+                                     */
+                                    const requestURL = new URL(event.request.url);
+                                    const isSameOrigin =
+                                        requestURL.origin === self.location.origin;
+                                    const isNavigation =
+                                        event.request.mode === "navigate";
 
-                                    return caches.match(
-                                        "./index.html"
-                                    );
+                                    if (isSameOrigin && isNavigation) {
+                                        const cleanURL =
+                                            requestURL.origin + requestURL.pathname;
+
+                                        return caches
+                                            .match(cleanURL)
+                                            .then(pageResponse => {
+                                                if (pageResponse) {
+                                                    return pageResponse;
+                                                }
+
+                                                return caches.match(
+                                                    new URL("./index.html", self.registration.scope).href
+                                                ).then(fallback => fallback || Response.error());
+                                            });
+                                    }
+
+                                    return Response.error();
 
                                 }
                             );
