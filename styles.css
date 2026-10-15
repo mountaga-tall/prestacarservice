@@ -4286,3 +4286,49 @@ textarea {
 }
 
 .catalogue-card .cart-add.is-added { border-color: rgba(45,190,115,.55); color: #89e2b0; }
+
+
+/* Correctifs menu mobile + bouton WhatsApp flottant (octobre 2026) */
+@media (max-width: 950px) {
+    .site-header { z-index: 1000; }
+    .nav-container { gap: 10px; }
+    .menu-toggle {
+        display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+        flex: 0 0 46px; position: relative; z-index: 1002; color: #fff;
+        touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+    }
+    .menu-toggle:focus-visible { outline: 3px solid #ff536e; outline-offset: 3px; }
+    .menu-toggle span { flex: 0 0 2px; }
+    .menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .main-nav {
+        z-index: 1001; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+        max-height: 100dvh; padding-bottom: max(30px, env(safe-area-inset-bottom));
+        visibility: hidden; pointer-events: none;
+    }
+    .main-nav.active { visibility: visible; pointer-events: auto; }
+    .main-nav > a { min-height: 40px; display: flex; align-items: center; }
+    .main-nav .nav-whatsapp { justify-content: center; }
+    .menu-backdrop {
+        position: fixed; inset: 0; z-index: 999; border: 0; padding: 0; margin: 0;
+        background: rgba(2, 5, 12, .72); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+        opacity: 0; visibility: hidden; pointer-events: none;
+        transition: opacity 220ms ease, visibility 220ms ease; cursor: pointer;
+    }
+    .menu-backdrop.active { opacity: 1; visibility: visible; pointer-events: auto; }
+}
+.whatsapp-float {
+    z-index: 990; right: max(20px, env(safe-area-inset-right)); bottom: max(20px, env(safe-area-inset-bottom));
+    width: 60px; height: 60px; display: grid; place-items: center; text-decoration: none;
+    -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+}
+.whatsapp-float:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+.whatsapp-float .whatsapp-icon { display: grid; place-items: center; }
+.whatsapp-float .whatsapp-icon svg { width: 31px; height: 31px; }
+.whatsapp-tooltip { z-index: 1; }
+@media (max-width: 620px) {
+    .whatsapp-float { width: 56px; height: 56px; right: max(14px, env(safe-area-inset-right)); bottom: max(14px, env(safe-area-inset-bottom)); }
+    .whatsapp-tooltip { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .menu-backdrop { transition: none; } }
