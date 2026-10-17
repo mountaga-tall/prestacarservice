@@ -4698,3 +4698,117 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     transform:none;
   }
 }
+
+
+/* ==========================================================
+   PRESTACAR FOOTER SOCIAL GLASS
+========================================================== */
+.footer-social {
+    position: relative;
+    overflow: hidden;
+    padding: 38px 0 30px;
+    border-top: 1px solid rgba(255,255,255,.075);
+    background:
+        radial-gradient(circle at 12% 0, rgba(40,124,255,.075), transparent 32%),
+        radial-gradient(circle at 88% 100%, rgba(255,36,72,.065), transparent 34%),
+        rgba(255,255,255,.012);
+}
+.footer-social-inner { display: grid; gap: 24px; }
+.footer-social-heading { max-width: 660px; }
+.footer-social-kicker {
+    display: inline-block;
+    color: var(--gold);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .2em;
+    margin-bottom: 8px;
+}
+.footer-social-heading h2 {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(19px, 2.3vw, 27px);
+    line-height: 1.2;
+    letter-spacing: -.035em;
+}
+.footer-social-heading p {
+    max-width: 610px;
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 8px;
+}
+.footer-social-links {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+.social-link {
+    --social-brand: #fff;
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    gap: 11px;
+    padding: 14px 12px;
+    color: var(--text);
+    border: 1px solid rgba(255,255,255,.13);
+    border-radius: 17px;
+    background: linear-gradient(135deg, rgba(255,255,255,.085), rgba(255,255,255,.025));
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 12px 32px rgba(0,0,0,.16), inset 0 1px 0 rgba(255,255,255,.07);
+    overflow: hidden;
+    transition: transform 260ms ease, border-color 260ms ease, background 260ms ease, box-shadow 260ms ease;
+}
+.social-link::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0;
+    background: radial-gradient(circle at 0 0, color-mix(in srgb, var(--social-brand) 22%, transparent), transparent 70%);
+    transition: opacity 260ms ease;
+}
+.social-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    border-radius: 13px;
+    color: var(--social-brand);
+    background: color-mix(in srgb, var(--social-brand) 12%, rgba(255,255,255,.045));
+    border: 1px solid color-mix(in srgb, var(--social-brand) 24%, transparent);
+    transition: transform 260ms ease, border-color 260ms ease;
+}
+.social-icon svg { display: block; width: 21px; height: 21px; }
+.social-link-copy { display: flex; flex: 1; flex-direction: column; gap: 3px; min-width: 0; }
+.social-link-copy strong { font-size: 12px; font-weight: 800; line-height: 1.2; }
+.social-link-copy small { color: var(--muted); font-size: 9px; line-height: 1.35; overflow-wrap: anywhere; }
+.social-link-arrow { align-self: flex-start; color: rgba(255,255,255,.55); font-size: 15px; transition: transform 260ms ease, color 260ms ease; }
+.social-youtube { --social-brand: #ff0033; }
+.social-facebook { --social-brand: #1877f2; }
+.social-instagram { --social-brand: #e85a9b; }
+.social-linkedin { --social-brand: #0a66c2; }
+.social-link:hover {
+    transform: translateY(-5px);
+    border-color: color-mix(in srgb, var(--social-brand) 56%, rgba(255,255,255,.22));
+    background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+    box-shadow: 0 19px 40px rgba(0,0,0,.28), 0 0 26px color-mix(in srgb, var(--social-brand) 15%, transparent), inset 0 1px 0 rgba(255,255,255,.12);
+}
+.social-link:hover::before { opacity: 1; }
+.social-link:hover .social-icon { transform: scale(1.07) rotate(-3deg); }
+.social-link:hover .social-link-arrow { color: var(--social-brand); transform: translate(2px,-2px); }
+.social-link:focus-visible { outline: 3px solid var(--social-brand); outline-offset: 4px; }
+@media (max-width: 900px) {
+    .footer-social-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 480px) {
+    .footer-social { padding: 30px 0 24px; }
+    .footer-social-links { grid-template-columns: 1fr; gap: 9px; }
+    .social-link { padding: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .social-link, .social-link::before, .social-icon, .social-link-arrow { transition: none; }
+    .social-link:hover { transform: none; }
+}
