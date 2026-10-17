@@ -1192,6 +1192,44 @@ textarea {
 
 }
 
+/* Fourth linked expertise card, balanced opposite the upper-right card. */
+.floating-card-four {
+
+    top: 12%;
+
+    left: 0;
+
+    animation-delay: -1s;
+
+}
+
+/* The floating cards are navigation links, with clear keyboard focus. */
+.floating-card {
+
+    color: var(--text);
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+}
+
+.floating-card:hover {
+
+    border-color: rgba(255,255,255,.28);
+
+    background: rgba(16,22,38,.92);
+
+}
+
+.floating-card:focus-visible {
+
+    outline: 2px solid var(--blue);
+
+    outline-offset: 4px;
+
+}
+
 
 /* ==========================================================
    SECTION HEADING
@@ -3194,6 +3232,12 @@ textarea {
 
     }
 
+    .floating-card-four {
+
+        left: -15px;
+
+    }
+
 
     .expertise-grid {
 
@@ -3427,6 +3471,12 @@ textarea {
     .floating-card-three {
 
         bottom: 0;
+
+    }
+
+    .floating-card-four {
+
+        top: 5%;
 
     }
 
