@@ -1035,56 +1035,51 @@ textarea {
 .logo-ring {
 
     position: absolute;
-
+    border: 2px solid transparent;
     border-radius: 50%;
-
-    border: 1px solid
-        rgba(255,255,255,.12);
 
 }
 
-
+/* Quatre anneaux orbitaux aux quatre couleurs de l'identité Prestacar. */
 .ring-one {
 
     inset: 5%;
+    border-top-color: var(--gold);
+    border-right-color: var(--gold);
 
-    border-top-color:
-        rgba(255,36,72,.8);
-
-    border-right-color:
-        rgba(255,36,72,.4);
-
-    animation:
-        ringRotate 12s linear infinite;
+    animation: ringRotate 12s linear infinite;
 
 }
-
 
 .ring-two {
 
     inset: -2%;
+    border-top-color: var(--green);
+    border-right-color: var(--green);
 
-    border-bottom-color:
-        rgba(40,124,255,.8);
-
-    animation:
-        ringRotateReverse 16s linear infinite;
+    animation: ringRotateReverse 16s linear infinite;
 
 }
-
 
 .ring-three {
 
     inset: -10%;
+    border-top-color: var(--blue);
+    border-right-color: var(--blue);
 
-    border-left-color:
-        rgba(255,200,87,.6);
-
-    animation:
-        ringRotate 20s linear infinite;
+    animation: ringRotate 20s linear infinite;
 
 }
 
+.ring-four {
+
+    inset: -18%;
+    border-top-color: var(--red);
+    border-right-color: var(--red);
+
+    animation: ringRotateReverse 24s linear infinite;
+
+}
 
 .floating-card {
 
