@@ -4812,3 +4812,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     .social-link, .social-link::before, .social-icon, .social-link-arrow { transition: none; }
     .social-link:hover { transform: none; }
 }
+
+
+/* CONTACT + WHATSAPP ICON CONSISTENCY */
+.contact-icon svg { display:block; width:24px; height:24px; }
+.contact-icon-whatsapp { color:#25d366; background:rgba(37,211,102,.12); border:1px solid rgba(37,211,102,.2); }
+.whatsapp-float .whatsapp-icon { display:grid; place-items:center; width:34px; height:34px; font-size:0; line-height:0; }
+.whatsapp-float .whatsapp-icon svg { display:block; width:32px; height:32px; fill:#fff; }
+@media(max-width:620px){ .whatsapp-float .whatsapp-icon{width:31px;height:31px}.whatsapp-float .whatsapp-icon svg{width:30px;height:30px} }
