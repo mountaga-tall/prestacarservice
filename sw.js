@@ -4,7 +4,7 @@
 ========================================================== */
 
 const CACHE_NAME =
-    "prestacar-services-v30";
+    "prestacar-services-v31";
 
 
 const APP_SHELL = [
