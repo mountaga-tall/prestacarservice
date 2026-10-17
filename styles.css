@@ -1096,10 +1096,15 @@ textarea {
 
     align-items: center;
 
-    gap: 12px;
+    box-sizing: border-box;
 
-    padding:
-        15px 18px;
+    width: min(260px, calc(50% - 12px));
+
+    min-width: 0;
+
+    gap: 10px;
+
+    padding: 14px 13px;
 
     border:
         1px solid
@@ -1119,6 +1124,16 @@ textarea {
     animation:
         floatCard 5s ease-in-out infinite;
 
+}
+
+/* Allow localized labels to wrap inside their own card instead of touching. */
+.floating-card > div {
+    min-width: 0;
+}
+
+.floating-card strong,
+.floating-card small {
+    overflow-wrap: anywhere;
 }
 
 
@@ -1163,44 +1178,38 @@ textarea {
 
 
 .floating-card-one {
-
-    top: 12%;
-
-    right: 0;
-
+    /* Customer relations / ERC: bottom-left */
+    top: auto;
+    right: auto;
+    bottom: 12%;
+    left: 0;
 }
-
 
 .floating-card-two {
-
-    bottom: 20%;
-
+    /* Training: top-left */
+    top: 12%;
+    right: auto;
+    bottom: auto;
     left: 0;
-
     animation-delay: -2s;
-
 }
-
 
 .floating-card-three {
-
-    bottom: 3%;
-
-    right: 12%;
-
+    /* Digital marketing: top-right */
+    top: 12%;
+    right: 0;
+    bottom: auto;
+    left: auto;
     animation-delay: -4s;
-
 }
 
-/* Fourth linked expertise card, balanced opposite the upper-right card. */
 .floating-card-four {
-
-    top: 12%;
-
-    left: 0;
-
+    /* Embedded electronics: bottom-right */
+    top: auto;
+    right: 0;
+    bottom: 12%;
+    left: auto;
     animation-delay: -1s;
-
 }
 
 /* The floating cards are navigation links, with clear keyboard focus. */
@@ -3213,29 +3222,23 @@ textarea {
 
 
     .floating-card-one {
-
-        right: -15px;
-
+        left: 0;
+        right: auto;
     }
-
 
     .floating-card-two {
-
-        left: -15px;
-
+        left: 0;
+        right: auto;
     }
 
-
     .floating-card-three {
-
         right: 0;
-
+        left: auto;
     }
 
     .floating-card-four {
-
-        left: -15px;
-
+        right: 0;
+        left: auto;
     }
 
 
@@ -3455,29 +3458,31 @@ textarea {
 
 
     .floating-card-one {
-
-        top: 5%;
-
+        top: auto;
+        bottom: 15%;
+        left: 0;
+        right: auto;
     }
-
 
     .floating-card-two {
-
-        bottom: 15%;
-
+        top: 5%;
+        bottom: auto;
+        left: 0;
+        right: auto;
     }
 
-
     .floating-card-three {
-
-        bottom: 0;
-
+        top: 5%;
+        bottom: auto;
+        right: 0;
+        left: auto;
     }
 
     .floating-card-four {
-
-        top: 5%;
-
+        top: auto;
+        bottom: 15%;
+        right: 0;
+        left: auto;
     }
 
 
