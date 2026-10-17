@@ -351,12 +351,12 @@ whatsapp.href="https://wa.me/2250778615861?text="+encodeURIComponent(labels.lead
 whatsapp.setAttribute("aria-disabled","false");
 }
 function filterProducts(){
-const q=(search.value||"").trim().toLocaleLowerCase("fr");
+const normalizeSearch=value=>String(value||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLocaleLowerCase("fr"); const q=normalizeSearch(search.value);
 const cat=categorySelect.value;
 let visible=0;
 document.querySelectorAll(".catalogue-card").forEach(card=>{
 const okCat=cat==="all"||card.dataset.category===cat;
-const okText=!q||card.dataset.search.includes(q);
+const searchable=normalizeSearch((card.dataset.search||"")+" "+card.textContent); const okText=!q||searchable.includes(q);
 card.hidden=!(okCat&&okText);
 if(!card.hidden)visible++;
 });
