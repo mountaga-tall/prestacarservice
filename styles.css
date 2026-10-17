@@ -4626,3 +4626,25 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         transition: none !important;
     }
 }
+
+
+/* LANGUE DANS LE MENU HAMBURGER — POSITION FIXE */
+.menu-lang-switch{display:none}
+@media(max-width:1180px){
+  .nav-container > .lang-switch{display:none!important}
+  .main-nav{overflow-y:auto;overscroll-behavior:contain;padding-bottom:calc(22px + env(safe-area-inset-bottom))}
+  .main-nav .menu-lang-switch{
+    display:flex;
+    align-self:center;
+    justify-content:center;
+    flex:0 0 auto;
+    width:max-content;
+    max-width:100%;
+    margin: auto 0 0;
+    order:10;
+    position:relative;
+    bottom:auto;
+    left:auto;
+    transform:none;
+  }
+}
