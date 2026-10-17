@@ -1,27 +1,484 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Inicio | PrestaCAR Services</title><meta name="description" content="PrestaCAR Services — marketing digital, atención al cliente, formación y electrónica embarcada en Abiyán."><meta name="theme-color" content="#080b14">
-<link rel="icon" href="../logo.jpg?v=5" type="image/jpeg"><link rel="manifest" href="../manifest.json"><link rel="stylesheet" href="../styles.css">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"></head>
-<body><a class="skip-link" href="#main-content">Ir al contenido</a><header class="site-header" id="header"><div class="container nav-container">
- <a href="../es/" class="brand"><div class="brand-logo-wrap"><img src="../logo.jpg?v=5" alt="PrestaCAR Services" class="brand-logo"></div><div class="brand-text"><strong>PRESTACAR</strong><span>SERVICES</span></div></a>
- 
- <div class="lang-switch" aria-label="Idiomas"><a href="../fr/" >FR</a> <a href="../en/" >EN</a> <a href="../es/" class="active" aria-current="page">ES</a></div>
- <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false"
-                aria-controls="mainNav"><span></span><span></span><span></span></button>
- <nav class="main-nav" id="mainNav"><a href="./" aria-current="page">Inicio</a><a href="erc/">Relación con clientes</a><a href="formation-linguistique/">Formación</a><a href="marketing-digital/">Marketing digital</a><a href="electronique-embarquee/">Electrónica integrada</a><a href="services/#univers-tarifs">Tarifas</a><a href="realizaciones/">Trabajos realizados</a><a href="contacto/">Contacto</a><div class="lang-switch menu-lang-switch" aria-label="Idiomas"><a href="../fr/" >FR</a> <a href="../en/" >EN</a> <a href="../es/" class="active" aria-current="page">ES</a></div></nav></div></header><main id="main-content" class="service-page"><section class="service-page-hero" id="accueil"><div class="container service-page-hero-inner"><span class="section-kicker">SU SOCIO PARA PROYECTOS Y NEGOCIOS</span><h1>Convirtamos sus ideas en <span>acciones concretas.</span></h1><p>PrestaCAR Services acompaña a empresas y emprendedores con soluciones profesionales en marketing digital, relación con clientes, formación y electrónica embarcada.</p><div class="service-page-cta-row"><a class="btn btn-primary" href="https://wa.me/2250778615861?text=Hola%20PrestaCAR%20Services%2C%20quisiera%20hablar%20de%20mi%20proyecto." target="_blank" rel="noopener">Hablemos de su proyecto <span>↗</span></a><a class="btn btn-outline" href="#univers">Descubrir nuestra experiencia</a></div><p class="catalogue-location">Plateau, Abiyán — Costa de Marfil</p></div></section>
-<section class="quick-solutions" id="univers" aria-labelledby="quickSolutionsTitle"><div class="container"><div class="section-heading center"><span class="section-kicker">PRESTACAR SERVICES</span><h2 id="quickSolutionsTitle">Elija la solución adecuada</h2><p>Acceda directamente a nuestros servicios y prepare una solicitud de presupuesto según sus necesidades.</p></div><div class="quick-solution-grid"><a class="quick-solution-card" href="./erc/"><span class="quick-solution-index">01</span><span class="quick-solution-icon" aria-hidden="true">↔</span><h3>Relación con clientes</h3><p>Centro de llamadas, soporte, televenta y seguimiento.</p><span class="quick-solution-link">Descubrir <span aria-hidden="true">→</span></span></a>
-<a class="quick-solution-card" href="./formation-linguistique/"><span class="quick-solution-index">02</span><span class="quick-solution-icon" aria-hidden="true">✦</span><h3>Formación</h3><p>Inglés, español y desarrollo de competencias del equipo.</p><span class="quick-solution-link">Descubrir <span aria-hidden="true">→</span></span></a>
-<a class="quick-solution-card" href="./marketing-digital/"><span class="quick-solution-index">03</span><span class="quick-solution-icon" aria-hidden="true">↗</span><h3>Marketing digital</h3><p>Sitios web, SEO y redes sociales.</p><span class="quick-solution-link">Descubrir <span aria-hidden="true">→</span></span></a>
-<a class="quick-solution-card" href="./electronique-embarquee/"><span class="quick-solution-index">04</span><span class="quick-solution-icon" aria-hidden="true">◎</span><h3>Electrónica embarcada</h3><p>GPS, seguridad y soluciones audiovisuales para vehículos.</p><span class="quick-solution-link">Descubrir <span aria-hidden="true">→</span></span></a></div><div class="quick-solutions-footer"><a class="btn btn-primary" href="./services/#univers-tarifs">Ver todos los servicios y precios <span aria-hidden="true">→</span></a><a class="btn btn-outline" href="./services/#panier">Mi carrito de presupuesto</a></div></div></section>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <title>PrestaCAR Services | Soluciones digitales, formación y atención al cliente</title>
+
+    <meta name="description" content="PrestaCAR Services ayuda a las empresas con soluciones digitales, formación, atención al cliente y tecnología.">
+
+    <meta name="theme-color" content="#080b14">
+
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <meta name="apple-mobile-web-app-status-bar-style"
+        content="black-translucent">
+
+    <!-- LOGO RÉEL DU PROJET -->
+    <link rel="icon" href="../logo.jpg?v=5" type="image/jpeg">
+
+    <link rel="manifest" href="../manifest.json">
+
+    <link rel="stylesheet" href="../styles.css">
+
+    <!-- Polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body><a class="skip-link" href="#main-content">Saltar al contenido</a>
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="site-header" id="header">
+
+        <div class="container nav-container">
+
+            <a href="#accueil" class="brand">
+
+                <div class="brand-logo-wrap">
+                    <img
+                        src="../logo.jpg?v=5" alt="Prestacar Services"
+                        class="brand-logo">
+                </div>
+
+                <div class="brand-text">
+                    <strong>PRESTACAR</strong>
+                    <span>SERVICES</span>
+                </div>
+
+            </a>
+
+
+            <div class="lang-switch" id="langSwitch" aria-label="Idioma"><a href="../fr/" data-lang="fr">FR</a> <a href="../en/" data-lang="en">EN</a> <a href="../es/" data-lang="es" class="active" aria-current="page">ES</a></div>
+
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Abrir menú"
+                aria-expanded="false"
+                aria-controls="mainNav">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
+
+
+            <nav class="main-nav" id="mainNav"><a href="./" aria-current="page">Inicio</a><a href="erc/">Relación con clientes</a><a href="formation-linguistique/">Formación</a><a href="marketing-digital/">Marketing digital</a><a href="electronique-embarquee/">Electrónica integrada</a><a href="services/#univers-tarifs">Tarifas</a><a href="realizaciones/">Trabajos realizados</a><a href="contacto/">Contacto</a><div class="lang-switch menu-lang-switch" aria-label="Idioma"><a href="../fr/" data-lang="fr">FR</a> <a href="../en/" data-lang="en">EN</a> <a href="../es/" data-lang="es" class="active" aria-current="page">ES</a></div></nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <main id="main-content">
+
+        <section class="hero" id="accueil">
+
+            <div class="hero-bg">
+
+                <div class="orb orb-one"></div>
+                <div class="orb orb-two"></div>
+                <div class="orb orb-three"></div>
+
+                <div class="grid-overlay"></div>
+
+                <div class="particles">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+            </div>
+
+
+            <div class="container hero-container">
+
+                <div class="hero-content reveal">
+
+                    <div class="hero-badge"><span class="badge-dot"></span>TU SOCIO PARA TUS PROYECTOS</div>
+                    <h1>Transformamos tus ideas en <span>soluciones que avanzan.</span></h1>
+                    <p class="hero-description">Desde una necesidad concreta hasta un proyecto ambicioso, creamos soluciones claras, modernas y adaptadas a tu realidad.</p>
+                    <div class="hero-highlights">
+                        <span>✓ Un enfoque a medida</span>
+                        <span>✓ Un socio dedicado</span>
+                        <span>✓ Soluciones prácticas</span>
+                    </div>
+
+
+                    <div class="hero-buttons">
+
+                        <a href="https://wa.me/2250778615861?text=Hola%20PrestaCAR%20Services%2C%20me%20gustar%C3%ADa%20hablar%20sobre%20mi%20proyecto." target="_blank" rel="noopener" class="btn btn-primary">Hablemos de mi proyecto<span>→</span></a>
+                        <a href="#univers" class="btn btn-outline">Explora nuestras soluciones</a>
+
+                    </div>
+
+
+                    <div class="hero-stats">
+
+                        <div class="hero-stat">
+
+                            <strong>5+</strong><span>Áreas de especialización complementarias</span>
+
+                        </div>
+
+                        <div class="stat-line"></div>
+
+                        <div class="hero-stat">
+
+                            <strong>1:1</strong><span>Un enfoque a medida</span>
+
+                        </div>
+
+                        <div class="stat-line"></div>
+
+                        <div class="hero-stat">
+
+                            <strong>01</strong><span>Un socio dedicado</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HERO LOGO -->
+
+                <div class="hero-visual reveal">
+
+                    <div class="hero-logo-container">
+
+                        <div class="logo-ring ring-one"></div>
+                        <div class="logo-ring ring-two"></div>
+                        <div class="logo-ring ring-three"></div>
+
+                        <div class="logo-glow"></div>
+
+                        <div class="hero-logo">
+
+                            <img
+                                src="../logo.jpg?v=5" alt="Logotipo de PrestaCAR Services">
+
+                        </div>
+
+                    </div>
+
+
+                    <a class="floating-card floating-card-one" href="./erc/" aria-label="Discover customer relations">
+
+                        <span class="floating-icon" aria-hidden="true">↔</span>
+
+                        <div>
+                            <strong>Relación con clientes</strong>
+                            <small>Relaciones con clientes que generan fidelidad</small>
+                        </div>
+
+                    </a>
+
+
+                    <a class="floating-card floating-card-two" href="./formation-linguistique/" aria-label="Discover training">
+
+                        <span class="floating-icon" aria-hidden="true">Aa</span>
+
+                        <div>
+                            <strong>Formación</strong>
+                            <small>Aprender y progresar</small>
+                        </div>
+
+                    </a>
+
+
+                    <a class="floating-card floating-card-three" href="./marketing-digital/" aria-label="Discover digital marketing">
+
+                        <span class="floating-icon" aria-hidden="true">↗</span>
+
+                        <div>
+                            <strong>Marketing digital</strong>
+                            <small>Potencia tu visibilidad</small>
+                        </div>
+
+                    </a>
+
+
+                    <a class="floating-card floating-card-four" href="./electronique-embarquee/" aria-label="Discover embedded electronics">
+
+                        <span class="floating-icon" aria-hidden="true">⚙</span>
+
+                        <div>
+                            <strong>Electrónica integrada</strong>
+                            <small>Soluciones tecnológicas inteligentes</small>
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+<section class="quick-solutions" id="univers" aria-labelledby="quickSolutionsTitle"><div class="container"><div class="section-heading center"><span class="section-kicker">PRESTACAR SERVICES</span><h2 id="quickSolutionsTitle">Elige la solución adecuada</h2><p>Accede directamente a nuestros servicios y prepara una solicitud de presupuesto según tus necesidades.</p></div><div class="quick-solution-grid"><a class="quick-solution-card" href="./erc/"><span class="quick-solution-index">01</span><span class="quick-solution-icon" aria-hidden="true">↔</span><h3>Relación con clientes</h3><p>Centro de llamadas, soporte al cliente, televenta y seguimiento.</p><span class="quick-solution-link">Descubre el servicio <span aria-hidden="true">→</span></span></a>
+<a class="quick-solution-card" href="./formation-linguistique/"><span class="quick-solution-index">02</span><span class="quick-solution-icon" aria-hidden="true">✦</span><h3>Formación</h3><p>Inglés, español y desarrollo de competencias para equipos.</p><span class="quick-solution-link">Descubre el servicio <span aria-hidden="true">→</span></span></a>
+<a class="quick-solution-card" href="./marketing-digital/"><span class="quick-solution-index">03</span><span class="quick-solution-icon" aria-hidden="true">↗</span><h3>Marketing digital</h3><p>Páginas web, SEO y redes sociales.</p><span class="quick-solution-link">Descubre el servicio <span aria-hidden="true">→</span></span></a>
+<a class="quick-solution-card" href="./electronique-embarquee/"><span class="quick-solution-index">04</span><span class="quick-solution-icon" aria-hidden="true">◎</span><h3>Electrónica integrada</h3><p>GPS, seguridad y soluciones audiovisuales para vehículos.</p><span class="quick-solution-link">Descubre el servicio <span aria-hidden="true">→</span></span></a></div><div class="quick-solutions-footer"><a class="btn btn-primary" href="./services/#univers-tarifs">Ver todos los servicios y tarifas <span aria-hidden="true">→</span></a><a class="btn btn-outline" href="./services/#panier">Mi cesta de presupuesto</a></div></div></section>
 
 
 
-<section class="trusted-section section" id="references"><div class="container"><div class="section-heading center reveal"><span class="section-kicker">REFERENCIAS</span><h2>Organizaciones mencionadas en nuestros materiales</h2><p>Referencias citadas en la documentación de comunicación de PrestaCAR Services.</p></div><div class="trusted-brands reveal"><span class="trusted-brand">Google</span><span class="trusted-brand">Apéro Store</span><span class="trusted-brand">Concentrix</span><span class="trusted-brand">Odace Consulting</span><span class="trusted-brand">Chimtec</span><span class="trusted-brand">Kitch Bar Cocody</span><span class="trusted-brand">Ché Café</span><span class="trusted-brand">Cheers Drinks &amp; Food</span><span class="trusted-brand">Airbus</span><span class="trusted-brand">The Bank Abidjan</span></div><div class="service-page-cta-row" style="justify-content:center;margin-top:25px"><a class="btn btn-outline" href="./referencias/">Todas las referencias <span>→</span></a><a class="btn btn-outline" href="./realizaciones/">Ver proyectos <span>→</span></a></div></div></section>
+        <section class="marketing-band">
+            <div class="container marketing-band-inner">
+                <div>
+                    <span class="section-kicker">POR QUÉ PRESTACAR</span>
+                    <h2>Menos complejidad. Más claridad. Más impacto.</h2>
+                </div>
+                <p>Te ayudamos a pasar de la necesidad a una solución concreta, con un enfoque profesional, humano y orientado a la acción.</p>
+            </div>
+        </section>
 
-</main><footer class="footer"><div class="container footer-grid">
- <div class="footer-brand"><img src="../logo.jpg?v=5" alt="PrestaCAR Services"><p>Soluciones profesionales en servicios digitales, atención al cliente, formación y tecnología.</p></div>
- <div class="footer-links"><h4>Navegación</h4><a href="./">Inicio</a><a href="erc/">Relación con clientes</a><a href="formation-linguistique/">Formación</a><a href="marketing-digital/">Marketing digital</a><a href="electronique-embarquee/">Electrónica integrada</a><a href="services/#univers-tarifs">Tarifas</a><a href="realizaciones/">Trabajos realizados</a><a href="contacto/">Contacto</a></div>
- <div class="footer-links"><h4>Contacto</h4><a href="tel:+2250778615861">+225 07 78 61 58 61</a><a href="mailto:prestacarservice@gmail.com">prestacarservice@gmail.com</a><a href="https://wa.me/2250778615861" target="_blank" rel="noopener">WhatsApp</a><span>Plateau, Abidjan — Côte d’Ivoire</span></div>
- </div><div class="footer-bottom"><div class="container"><p>© <span id="year"></span> PrestaCAR Services.</p><span>Excelencia • Innovación • Resultados</span></div></div></footer><script src="../script.js"></script></body></html>
+        
+
+        <!-- =====================================================
+             EXPERTISE
+        ====================================================== -->
+
+        
+
+
+        <!-- =====================================================
+             ABOUT US
+        ====================================================== -->
+
+        
+
+
+        <!-- =====================================================
+             SERVICES
+        ====================================================== -->
+
+        
+
+
+        <!-- =====================================================
+             CTA
+        ====================================================== -->
+
+
+        <!-- Client references extracted from the supplied visual -->
+        <section class="trusted-section section" id="references" aria-labelledby="references-title">
+            <div class="container">
+                <div class="section-heading center reveal">
+                    <span class="section-kicker">REFERENCIAS DE CLIENTES</span>
+                    <h2 id="references-title">Organizaciones que confían en nosotros</h2>
+                    <p>Referencias de distintos sectores incluidas en los materiales de comunicación de PrestaCAR Services.</p>
+                </div>
+                <div class="trusted-brands reveal" aria-label="Referencias presentadas">
+                    <span class="trusted-brand">Google</span>
+                    <span class="trusted-brand">Apéro Store</span>
+                    <span class="trusted-brand">Concentrix</span>
+                    <span class="trusted-brand">Odace Consulting</span>
+                    <span class="trusted-brand">Chimtec</span>
+                    <span class="trusted-brand">Kitch Bar Cocody</span>
+                    <span class="trusted-brand">Ché Café</span>
+                    <span class="trusted-brand">Cheers Drinks &amp; Food</span>
+                    <span class="trusted-brand">Airbus</span>
+                    <span class="trusted-brand">The Bank Abidjan</span>
+                    <span class="trusted-brand">Circus Hospitality Group</span>
+                    <span class="trusted-brand">pH</span>
+                    <span class="trusted-brand">The Bank</span>
+                    <span class="trusted-brand">Lycée International Jean Mermoz</span>
+                    <span class="trusted-brand">CDCI</span>
+                    <span class="trusted-brand">NSIA Assurances</span>
+                    <span class="trusted-brand">LFBP</span>
+                </div>
+                <div class="service-page-cta-row" style="justify-content:center;margin-top:28px">
+                    <a class="btn btn-outline" href="./references/">Todas las referencias <span>→</span></a>
+                    <a class="btn btn-outline" href="./realizaciones/">Ver proyectos <span>→</span></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Custom QR code offer extracted from the supplied visual -->
+        
+
+        <section class="cta-section">
+
+            <div class="container">
+
+                <div class="cta-box reveal">
+
+                    <div class="cta-glow"></div>
+
+                    <div class="cta-content">
+
+                        <span class="section-kicker">
+                            ¿TIENES UN PROYECTO?
+                        </span>
+
+                        <h2>
+                            Hablemos de tu
+                            <span>próximo proyecto.</span>
+                        </h2>
+
+                        <p>
+                            Cuéntanos qué necesitas y te
+                            ayudaremos a encontrar la mejor
+                            solución.
+                        </p>
+
+                        <a href="contacto/" class="btn btn-white">
+                            Iniciar conversación →
+                        </a>
+
+                    </div>
+
+                    <div class="cta-decoration">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        
+
+        <!-- =====================================================
+             CONTACT
+        ====================================================== -->
+
+        
+
+    </main>
+
+
+    <!-- =====================================================
+         WHATSAPP FLOAT
+    ====================================================== -->
+
+    <a
+        href="https://wa.me/2250778615861?text=Hello%20Prestacar%20Services%2C%20I%20would%20like%20to%20discuss%20my%20project."
+        class="whatsapp-float"
+        target="_blank"
+        rel="noopener"
+        aria-label="Contacta con PrestaCAR Services por WhatsApp">
+
+        <span class="whatsapp-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" role="img" focusable="false">
+                <path d="M19.11 17.24c-.28-.14-1.67-.82-1.93-.91-.26-.1-.45-.14-.64.14-.19.28-.73.91-.9 1.1-.16.19-.33.21-.61.07-.28-.14-1.18-.44-2.25-1.4-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.33.42-.5.14-.16.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.64-1.54-.88-2.11-.23-.56-.47-.48-.64-.49h-.54c-.19 0-.49.07-.75.35-.26.28-.98.96-.98 2.34s1.01 2.72 1.15 2.91c.14.19 1.98 3.02 4.8 4.24.67.29 1.2.46 1.61.59.68.22 1.3.19 1.79.12.55-.08 1.67-.68 1.91-1.34.24-.65.24-1.21.17-1.33-.07-.12-.26-.19-.54-.33zM16.03 3.2c-7.07 0-12.8 5.73-12.8 12.8 0 2.26.59 4.38 1.63 6.23L3.2 28.8l6.76-1.77A12.73 12.73 0 0 0 16.03 28c7.07 0 12.8-5.73 12.8-12.8S23.1 3.2 16.03 3.2zm0 22.93c-2.1 0-4.05-.62-5.69-1.69l-.41-.26-4.01 1.05 1.07-3.91-.27-.42a10.13 10.13 0 1 1 9.31 5.23z"/>
+            </svg>
+        </span>
+        <div class="whatsapp-tooltip">
+            Contáctanos
+        </div>
+
+    </a>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+        <div class="container footer-grid">
+
+
+            <div class="footer-brand">
+
+                <img
+                    src="../logo.jpg?v=5" alt="Prestacar Services">
+
+                <p>
+                    Soluciones profesionales para
+                    impulsar tus proyectos y tu crecimiento.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links"><h4>Navegación</h4><a href="./">Inicio</a><a href="erc/">Relación con clientes</a><a href="formation-linguistique/">Formación</a><a href="marketing-digital/">Marketing digital</a><a href="electronique-embarquee/">Electrónica integrada</a><a href="services/#univers-tarifs">Tarifas</a><a href="realizaciones/">Trabajos realizados</a><a href="contacto/">Contacto</a></div>
+
+
+            <div class="footer-links">
+
+                <h4>
+                    Contacto
+                </h4>
+
+                <a href="tel:+2250778615861">
+                    07 78 61 58 61
+                </a>
+
+                <a href="mailto:prestacarservice@gmail.com">
+                    prestacarservice@gmail.com
+                </a>
+
+                <a
+                    href="https://wa.me/2250778615861"
+                    target="_blank"
+                    rel="noopener">
+
+                    WhatsApp
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <div class="container">
+
+                <p>
+                    © <span id="year"></span>
+                    Prestacar Services.
+                    Todos los derechos reservados.
+                </p>
+
+                <span>
+                    Excelencia • Innovación • Resultados
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script src="../script.js"></script>
+
+</body>
+
+</html>
