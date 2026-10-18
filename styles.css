@@ -4766,3 +4766,16 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .whatsapp-float .whatsapp-icon { display:grid; place-items:center; width:34px; height:34px; font-size:0; line-height:0; }
 .whatsapp-float .whatsapp-icon svg { display:block; width:32px; height:32px; fill:#fff; }
 @media(max-width:620px){ .whatsapp-float .whatsapp-icon{width:31px;height:31px}.whatsapp-float .whatsapp-icon svg{width:30px;height:30px} }
+
+
+
+/* ==========================================================
+   WHATSAPP BRAND MARK — unified sizing and contrast
+========================================================== */
+.whatsapp-float { color: #fff; }
+.whatsapp-float .whatsapp-icon svg { display: block; width: 32px; height: 32px; overflow: visible; }
+.whatsapp-float .whatsapp-icon svg path { fill: currentColor; }
+.contact-icon-whatsapp svg { display: block; color: #25d366; }
+@media (max-width: 620px) {
+    .whatsapp-float .whatsapp-icon svg { width: 30px; height: 30px; }
+}
