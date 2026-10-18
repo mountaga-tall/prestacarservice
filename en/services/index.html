@@ -21,6 +21,8 @@
 <div class="catalogue-tools">
 <div class="form-group"><label for="catalogueSearch">Search services…</label><input id="catalogueSearch" type="search" placeholder="Search services…" autocomplete="off"></div>
 <div class="form-group"><label for="catalogueCategory">Filter by category</label><select id="catalogueCategory"><option value="all">All categories</option><option value="erc">Outsourced customer relations</option><option value="language">Language training</option><option value="personnel">Staff training</option><option value="web">Websites & online presence</option><option value="social">Social media</option><option value="seo">SEO & local visibility</option><option value="design">Design & visual identity</option><option value="print">Printing & physical materials</option><option value="embedded">Embedded electronics</option></select></div>
+<div class="form-group"><label for="catalogueSort">Sort services</label><select id="catalogueSort" aria-label="Sort services"><option value="recommended">Recommended order</option><option value="price-asc">Price: low to high</option><option value="price-desc">Price: high to low</option><option value="name">Name (A–Z)</option></select></div>
+
 </div>
 <div id="catalogueFeedback" class="catalogue-feedback" aria-live="polite"></div>
 <div id="catalogueNoResults" class="catalogue-empty-results" hidden></div>
@@ -457,7 +459,8 @@ const productMap=Object.fromEntries(products.map(p=>[p.id,p]));
 const categories={"erc":"Outsourced customer relations","language":"Language training","personnel":"Staff training","web":"Websites & online presence","social":"Social media","seo":"SEO & local visibility","design":"Design & visual identity","print":"Printing & physical materials","embedded":"Embedded electronics"};
 const labels={"empty":"Your cart is empty. Add a service from the catalogue to get started.","remove":"Remove","quantity":"Quantity","subtotal":"Indicative subtotal","noFixed":"Quote required","noSelection":"—","variableTotal":"Price to be confirmed","mixed":"Quote / price to be confirmed","minimumNote":"Indicative amount: prices marked “from” may vary.","from":"From","quoteNote":"Excludes quote-based or variable-price services.","sendNote":"WhatsApp will open with your selection. Review the message and send it there.","noItems":"Add at least one service to your cart to continue.","lead":"Hello PrestaCAR Services, I would like a quote for the following services:","totalSingular":"service","totalPlural":"services","home":"Home","cart":"Your cart"};
 const cartRoot=document.getElementById("pcCartItems"),countRoot=document.getElementById("pcCartCount"),whatsapp=document.getElementById("pcCartWhatsapp"),feedback=document.getElementById("pcCartFeedback"),totalRoot=document.getElementById("pcCartTotal"),totalNote=document.getElementById("pcCartTotalNote");
-const search=document.getElementById("catalogueSearch"),categorySelect=document.getElementById("catalogueCategory"),noResults=document.getElementById("catalogueNoResults");
+const search=document.getElementById("catalogueSearch"),categorySelect=document.getElementById("catalogueCategory"),sortSelect=document.getElementById("catalogueSort"),noResults=document.getElementById("catalogueNoResults");
+document.querySelectorAll(".catalogue-card").forEach((card,index)=>{card.dataset.defaultOrder=String(index);});
 const storageKey="prestacar-services-cart-v2";
 let cart={};
 try{const saved=JSON.parse(localStorage.getItem(storageKey)||"{}");if(saved&&typeof saved==="object"){Object.keys(saved).forEach(id=>{if(productMap[id])cart[id]=Math.max(1,Math.min(99,Number(saved[id])||1));});}}catch(_){}
@@ -495,26 +498,50 @@ if(sum>0)lines.push("\n"+labels.subtotal+": "+(hasMin?labels.from+" ":"")+money(
 whatsapp.href="https://wa.me/2250778615861?text="+encodeURIComponent(labels.lead+"\n\n"+lines.join("\n"));
 whatsapp.setAttribute("aria-disabled","false");
 }
+function sortCatalogueCards(){
+const mode=sortSelect?sortSelect.value:"recommended";
+document.querySelectorAll("[data-group-category] .catalogue-grid").forEach(grid=>{
+const cards=Array.from(grid.querySelectorAll(".catalogue-card"));
+cards.sort((a,b)=>{
+const pa=productMap[a.dataset.productId],pb=productMap[b.dataset.productId];
+if(mode==="name")return (pa?.name||"").localeCompare(pb?.name||"",document.documentElement.lang,{sensitivity:"base"});
+if(mode==="price-asc"||mode==="price-desc"){
+const av=pa&&typeof pa.amount==="number"?pa.amount:null;
+const bv=pb&&typeof pb.amount==="number"?pb.amount:null;
+if(av===null&&bv!==null)return 1;
+if(av!==null&&bv===null)return -1;
+if(av===null&&bv===null)return (pa?.name||"").localeCompare(pb?.name||"",document.documentElement.lang,{sensitivity:"base"});
+return mode==="price-asc"?av-bv:bv-av;
+}
+return Number(a.dataset.defaultOrder||0)-Number(b.dataset.defaultOrder||0);
+});
+cards.forEach(card=>grid.appendChild(card));
+});
+}
 function filterProducts(){
-const normalizeSearch=value=>String(value||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLocaleLowerCase("en"); const q=normalizeSearch(search.value);
+const normalizeSearch=value=>String(value||"").normalize("NFD").replace(/[\\u0300-\\u036f]/g,"").toLocaleLowerCase(document.documentElement.lang||"fr");
+const q=normalizeSearch(search.value);
 const cat=categorySelect.value;
 let visible=0;
 document.querySelectorAll(".catalogue-card").forEach(card=>{
 const okCat=cat==="all"||card.dataset.category===cat;
-const searchable=normalizeSearch((card.dataset.search||"")+" "+card.textContent); const okText=!q||searchable.includes(q);
+const searchable=normalizeSearch((card.dataset.search||"")+" "+card.textContent);
+const okText=!q||searchable.includes(q);
 card.hidden=!(okCat&&okText);
 if(!card.hidden)visible++;
 });
 document.querySelectorAll("[data-group-category]").forEach(group=>{
 group.hidden=!group.querySelector(".catalogue-card:not([hidden])");
 });
-noResults.hidden=visible>0;noResults.textContent=visible?"":"No services match your search.";
+sortCatalogueCards();
+noResults.hidden=visible>0;
+noResults.textContent=visible?"":"No services match your search.";
 }
 document.querySelectorAll(".cart-add").forEach(button=>button.addEventListener("click",()=>{
 const id=button.dataset.productId;if(!productMap[id])return;cart[id]=Math.min(99,(cart[id]||0)+1);save();render();const symbol=button.querySelector("span");if(symbol){symbol.textContent="✓";button.classList.add("is-added");window.setTimeout(()=>{symbol.textContent="＋";button.classList.remove("is-added");},1100);}const status=document.getElementById("catalogueFeedback");if(status){const l=document.documentElement.lang;status.textContent=(l==="en"?"Added to cart: ":l==="es"?"Añadido al carrito: ":"Ajouté au panier : ")+productMap[id].name+" ("+cart[id]+")";}
 }));
 whatsapp.addEventListener("click",event=>{if(!Object.keys(cart).some(id=>productMap[id]&&cart[id]>0)){event.preventDefault();feedback.textContent=labels.noItems;}});
-const requestedCategory=new URLSearchParams(window.location.search).get("category");if(requestedCategory&&Array.from(categorySelect.options).some(option=>option.value===requestedCategory))categorySelect.value=requestedCategory;search.addEventListener("input",filterProducts);categorySelect.addEventListener("change",filterProducts);
+const requestedCategory=new URLSearchParams(window.location.search).get("category");if(requestedCategory&&Array.from(categorySelect.options).some(option=>option.value===requestedCategory))categorySelect.value=requestedCategory;search.addEventListener("input",filterProducts);categorySelect.addEventListener("change",filterProducts);sortSelect.addEventListener("change",filterProducts);
 render();filterProducts();
 })();
 </script>
