@@ -947,6 +947,10 @@ console.log(
     window.addEventListener("beforeinstallprompt", function (event) {
         event.preventDefault();
         deferredInstallPrompt = event;
+        if (installOverlay) {
+            const installAction = installOverlay.querySelector(".install-prompt-action");
+            if (installAction && !guideShown) installAction.textContent = t.install;
+        }
         scheduleInstallPrompt();
     });
 
