@@ -4779,3 +4779,50 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 @media (max-width: 620px) {
     .whatsapp-float .whatsapp-icon svg { width: 30px; height: 30px; }
 }
+
+
+/* === Détails de demande de devis : catalogue global === */
+.cart-request-fields {
+    margin: 18px 0;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: rgba(255,255,255,.025);
+}
+.cart-request-fields h4 {
+    margin: 0 0 14px;
+    color: #f7f8fc;
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    line-height: 1.45;
+}
+.cart-request-fields .form-group { margin: 0 0 12px; }
+.cart-request-fields .form-group:last-child { margin-bottom: 0; }
+.cart-request-fields label {
+    display: block;
+    margin-bottom: 6px;
+    color: #e9edf6;
+    font-size: 11px;
+    font-weight: 700;
+}
+.cart-request-fields input,
+.cart-request-fields textarea {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 11px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: rgba(255,255,255,.045);
+    color: #f7f8fc;
+    font: inherit;
+    font-size: 12px;
+}
+.cart-request-fields textarea { min-height: 84px; resize: vertical; }
+.cart-request-fields input:focus-visible,
+.cart-request-fields textarea:focus-visible {
+    outline: 2px solid var(--accent, #ff2448);
+    outline-offset: 2px;
+}
+.cart-request-fields input::placeholder,
+.cart-request-fields textarea::placeholder { color: #9098a8; opacity: 1; }
