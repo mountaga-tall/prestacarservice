@@ -806,21 +806,9 @@ console.log(
 
     function showInstallPrompt() {
         if (!canSuggestInstall() || installOverlay) return;
-        // Do not stack the installation window on top of the open navigation drawer.
-        if (mainNav && mainNav.classList.contains("active")) {
-            installTimer = window.setTimeout(function () {
-                installTimer = null;
-                showInstallPrompt();
-            }, 3500);
-            return;
-        }
-        if (document.visibilityState !== "visible") {
-            installTimer = window.setTimeout(function () {
-                installTimer = null;
-                showInstallPrompt();
-            }, 3500);
-            return;
-        }
+        // Never poll in a timer loop: wait until the menu closes or the page is visible.
+        if (mainNav && mainNav.classList.contains("active")) return;
+        if (document.visibilityState !== "visible") return;
 
         previousFocus = document.activeElement;
         oldOverflow = document.body.style.overflow;
@@ -962,6 +950,15 @@ console.log(
     document.addEventListener("visibilitychange", function () {
         if (document.visibilityState === "visible") scheduleInstallPrompt();
     });
+
+    // If the timer expires while the navigation drawer is open, retry once it closes.
+    if (menuToggle) {
+        menuToggle.addEventListener("click", function () {
+            if (!mainNav || !mainNav.classList.contains("active")) {
+                scheduleInstallPrompt();
+            }
+        });
+    }
 
     // Mobile fallback instructions are supported even when the browser lacks a native event.
     if (isIOS || isAndroid) scheduleInstallPrompt();
