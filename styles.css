@@ -4624,25 +4624,70 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 }
 
 
-/* LANGUE DANS LE MENU HAMBURGER — POSITION FIXE */
-.menu-lang-switch{display:none}
-@media(max-width:1180px){
-  .nav-container > .lang-switch{display:none!important}
-  .main-nav{overflow-y:auto;overscroll-behavior:contain;padding-bottom:calc(22px + env(safe-area-inset-bottom))}
-  .main-nav .menu-lang-switch{
-    display:flex;
-    align-self:center;
-    justify-content:center;
-    flex:0 0 auto;
-    width:max-content;
-    max-width:100%;
-    margin: auto 0 0;
-    order:10;
-    position:relative;
-    bottom:auto;
-    left:auto;
-    transform:none;
-  }
+/* SELECTEUR DE LANGUE DANS LE HEADER, SUR TOUS LES ECRANS */
+.menu-lang-switch { display: none !important; }
+
+@media (max-width: 1180px) {
+    .nav-container > .lang-switch {
+        display: flex !important;
+        visibility: visible;
+    }
+
+    .main-nav {
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        padding-bottom: calc(22px + env(safe-area-inset-bottom));
+    }
+
+    .main-nav .menu-lang-switch {
+        display: none !important;
+    }
+
+    /* Bouton hamburger plus contrasté et plus facile à repérer */
+    .menu-toggle {
+        background: linear-gradient(135deg, var(--red), #ff5c48);
+        border: 1px solid rgba(255, 255, 255, .55);
+        border-radius: 13px;
+        box-shadow: 0 5px 18px rgba(255, 36, 72, .32),
+                    inset 0 1px 0 rgba(255, 255, 255, .16);
+    }
+
+    .menu-toggle span {
+        width: 22px;
+        height: 3px;
+        flex: 0 0 3px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, .22);
+    }
+
+    .menu-toggle:hover {
+        filter: brightness(1.08);
+    }
+
+    .menu-toggle:focus-visible {
+        outline: 3px solid #fff;
+        outline-offset: 3px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-container > .lang-switch {
+        gap: 0;
+        margin: 0 4px 0 auto;
+        padding: 2px;
+    }
+
+    .nav-container > .lang-switch a {
+        padding: 6px 7px;
+        font-size: 9px;
+    }
+
+    .menu-toggle {
+        flex-basis: 42px;
+        width: 42px;
+        height: 42px;
+    }
 }
 
 
