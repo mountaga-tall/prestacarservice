@@ -607,3 +607,362 @@ console.log(
 );
 
 
+
+
+/* ==========================================================
+   INSTALLATION PWA — fenêtre native Prestacar, multi-plateforme
+========================================================== */
+(function initPrestacarInstallPrompt() {
+    const scriptTag = document.querySelector('script[src*="script.js"]');
+    if (!scriptTag) return;
+
+    const scriptUrl = new URL(scriptTag.getAttribute("src"), window.location.href);
+    const installIconUrl = new URL("./logo.jpg", scriptUrl).href;
+    const startedAt = Date.now();
+    const minimumDelay = 22000;
+    const dismissKey = "prestacar-install-dismissed-until";
+    const installedKey = "prestacar-app-installed";
+    const shownKey = "prestacar-install-shown-session";
+    const language = (document.documentElement.lang || "fr").slice(0, 2).toLowerCase();
+    const ua = navigator.userAgent || "";
+    const isIOS = /iPad|iPhone|iPod/i.test(ua) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    const isAndroid = /Android/i.test(ua);
+    let deferredInstallPrompt = null;
+    let installOverlay = null;
+    let installTimer = null;
+    let oldOverflow = "";
+    let previousFocus = null;
+    let guideShown = false;
+
+    const copy = {
+        fr: {
+            dialogLabel: "Installer Prestacar Services",
+            close: "Fermer la fenêtre d’installation",
+            kicker: "L’EXPÉRIENCE PRESTACAR",
+            title: "Prestacar, toujours à portée de main",
+            description: "Installez l’application pour retrouver nos services plus rapidement, directement depuis votre écran d’accueil.",
+            benefit1: "Accès rapide",
+            benefit2: "Plein écran",
+            benefit3: "Retrouvez-nous facilement",
+            install: "Installer l’application",
+            steps: "Voir comment installer",
+            gotIt: "J’ai compris",
+            guideTitle: "Quelques gestes pour l’ajouter",
+            iosSteps: [
+                "Appuyez sur Partager dans le navigateur.",
+                "Choisissez « Ajouter à l’écran d’accueil ».",
+                "Appuyez sur Ajouter pour terminer."
+            ],
+            androidSteps: [
+                "Ouvrez le menu du navigateur (⋮ ou ⋯).",
+                "Choisissez « Installer l’application » ou « Ajouter à l’écran d’accueil ».",
+                "Confirmez l’installation."
+            ],
+            hint: "Gratuit · Pas de téléchargement depuis une boutique nécessaire",
+            opening: "Ouverture de l’installation…"
+        },
+        en: {
+            dialogLabel: "Install Prestacar Services",
+            close: "Close installation window",
+            kicker: "THE PRESTACAR EXPERIENCE",
+            title: "Prestacar, always within reach",
+            description: "Install the app to reach our services faster, right from your home screen.",
+            benefit1: "Quick access",
+            benefit2: "Full-screen experience",
+            benefit3: "Easy to find",
+            install: "Install the app",
+            steps: "How to install",
+            gotIt: "Got it",
+            guideTitle: "Add it in a few easy steps",
+            iosSteps: [
+                "Tap Share in your browser.",
+                "Choose “Add to Home Screen”.",
+                "Tap Add to finish."
+            ],
+            androidSteps: [
+                "Open your browser menu (⋮ or ⋯).",
+                "Choose “Install app” or “Add to Home screen”.",
+                "Confirm the installation."
+            ],
+            hint: "Free · No app-store download required",
+            opening: "Opening installation…"
+        },
+        es: {
+            dialogLabel: "Instalar Prestacar Services",
+            close: "Cerrar la ventana de instalación",
+            kicker: "LA EXPERIENCIA PRESTACAR",
+            title: "Prestacar, siempre a mano",
+            description: "Instala la aplicación para acceder más rápido a nuestros servicios desde la pantalla de inicio.",
+            benefit1: "Acceso rápido",
+            benefit2: "Pantalla completa",
+            benefit3: "Fácil de encontrar",
+            install: "Instalar la aplicación",
+            steps: "Cómo instalar",
+            gotIt: "Entendido",
+            guideTitle: "Añádela en unos sencillos pasos",
+            iosSteps: [
+                "Pulsa Compartir en el navegador.",
+                "Elige «Añadir a pantalla de inicio».",
+                "Pulsa Añadir para terminar."
+            ],
+            androidSteps: [
+                "Abre el menú del navegador (⋮ o ⋯).",
+                "Elige «Instalar aplicación» o «Añadir a pantalla de inicio».",
+                "Confirma la instalación."
+            ],
+            hint: "Gratis · No necesitas descargarla de una tienda",
+            opening: "Abriendo la instalación…"
+        }
+    };
+    const t = copy[language] || copy.fr;
+
+    function readStorage(key) {
+        try { return window.localStorage.getItem(key); } catch (_) { return null; }
+    }
+    function writeStorage(key, value) {
+        try { window.localStorage.setItem(key, String(value)); } catch (_) {}
+    }
+    function readSession(key) {
+        try { return window.sessionStorage.getItem(key); } catch (_) { return null; }
+    }
+    function writeSession(key, value) {
+        try { window.sessionStorage.setItem(key, String(value)); } catch (_) {}
+    }
+    function isStandalone() {
+        return window.matchMedia("(display-mode: standalone)").matches ||
+            window.matchMedia("(display-mode: fullscreen)").matches ||
+            navigator.standalone === true;
+    }
+    function hasBeenDismissed() {
+        return Number(readStorage(dismissKey) || 0) > Date.now();
+    }
+    function isInstalled() {
+        return isStandalone() || readStorage(installedKey) === "1";
+    }
+    function canSuggestInstall() {
+        return !isInstalled() && !hasBeenDismissed() && !readSession(shownKey) &&
+            (Boolean(deferredInstallPrompt) || isIOS || isAndroid);
+    }
+
+    // iOS does not expose the Chromium install prompt API; guide users through Share.
+    // On Android browsers without that API, provide the browser-menu installation steps.
+    function showGuide(guide, actionButton) {
+        guide.hidden = false;
+        guideShown = true;
+        actionButton.textContent = t.gotIt;
+        actionButton.setAttribute("aria-expanded", "true");
+        guide.focus({ preventScroll: true });
+    }
+
+    function closeInstallPrompt(dismissForWeek) {
+        if (!installOverlay) return;
+        if (installTimer) {
+            window.clearTimeout(installTimer);
+            installTimer = null;
+        }
+        if (dismissForWeek) {
+            writeStorage(dismissKey, Date.now() + 7 * 24 * 60 * 60 * 1000);
+        }
+        document.removeEventListener("keydown", onDialogKeydown, true);
+        installOverlay.remove();
+        installOverlay = null;
+        guideShown = false;
+        document.body.style.overflow = oldOverflow;
+        if (previousFocus && typeof previousFocus.focus === "function") {
+            previousFocus.focus({ preventScroll: true });
+        }
+    }
+
+    function onDialogKeydown(event) {
+        if (!installOverlay) return;
+        if (event.key === "Escape") {
+            event.preventDefault();
+            closeInstallPrompt(true);
+            return;
+        }
+        if (event.key !== "Tab") return;
+        const items = Array.from(installOverlay.querySelectorAll(
+            'button:not([disabled]), a[href], [tabindex="0"]'
+        )).filter(function (item) { return item.getClientRects().length > 0; });
+        if (!items.length) return;
+        const first = items[0];
+        const last = items[items.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+        }
+    }
+
+    function createElement(tag, className, textValue) {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (textValue !== undefined) node.textContent = textValue;
+        return node;
+    }
+
+    function showInstallPrompt() {
+        if (!canSuggestInstall() || installOverlay) return;
+        // Do not stack the installation window on top of the open navigation drawer.
+        if (mainNav && mainNav.classList.contains("active")) {
+            installTimer = window.setTimeout(function () {
+                installTimer = null;
+                showInstallPrompt();
+            }, 3500);
+            return;
+        }
+        if (document.visibilityState !== "visible") {
+            installTimer = window.setTimeout(function () {
+                installTimer = null;
+                showInstallPrompt();
+            }, 3500);
+            return;
+        }
+
+        previousFocus = document.activeElement;
+        oldOverflow = document.body.style.overflow;
+        guideShown = false;
+
+        const overlay = createElement("div", "install-prompt-overlay");
+        overlay.setAttribute("data-prestacar-install-overlay", "true");
+        const card = createElement("section", "install-prompt-card");
+        card.setAttribute("role", "dialog");
+        card.setAttribute("aria-modal", "true");
+        card.setAttribute("aria-label", t.dialogLabel);
+        card.setAttribute("aria-labelledby", "prestacar-install-title");
+        card.setAttribute("tabindex", "-1");
+
+        const close = createElement("button", "install-prompt-close", "×");
+        close.type = "button";
+        close.setAttribute("aria-label", t.close);
+        close.addEventListener("click", function () { closeInstallPrompt(true); });
+
+        const icon = createElement("img", "install-prompt-icon");
+        icon.src = installIconUrl;
+        icon.alt = "";
+        icon.width = 72;
+        icon.height = 72;
+
+        const kicker = createElement("p", "install-prompt-kicker", t.kicker);
+        const title = createElement("h2", "install-prompt-title", t.title);
+        title.id = "prestacar-install-title";
+        const description = createElement("p", "install-prompt-description", t.description);
+
+        const benefits = createElement("div", "install-prompt-benefits");
+        [t.benefit1, t.benefit2, t.benefit3].forEach(function (label) {
+            benefits.appendChild(createElement("span", "install-prompt-benefit", label));
+        });
+
+        const guide = createElement("div", "install-prompt-guide");
+        guide.hidden = true;
+        guide.tabIndex = -1;
+        guide.appendChild(createElement("h3", "", t.guideTitle));
+        const steps = createElement("ol", "install-prompt-steps");
+        const instructionSteps = isIOS ? t.iosSteps : t.androidSteps;
+        instructionSteps.forEach(function (step) {
+            steps.appendChild(createElement("li", "", step));
+        });
+        guide.appendChild(steps);
+
+        const action = createElement(
+            "button",
+            "install-prompt-action",
+            deferredInstallPrompt ? t.install : t.steps
+        );
+        action.type = "button";
+        action.setAttribute("aria-expanded", "false");
+        action.addEventListener("click", async function () {
+            if (guideShown) {
+                closeInstallPrompt(true);
+                return;
+            }
+            if (deferredInstallPrompt) {
+                const promptEvent = deferredInstallPrompt;
+                deferredInstallPrompt = null;
+                action.disabled = true;
+                action.textContent = t.opening;
+                try {
+                    await promptEvent.prompt();
+                    const result = await promptEvent.userChoice;
+                    if (result && result.outcome === "accepted") {
+                        writeStorage(installedKey, "1");
+                        closeInstallPrompt(false);
+                    } else {
+                        closeInstallPrompt(true);
+                    }
+                } catch (_) {
+                    action.disabled = false;
+                    showGuide(guide, action);
+                }
+                return;
+            }
+            showGuide(guide, action);
+        });
+
+        const hint = createElement("p", "install-prompt-hint", t.hint);
+
+        card.appendChild(close);
+        card.appendChild(icon);
+        card.appendChild(kicker);
+        card.appendChild(title);
+        card.appendChild(description);
+        card.appendChild(benefits);
+        card.appendChild(guide);
+        card.appendChild(action);
+        card.appendChild(hint);
+        overlay.appendChild(card);
+        overlay.addEventListener("click", function (event) {
+            if (event.target === overlay) closeInstallPrompt(true);
+        });
+
+        document.body.style.overflow = "hidden";
+        document.body.appendChild(overlay);
+        installOverlay = overlay;
+        writeSession(shownKey, "1");
+        document.addEventListener("keydown", onDialogKeydown, true);
+        close.focus({ preventScroll: true });
+    }
+
+    function scheduleInstallPrompt() {
+        if (!canSuggestInstall() || installOverlay || installTimer) return;
+        const wait = Math.max(0, minimumDelay - (Date.now() - startedAt));
+        installTimer = window.setTimeout(function () {
+            installTimer = null;
+            showInstallPrompt();
+        }, wait);
+    }
+
+    // Add the app icon for the iOS "Add to Home Screen" flow on any page.
+    if (!document.querySelector('link[rel="apple-touch-icon"]')) {
+        const appleIcon = document.createElement("link");
+        appleIcon.rel = "apple-touch-icon";
+        appleIcon.sizes = "192x192";
+        appleIcon.href = installIconUrl;
+        document.head.appendChild(appleIcon);
+    }
+
+    window.addEventListener("beforeinstallprompt", function (event) {
+        event.preventDefault();
+        deferredInstallPrompt = event;
+        if (installOverlay) {
+            const installAction = installOverlay.querySelector(".install-prompt-action");
+            if (installAction && !guideShown) installAction.textContent = t.install;
+        }
+        scheduleInstallPrompt();
+    });
+
+    window.addEventListener("appinstalled", function () {
+        writeStorage(installedKey, "1");
+        closeInstallPrompt(false);
+    });
+
+    document.addEventListener("visibilitychange", function () {
+        if (document.visibilityState === "visible") scheduleInstallPrompt();
+    });
+
+    // Mobile fallback instructions are supported even when the browser lacks a native event.
+    if (isIOS || isAndroid) scheduleInstallPrompt();
+})();

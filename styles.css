@@ -4624,25 +4624,70 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 }
 
 
-/* LANGUE DANS LE MENU HAMBURGER — POSITION FIXE */
-.menu-lang-switch{display:none}
-@media(max-width:1180px){
-  .nav-container > .lang-switch{display:none!important}
-  .main-nav{overflow-y:auto;overscroll-behavior:contain;padding-bottom:calc(22px + env(safe-area-inset-bottom))}
-  .main-nav .menu-lang-switch{
-    display:flex;
-    align-self:center;
-    justify-content:center;
-    flex:0 0 auto;
-    width:max-content;
-    max-width:100%;
-    margin: auto 0 0;
-    order:10;
-    position:relative;
-    bottom:auto;
-    left:auto;
-    transform:none;
-  }
+/* SELECTEUR DE LANGUE DANS LE HEADER, SUR TOUS LES ECRANS */
+.menu-lang-switch { display: none !important; }
+
+@media (max-width: 1180px) {
+    .nav-container > .lang-switch {
+        display: flex !important;
+        visibility: visible;
+    }
+
+    .main-nav {
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        padding-bottom: calc(22px + env(safe-area-inset-bottom));
+    }
+
+    .main-nav .menu-lang-switch {
+        display: none !important;
+    }
+
+    /* Bouton hamburger plus contrasté et plus facile à repérer */
+    .menu-toggle {
+        background: linear-gradient(135deg, var(--red), #ff5c48);
+        border: 1px solid rgba(255, 255, 255, .55);
+        border-radius: 13px;
+        box-shadow: 0 5px 18px rgba(255, 36, 72, .32),
+                    inset 0 1px 0 rgba(255, 255, 255, .16);
+    }
+
+    .menu-toggle span {
+        width: 22px;
+        height: 3px;
+        flex: 0 0 3px;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, .22);
+    }
+
+    .menu-toggle:hover {
+        filter: brightness(1.08);
+    }
+
+    .menu-toggle:focus-visible {
+        outline: 3px solid #fff;
+        outline-offset: 3px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-container > .lang-switch {
+        gap: 0;
+        margin: 0 4px 0 auto;
+        padding: 2px;
+    }
+
+    .nav-container > .lang-switch a {
+        padding: 6px 7px;
+        font-size: 9px;
+    }
+
+    .menu-toggle {
+        flex-basis: 42px;
+        width: 42px;
+        height: 42px;
+    }
 }
 
 
@@ -4826,3 +4871,542 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 }
 .cart-request-fields input::placeholder,
 .cart-request-fields textarea::placeholder { color: #9098a8; opacity: 1; }
+
+
+/* ==========================================================
+   HAMBURGER WOW EFFECT — glow button + animated navigation
+========================================================== */
+@media (max-width: 1180px) {
+    .menu-toggle {
+        isolation: isolate;
+        overflow: visible;
+        transform: translateZ(0);
+        transition:
+            transform 260ms cubic-bezier(.2,.8,.2,1),
+            background 260ms ease,
+            box-shadow 260ms ease,
+            border-color 260ms ease;
+        animation: prestacarHamburgerGlow 3.2s ease-in-out infinite;
+    }
+
+    .menu-toggle::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset: -5px;
+        border: 1px solid rgba(255, 74, 105, .52);
+        border-radius: 17px;
+        opacity: .7;
+        pointer-events: none;
+        animation: prestacarHamburgerRing 3.2s ease-out infinite;
+    }
+
+    .menu-toggle:hover {
+        transform: translateY(-2px) scale(1.04);
+        box-shadow: 0 9px 26px rgba(255, 36, 72, .42),
+                    inset 0 1px 0 rgba(255,255,255,.2);
+    }
+
+    .menu-toggle:active {
+        transform: scale(.96);
+    }
+
+    .menu-toggle.active {
+        animation: none;
+        background: linear-gradient(145deg, #172238, #303b52);
+        border-color: rgba(255,255,255,.48);
+        box-shadow: 0 8px 24px rgba(0,0,0,.3),
+                    0 0 0 4px rgba(255,74,105,.12),
+                    inset 0 1px 0 rgba(255,255,255,.14);
+    }
+
+    .menu-toggle.active::before {
+        animation: none;
+        opacity: 0;
+        transform: scale(1.22);
+        transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .menu-toggle span {
+        transform-origin: center;
+        transition:
+            transform 280ms cubic-bezier(.2,.8,.2,1),
+            opacity 180ms ease,
+            width 180ms ease;
+    }
+
+    .main-nav {
+        isolation: isolate;
+    }
+
+    .main-nav::before {
+        content: "PRESTACAR  /  MENU";
+        position: absolute;
+        top: calc(34px + env(safe-area-inset-top));
+        left: 24px;
+        color: rgba(255,255,255,.58);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: .2em;
+        line-height: 1.4;
+        pointer-events: none;
+    }
+
+    .main-nav > a {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid transparent;
+        transition:
+            transform 220ms ease,
+            background 220ms ease,
+            border-color 220ms ease,
+            box-shadow 220ms ease;
+    }
+
+    .main-nav.active > a {
+        animation: prestacarMenuLinkIn 460ms cubic-bezier(.2,.78,.2,1) both;
+    }
+
+    .main-nav.active > a:nth-child(1) { animation-delay: 35ms; }
+    .main-nav.active > a:nth-child(2) { animation-delay: 75ms; }
+    .main-nav.active > a:nth-child(3) { animation-delay: 115ms; }
+    .main-nav.active > a:nth-child(4) { animation-delay: 155ms; }
+    .main-nav.active > a:nth-child(5) { animation-delay: 195ms; }
+    .main-nav.active > a:nth-child(6) { animation-delay: 235ms; }
+    .main-nav.active > a:nth-child(7) { animation-delay: 275ms; }
+    .main-nav.active > a:nth-child(8) { animation-delay: 315ms; }
+
+    .main-nav > a::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 3px;
+        height: 0;
+        border-radius: 0 4px 4px 0;
+        background: linear-gradient(180deg, #ff3659, #ff8065);
+        box-shadow: 0 0 13px rgba(255,54,89,.56);
+        transform: translateY(-50%);
+        transition: height 220ms ease;
+    }
+
+    .main-nav > a[aria-current="page"] {
+        border-color: rgba(255,74,105,.24);
+        background: linear-gradient(105deg, rgba(255,54,89,.15), rgba(255,255,255,.035));
+        box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
+    }
+
+    .main-nav > a[aria-current="page"]::before,
+    .main-nav > a:hover::before,
+    .main-nav > a:focus-visible::before {
+        height: 58%;
+    }
+
+    .main-nav > a:hover,
+    .main-nav > a:focus-visible {
+        transform: translateX(4px);
+        border-color: rgba(255,255,255,.1);
+        background: rgba(255,255,255,.065);
+    }
+
+    .main-nav > a[aria-current="page"]:hover {
+        background: linear-gradient(105deg, rgba(255,54,89,.22), rgba(255,255,255,.055));
+    }
+
+    .menu-backdrop.active {
+        animation: prestacarBackdropIn 280ms ease both;
+    }
+}
+
+@keyframes prestacarHamburgerGlow {
+    0%, 100% {
+        box-shadow: 0 5px 18px rgba(255,36,72,.28),
+                    inset 0 1px 0 rgba(255,255,255,.16);
+    }
+    50% {
+        box-shadow: 0 7px 25px rgba(255,36,72,.48),
+                    0 0 0 3px rgba(255,74,105,.08),
+                    inset 0 1px 0 rgba(255,255,255,.22);
+    }
+}
+
+@keyframes prestacarHamburgerRing {
+    0% { opacity: .7; transform: scale(.94); }
+    70%, 100% { opacity: 0; transform: scale(1.18); }
+}
+
+@keyframes prestacarMenuLinkIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes prestacarBackdropIn {
+    from { backdrop-filter: blur(0); }
+    to { backdrop-filter: blur(4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .menu-toggle,
+    .menu-toggle::before,
+    .main-nav.active > a,
+    .menu-backdrop.active {
+        animation: none !important;
+    }
+
+    .menu-toggle,
+    .menu-toggle::before,
+    .menu-toggle span,
+    .main-nav > a {
+        transition: none !important;
+    }
+
+    .main-nav.active > a {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+
+/* ==========================================================
+   SITE-WIDE WOW POLISH — touch, desktop, tablet, iOS & Android
+========================================================== */
+:root {
+    --prestacar-wow-ease: cubic-bezier(.2,.8,.2,1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .btn,
+    .quick-solution-card,
+    .modern-card,
+    .service-box,
+    .catalogue-card,
+    .portfolio-card,
+    .social-link {
+        transition-property: transform, box-shadow, border-color, background-color, filter;
+        transition-duration: 260ms;
+        transition-timing-function: var(--prestacar-wow-ease);
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.07);
+    }
+
+    .quick-solution-card:hover,
+    .modern-card:hover,
+    .service-box:hover,
+    .catalogue-card:hover,
+    .portfolio-card:hover,
+    .social-link:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 42px rgba(0,0,0,.22), 0 0 0 1px rgba(255,83,110,.10);
+    }
+}
+
+.btn:active,
+.quick-solution-card:active,
+.modern-card:active,
+.service-box:active,
+.catalogue-card:active,
+.portfolio-card:active,
+.social-link:active {
+    transform: scale(.985);
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline-color: #ff7187;
+}
+
+/* INSTALL PROMPT — premium glass panel with safe-area-aware spacing */
+.install-prompt-overlay {
+    position: fixed;
+    z-index: 5000;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:
+        max(18px, env(safe-area-inset-top))
+        max(16px, env(safe-area-inset-right))
+        max(18px, env(safe-area-inset-bottom))
+        max(16px, env(safe-area-inset-left));
+    overflow-y: auto;
+    background: rgba(3, 6, 14, .76);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    animation: prestacarInstallFadeIn 260ms ease both;
+}
+
+.install-prompt-card {
+    position: relative;
+    width: min(100%, 440px);
+    max-height: min(88dvh, 760px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: clamp(26px, 5vw, 38px) clamp(20px, 5vw, 34px) 26px;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 27px;
+    text-align: center;
+    background:
+        radial-gradient(circle at 50% -8%, rgba(255,36,72,.23), transparent 45%),
+        linear-gradient(150deg, rgba(20,27,44,.985), rgba(7,10,18,.99));
+    box-shadow: 0 30px 100px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.025);
+    animation: prestacarInstallCardIn 420ms var(--prestacar-wow-ease) both;
+}
+
+.install-prompt-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,83,110,.9), transparent);
+    pointer-events: none;
+}
+
+.install-prompt-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 50%;
+    background: rgba(255,255,255,.075);
+    color: #fff;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 180ms ease, transform 180ms ease, border-color 180ms ease;
+}
+
+.install-prompt-close:hover {
+    background: rgba(255,255,255,.15);
+    border-color: rgba(255,255,255,.3);
+    transform: rotate(90deg);
+}
+
+.install-prompt-icon {
+    display: block;
+    width: 72px;
+    height: 72px;
+    margin: 2px auto 18px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,.18);
+    box-shadow: 0 12px 32px rgba(255,36,72,.22);
+}
+
+.install-prompt-kicker {
+    margin: 0 34px 10px;
+    color: #ff7a8e;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .2em;
+    line-height: 1.5;
+}
+
+.install-prompt-title {
+    margin: 0 auto 12px;
+    max-width: 340px;
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(22px, 6vw, 29px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -.035em;
+}
+
+.install-prompt-description {
+    max-width: 340px;
+    margin: 0 auto 19px;
+    color: #b9c2d4;
+    font-size: 13px;
+    line-height: 1.75;
+}
+
+.install-prompt-benefits {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin: 0 auto 22px;
+}
+
+.install-prompt-benefit {
+    display: inline-flex;
+    align-items: center;
+    min-height: 29px;
+    padding: 6px 9px;
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 999px;
+    color: #dce3f0;
+    background: rgba(255,255,255,.045);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.install-prompt-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 50px;
+    padding: 13px 18px;
+    border: 1px solid rgba(255,255,255,.22);
+    border-radius: 14px;
+    color: #fff;
+    background: linear-gradient(135deg, #ff2448, #ff5c48 65%, #ff7958);
+    box-shadow: 0 10px 28px rgba(255,36,72,.24), inset 0 1px 0 rgba(255,255,255,.18);
+    font-size: 13px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: transform 200ms ease, filter 200ms ease, box-shadow 200ms ease;
+}
+
+.install-prompt-action:hover:not(:disabled) {
+    transform: translateY(-2px);
+    filter: brightness(1.07);
+    box-shadow: 0 14px 32px rgba(255,36,72,.32);
+}
+
+.install-prompt-action:active:not(:disabled) {
+    transform: scale(.985);
+}
+
+.install-prompt-action:disabled {
+    opacity: .72;
+    cursor: wait;
+}
+
+.install-prompt-hint {
+    margin: 13px auto 0;
+    color: #8e99ad;
+    font-size: 10px;
+    line-height: 1.55;
+}
+
+.install-prompt-guide {
+    margin: 2px 0 20px;
+    padding: 16px;
+    border: 1px solid rgba(255,83,110,.22);
+    border-radius: 16px;
+    background: rgba(255,255,255,.035);
+    text-align: left;
+}
+
+.install-prompt-guide[hidden] {
+    display: none !important;
+}
+
+.install-prompt-guide h3 {
+    margin: 0 0 12px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.install-prompt-steps {
+    display: grid;
+    gap: 10px;
+    padding-left: 21px;
+    color: #c5cede;
+    font-size: 12px;
+    line-height: 1.65;
+}
+
+.install-prompt-steps li::marker {
+    color: #ff7187;
+    font-weight: 900;
+}
+
+@keyframes prestacarInstallFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes prestacarInstallCardIn {
+    from { opacity: 0; transform: translateY(18px) scale(.975); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 480px) {
+    .install-prompt-card {
+        width: 100%;
+        border-radius: 24px;
+        padding: 28px 20px 22px;
+    }
+    .install-prompt-benefits { gap: 6px; }
+    .install-prompt-benefit { font-size: 9px; padding-inline: 8px; }
+}
+
+@media (max-height: 620px) {
+    .install-prompt-card {
+        max-height: 92dvh;
+        padding-top: 24px;
+        padding-bottom: 20px;
+    }
+    .install-prompt-icon { width: 54px; height: 54px; margin-bottom: 12px; }
+    .install-prompt-title { font-size: 22px; }
+    .install-prompt-benefits { margin-bottom: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .install-prompt-overlay,
+    .install-prompt-card {
+        animation: none !important;
+    }
+    .install-prompt-close,
+    .install-prompt-action,
+    .btn,
+    .quick-solution-card,
+    .modern-card,
+    .service-box,
+    .catalogue-card,
+    .portfolio-card,
+    .social-link {
+        transition: none !important;
+    }
+}
+
+
+/* PERFORMANCE GUARD — privilégier les animations composites sur mobile */
+@media (max-width: 1180px) {
+    .menu-toggle {
+        animation: none;
+        box-shadow: 0 5px 18px rgba(255,36,72,.34),
+                    inset 0 1px 0 rgba(255,255,255,.16);
+    }
+
+    .menu-toggle::before {
+        animation: prestacarHamburgerRing 3.4s ease-out infinite;
+    }
+}
+
+/* Fallbacks vh for Safari and browsers without dynamic viewport units */
+.install-prompt-card {
+    max-height: 88vh;
+    max-height: min(88dvh, 760px);
+}
+
+.install-prompt-icon {
+    object-fit: cover;
+}
+
+@media (max-height: 620px) {
+    .install-prompt-card {
+        max-height: 92vh;
+        max-height: 92dvh;
+    }
+}
+
+@media (max-width: 600px) {
+    .install-prompt-overlay {
+        -webkit-backdrop-filter: blur(7px);
+        backdrop-filter: blur(7px);
+    }
+}
