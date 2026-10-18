@@ -555,7 +555,15 @@ card.hidden=!(okCat&&okText);
 if(!card.hidden)visible++;
 });
 document.querySelectorAll("[data-group-category]").forEach(group=>{
-group.hidden=!group.querySelector(".catalogue-card:not([hidden])");
+const cards=Array.from(group.querySelectorAll(".catalogue-card"));
+const visibleCount=cards.filter(card=>!card.hidden).length;
+group.hidden=visibleCount===0;
+const countLabel=group.querySelector(".catalogue-group-heading span");
+if(countLabel){
+const lang=document.documentElement.lang||"fr";
+const unit=lang==="en"?(visibleCount===1?"option":"options"):lang==="es"?(visibleCount===1?"opción":"opciones"):(visibleCount===1?"offre":"offres");
+countLabel.textContent=`${visibleCount} ${unit}`;
+}
 });
 sortCatalogueCards();
 noResults.hidden=visible>0;
