@@ -617,7 +617,7 @@ console.log(
     if (!scriptTag) return;
 
     const scriptUrl = new URL(scriptTag.getAttribute("src"), window.location.href);
-    const installIconUrl = new URL("./logo.jpg", scriptUrl).href;
+    const installIconUrl = new URL("./icons/prestacar-192.png", scriptUrl).href;
     const startedAt = Date.now();
     const minimumDelay = 22000;
     const dismissKey = "prestacar-install-dismissed-until";
