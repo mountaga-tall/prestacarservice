@@ -5372,3 +5372,41 @@ button:focus-visible {
         transition: none !important;
     }
 }
+
+
+/* PERFORMANCE GUARD — privilégier les animations composites sur mobile */
+@media (max-width: 1180px) {
+    .menu-toggle {
+        animation: none;
+        box-shadow: 0 5px 18px rgba(255,36,72,.34),
+                    inset 0 1px 0 rgba(255,255,255,.16);
+    }
+
+    .menu-toggle::before {
+        animation: prestacarHamburgerRing 3.4s ease-out infinite;
+    }
+}
+
+/* Fallbacks vh for Safari and browsers without dynamic viewport units */
+.install-prompt-card {
+    max-height: 88vh;
+    max-height: min(88dvh, 760px);
+}
+
+.install-prompt-icon {
+    object-fit: cover;
+}
+
+@media (max-height: 620px) {
+    .install-prompt-card {
+        max-height: 92vh;
+        max-height: 92dvh;
+    }
+}
+
+@media (max-width: 600px) {
+    .install-prompt-overlay {
+        -webkit-backdrop-filter: blur(7px);
+        backdrop-filter: blur(7px);
+    }
+}
