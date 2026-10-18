@@ -220,15 +220,21 @@ textarea {
 
     padding: 3px;
 
+    /* Bordure premium : acier brossé vers or champagne. */
     background:
         linear-gradient(
             135deg,
-            var(--red),
-            var(--blue)
+            #626973 0%,
+            #dce1e7 19%,
+            #858c96 36%,
+            #c7a04a 62%,
+            #fff0b3 77%,
+            #a87925 100%
         );
 
     box-shadow:
-        0 10px 30px rgba(255,36,72,.20);
+        0 10px 30px rgba(199,160,74,.16),
+        0 0 13px rgba(199,160,74,.12);
 
 }
 
