@@ -4247,8 +4247,8 @@ textarea {
 /* Affinements catalogue officiel — filtres, devis et langues */
 .catalogue-card[hidden], [data-group-category][hidden], .catalogue-empty-results[hidden] { display: none !important; }
 .catalogue-tools {
-    display: grid; grid-template-columns: minmax(0,1.35fr) minmax(220px,.65fr);
-    gap: 16px; max-width: 920px; margin: 0 auto 30px;
+    display: grid; grid-template-columns: minmax(0,1.2fr) minmax(210px,.9fr) minmax(190px,.8fr);
+    gap: 16px; max-width: 1100px; margin: 0 auto 30px;
 }
 .catalogue-tools .form-group { margin: 0; }
 .catalogue-tools label { display: block; margin-bottom: 8px; color: #e9edf6; font-size: 11px; font-weight: 700; }
