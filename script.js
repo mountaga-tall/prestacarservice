@@ -5,6 +5,34 @@
 
 "use strict";
 
+/* ==========================================================
+   WHATSAPP — official brand mark, consistent on every page
+========================================================== */
+const PRESTACAR_WHATSAPP_MARK_PATH = "M380.9 97.1C339 55.1 283.2 32 223.9 32 101.5 32 1.4 132.1 1.4 254.5c0 39.2 10.2 77.5 29.5 111.2L0 480l117.1-30.7c32.2 17.6 68.4 26.9 106.8 26.9h.1c122.3 0 223.9-100.1 223.9-222.5 0-59.3-25-114.6-67-156.6zM223.9 438.7c-33.3 0-65.9-8.9-94.4-25.7l-6.8-4.1-69.5 18.2 18.5-67.8-4.4-7c-18.4-29.3-28.1-63.1-28.1-97.8 0-101.3 82.5-183.8 184-183.8 49.1 0 95.3 19.1 129.9 53.8 34.7 34.6 56.8 80.8 56.8 129.9 0 101.3-83.2 184.3-184 184.3zm101.2-138.3c-5.5-2.8-32.5-16-37.6-17.8-5-1.9-8.7-2.8-12.4 2.8-3.7 5.6-14.2 17.8-17.4 21.5-3.2 3.7-6.4 4.2-11.9 1.4-32.3-16.1-53.4-28.7-74.7-65.1-5.7-9.8 5.7-9.1 16.1-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.4-29.9-17-40.9-4.5-10.8-9.1-9.3-12.4-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.7 6.9-5.1 5.5-19.3 18.8-19.3 45.8 0 27 19.7 53.1 22.4 56.8 2.8 3.7 38.7 59.1 93.8 82.8 34.8 15 48.5 16.3 65.9 13.7 10.6-1.6 32.5-13.3 37.1-26.1 4.6-12.9 4.6-23.9 3.2-26.1-1.4-2.3-5.1-3.7-10.6-6.5z";
+
+function normalizeWhatsAppBrandMarks() {
+    const selectors = [
+        ".whatsapp-icon svg",
+        ".contact-icon-whatsapp svg",
+        ".nav-whatsapp svg",
+        ".social-whatsapp svg",
+        'a[href*="wa.me"] svg',
+        'a[href*="whatsapp.com"] svg',
+        '[aria-label*="WhatsApp"] svg'
+    ].join(", ");
+
+    document.querySelectorAll(selectors).forEach((svg) => {
+        svg.setAttribute("viewBox", "0 0 448 512");
+        svg.setAttribute("focusable", "false");
+        svg.setAttribute("aria-hidden", "true");
+        svg.removeAttribute("role");
+        svg.innerHTML = '<path fill="currentColor" d="' + PRESTACAR_WHATSAPP_MARK_PATH + '"></path>';
+    });
+}
+
+normalizeWhatsAppBrandMarks();
+
+
 
 /* ==========================================================
    ELEMENTS
