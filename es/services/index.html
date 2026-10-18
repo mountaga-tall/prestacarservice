@@ -520,7 +520,7 @@ cards.forEach(card=>grid.appendChild(card));
 });
 }
 function filterProducts(){
-const normalizeSearch=value=>String(value||"").normalize("NFD").replace(/[\\u0300-\\u036f]/g,"").toLocaleLowerCase(document.documentElement.lang||"fr");
+const normalizeSearch=value=>String(value||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLocaleLowerCase(document.documentElement.lang||"fr");
 const q=normalizeSearch(search.value);
 const cat=categorySelect.value;
 let visible=0;
