@@ -1,16 +1,15 @@
 /* ==========================================================
    PRESTACAR SERVICES
-   SERVICE WORKER V41
+   SERVICE WORKER V45 — cache-first assets + offline navigation
 ========================================================== */
 
-const CACHE_NAME =
-    "prestacar-services-v44";
-
+const CACHE_NAME = "prestacar-services-v45";
+const OFFLINE_URL = "./offline.html";
 
 const APP_SHELL = [
-
     "./",
     "./index.html",
+    "./offline.html",
     "./styles.css",
     "./script.js",
     "./manifest.json",
@@ -49,213 +48,91 @@ const APP_SHELL = [
     "./es/erc/",
     "./es/formation-linguistique/",
     "./es/marketing-digital/",
-    "./es/electronique-embarquee/",
-
+    "./es/electronique-embarquee/"
 ];
 
+const STATIC_DESTINATIONS = new Set(["style", "script", "image", "font"]);
+const STATIC_EXTENSIONS = /\.(?:css|js|mjs|png|jpe?g|svg|webp|gif|ico|woff2?|ttf|otf|json)$/i;
 
-/* ==========================================================
-   INSTALLATION
-========================================================== */
+self.addEventListener("install", event => {
+    event.waitUntil(
+        caches.open(CACHE_NAME)
+            .then(cache => cache.addAll(APP_SHELL))
+            .then(() => self.skipWaiting())
+    );
+});
 
-self.addEventListener(
-    "install",
-    event => {
+self.addEventListener("activate", event => {
+    event.waitUntil(
+        caches.keys()
+            .then(cacheNames => Promise.all(
+                cacheNames
+                    .filter(name => name.startsWith("prestacar-services-") && name !== CACHE_NAME)
+                    .map(name => caches.delete(name))
+            ))
+            .then(() => self.clients.claim())
+    );
+});
 
-        event.waitUntil(
+self.addEventListener("fetch", event => {
+    const request = event.request;
+    if (request.method !== "GET") return;
 
-            caches
-                .open(CACHE_NAME)
-                .then(
-                    cache =>
-                        cache.addAll(
-                            APP_SHELL
-                        )
-                )
-                .then(
-                    () =>
-                        self.skipWaiting()
-                )
+    const requestURL = new URL(request.url);
+    // Leave other origins (e.g. Google Fonts and WhatsApp) to the browser.
+    if (requestURL.origin !== self.location.origin) return;
 
-        );
-
-    }
-);
-
-
-/* ==========================================================
-   ACTIVATION
-========================================================== */
-
-self.addEventListener(
-    "activate",
-    event => {
-
-        event.waitUntil(
-
-            caches
-                .keys()
-                .then(
-                    cacheNames => {
-
-                        return Promise.all(
-
-                            cacheNames
-                                .filter(
-                                    cacheName =>
-                                        cacheName !==
-                                        CACHE_NAME
-                                )
-                                .map(
-                                    cacheName =>
-                                        caches.delete(
-                                            cacheName
-                                        )
-                                )
-
-                        );
-
-                    }
-                )
-                .then(
-                    () =>
-                        self.clients.claim()
-                )
-
-        );
-
-    }
-);
-
-
-/* ==========================================================
-   FETCH
-========================================================== */
-
-self.addEventListener(
-    "fetch",
-    event => {
-
-        if (
-            event.request.method !==
-            "GET"
-        ) {
-
-            return;
-
-        }
-
+    if (request.mode === "navigate") {
+        const networkPromise = fetch(request);
+        const cacheUpdatePromise = networkPromise.then(response => {
+            if (!response || !response.ok) return;
+            const cacheKey = new Request(requestURL.origin + requestURL.pathname);
+            return caches.open(CACHE_NAME)
+                .then(cache => cache.put(cacheKey, response.clone()));
+        });
+        // Extend the worker lifetime for writes without delaying the network response.
+        event.waitUntil(cacheUpdatePromise.catch(() => {}));
 
         event.respondWith(
-
-            fetch(event.request)
-
-                .then(
-                    response => {
-
-                        /*
-                         * Mise en cache des ressources
-                         * provenant du même domaine.
-                         */
-
-                        if (
-                            response &&
-                            response.status === 200
-                        ) {
-
-                            const requestURL =
-                                new URL(
-                                    event.request.url
-                                );
-
-
-                            if (
-                                requestURL.origin ===
-                                self.location.origin
-                            ) {
-
-                                const responseClone =
-                                    response.clone();
-
-
-                                caches
-                                    .open(
-                                        CACHE_NAME
-                                    )
-                                    .then(
-                                        cache => {
-
-                                            cache.put(
-                                                event.request,
-                                                responseClone
-                                            );
-
-                                        }
-                                    );
-
-                            }
-
-                        }
-
-
-                        return response;
-
-                    }
+            networkPromise.catch(() =>
+                caches.open(CACHE_NAME).then(cache =>
+                    cache.match(request, { ignoreSearch: true })
+                        .then(cached => {
+                            if (cached) return cached;
+                            const normalizedRequest = new Request(requestURL.origin + requestURL.pathname);
+                            return cache.match(normalizedRequest)
+                                .then(normalized => {
+                                    if (normalized) return normalized;
+                                    return cache.match(new URL(OFFLINE_URL, self.registration.scope).href)
+                                        .then(offline => offline || Response.error());
+                                });
+                        })
                 )
-
-                .catch(
-                    () => {
-
-                        return caches
-                            .match(
-                                event.request
-                            )
-                            .then(
-                                cachedResponse => {
-
-                                    if (cachedResponse) {
-                                        return cachedResponse;
-                                    }
-
-                                    /*
-                                     * En mode hors ligne, ne renvoyer la page HTML
-                                     * de secours qu'à une navigation du même domaine.
-                                     * Une image, une police, un script ou une requête
-                                     * externe non disponible doit rester en échec,
-                                     * jamais recevoir du HTML à la place.
-                                     */
-                                    const requestURL = new URL(event.request.url);
-                                    const isSameOrigin =
-                                        requestURL.origin === self.location.origin;
-                                    const isNavigation =
-                                        event.request.mode === "navigate";
-
-                                    if (isSameOrigin && isNavigation) {
-                                        const cleanURL =
-                                            requestURL.origin + requestURL.pathname;
-
-                                        return caches
-                                            .match(cleanURL)
-                                            .then(pageResponse => {
-                                                if (pageResponse) {
-                                                    return pageResponse;
-                                                }
-
-                                                return caches.match(
-                                                    new URL("./index.html", self.registration.scope).href
-                                                ).then(fallback => fallback || Response.error());
-                                            });
-                                    }
-
-                                    return Response.error();
-
-                                }
-                            );
-
-                    }
-                )
-
+            )
         );
-
+        return;
     }
-);
+
+    const isStaticResource =
+        STATIC_DESTINATIONS.has(request.destination) ||
+        STATIC_EXTENSIONS.test(requestURL.pathname);
+    if (!isStaticResource) return;
+
+    // Core assets are pre-cached; later visits can load them without waiting for the network.
+    event.respondWith(
+        caches.open(CACHE_NAME).then(cache =>
+            cache.match(request).then(cached => {
+                if (cached) return cached;
+
+                return fetch(request).then(response => {
+                    if (!response || !response.ok) return response;
+                    return cache.put(request, response.clone()).then(() => response);
+                });
+            })
+        ).catch(() =>
+            caches.open(CACHE_NAME)
+                .then(cache => cache.match(request))
+                .then(cached => cached || Response.error())
+        )
+    );
+});
