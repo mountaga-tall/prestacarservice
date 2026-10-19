@@ -261,4 +261,18 @@ for (const file of ["fr/services/index.html", "en/services/index.html", "es/serv
     }
 }
 
+// Keep all nine portfolio logos wired correctly in every language and precached for offline use.
+const portfolioLogoAssets = ["./logos%20sites/neo.webp","./logos%20sites/lashish.webp","./logos%20sites/logo.webp","./logos%20sites/keurdia.webp","./logos%20sites/atelierkadja.webp","./logos%20sites/amore.webp","./logos%20sites/billardvip.webp","./logos%20sites/jackers.webp","./logos%20sites/elpatron.webp"];
+for (const file of ["fr/realisations/index.html", "en/realisations/index.html", "es/realizaciones/index.html"]) {
+    const html = htmlByPath.get(file);
+    assert.ok(html, file + " is missing.");
+    assert.equal([...html.matchAll(/class="portfolio-logo-wrap"/g)].length, 9, file + " must show all nine portfolio logos.");
+    for (const asset of portfolioLogoAssets) {
+        assert.ok(html.includes('src="' + asset.replace("./", "../../") + '"'), file + " is missing portfolio logo " + asset);
+    }
+}
+for (const asset of portfolioLogoAssets) {
+    assert.ok(shellItems.includes(asset), "Portfolio logo is not precached: " + asset);
+}
+
 console.log("Site checks passed: " + htmlFiles.length + " HTML pages, local paths/anchors, inline scripts/JSON-LD, PWA icons/cache, slogans, and 3 localized catalogues.");

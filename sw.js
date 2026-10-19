@@ -3,7 +3,7 @@
    SERVICE WORKER V46 — official-logo icons + offline navigation
 ========================================================== */
 
-const CACHE_NAME = "prestacar-services-v46";
+const CACHE_NAME = "prestacar-services-v47";
 const OFFLINE_URL = "./offline.html";
 
 const APP_SHELL = [
@@ -18,6 +18,15 @@ const APP_SHELL = [
     "./icons/prestacar-192.svg",
     "./icons/prestacar-512.svg",
     "./logo.jpg?v=5",
+    "./logos%20sites/neo.webp",
+    "./logos%20sites/lashish.webp",
+    "./logos%20sites/logo.webp",
+    "./logos%20sites/keurdia.webp",
+    "./logos%20sites/atelierkadja.webp",
+    "./logos%20sites/amore.webp",
+    "./logos%20sites/billardvip.webp",
+    "./logos%20sites/jackers.webp",
+    "./logos%20sites/elpatron.webp",
     "./fr/",
     "./fr/contact/",
     "./fr/services/",
