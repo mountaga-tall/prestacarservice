@@ -4227,6 +4227,32 @@ textarea {
     background: radial-gradient(circle, rgba(40,124,255,.15), transparent 70%); pointer-events: none;
 }
 
+
+/* Official client logos in the completed-websites portfolio. */
+.portfolio-logo-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 122px;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid rgba(10, 14, 24, .10);
+    border-radius: 14px;
+    background: #fff;
+    overflow: hidden;
+}
+.portfolio-logo-wrap img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 98px;
+    object-fit: contain;
+}
+.website-project-grid .portfolio-card {
+    min-width: 0;
+}
+
 .portfolio-card h2 { margin: 0 0 12px; color: #f7f8fc; font-family: "Montserrat", sans-serif; font-size: 18px; line-height: 1.4; }
 .portfolio-card p { flex: 1; margin: 0 0 20px; color: var(--muted); font-size: 12px; line-height: 1.8; }
 .portfolio-card a { color: #fff; font-size: 11px; font-weight: 800; }
