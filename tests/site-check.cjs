@@ -128,8 +128,18 @@ function checkPngIcon(file, expectedSize) {
         if (type === "IEND") { sawEnd = true; break; }
     }
     assert.ok(sawEnd && offset === data.length, relative(file) + " has an incomplete PNG stream.");
+    const bitDepth = data[24];
+    const colorType = data[25];
+    const channelsByColorType = { 0: 1, 2: 3, 3: 1, 4: 2, 6: 4 };
+    assert.equal(bitDepth, 8, relative(file) + " must use 8-bit PNG samples.");
+    const channels = channelsByColorType[colorType];
+    assert.ok(channels, relative(file) + " has an unsupported PNG color type.");
     const decoded = zlib.inflateSync(Buffer.concat(compressed));
-    assert.equal(decoded.length, expectedSize * (expectedSize + 1), relative(file) + " has invalid image data dimensions.");
+    assert.equal(
+        decoded.length,
+        expectedSize * (expectedSize * channels + 1),
+        relative(file) + " has invalid image data dimensions."
+    );
 }
 
 const allHtmlIds = new Map();
