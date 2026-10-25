@@ -1,9 +1,9 @@
 /* ==========================================================
    PRESTACAR SERVICES
-   SERVICE WORKER V46 — official-logo icons + offline navigation
+   SERVICE WORKER V47 — official-logo icons + offline navigation
 ========================================================== */
 
-const CACHE_NAME = "prestacar-services-v47";
+const CACHE_NAME = "prestacar-services-v48";
 const OFFLINE_URL = "./offline.html";
 
 const APP_SHELL = [
