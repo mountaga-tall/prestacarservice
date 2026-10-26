@@ -39,5 +39,13 @@
             "purpose": "any"
         }
     ],
-    "prefer_related_applications": false
+    "prefer_related_applications": false,
+    "id": "https://prestacarservice.com/fr/",
+    "related_applications": [
+        {
+            "platform": "webapp",
+            "url": "./manifest.json",
+            "id": "https://prestacarservice.com/fr/"
+        }
+    ]
 }
