@@ -619,7 +619,7 @@ console.log(
     const scriptUrl = new URL(scriptTag.getAttribute("src"), window.location.href);
     const installIconUrl = new URL("./icons/prestacar-192.png", scriptUrl).href;
     const startedAt = Date.now();
-    const minimumDelay = 22000;
+    const minimumDelay = 1800;
     const dismissKey = "prestacar-install-dismissed-until";
     const installedKey = "prestacar-app-installed";
     const shownKey = "prestacar-install-shown-session";
@@ -629,6 +629,8 @@ console.log(
         (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
     const isAndroid = /Android/i.test(ua);
     let deferredInstallPrompt = null;
+    let relatedAppInstalled = false;
+    let installationCheckComplete = false;
     let installOverlay = null;
     let installTimer = null;
     let oldOverflow = "";
@@ -738,11 +740,29 @@ console.log(
         return Number(readStorage(dismissKey) || 0) > Date.now();
     }
     function isInstalled() {
-        return isStandalone() || readStorage(installedKey) === "1";
+        return isStandalone() || relatedAppInstalled || readStorage(installedKey) === "1";
     }
     function canSuggestInstall() {
-        return !isInstalled() && !hasBeenDismissed() && !readSession(shownKey) &&
+        return installationCheckComplete && !isInstalled() && !hasBeenDismissed() && !readSession(shownKey) &&
             (Boolean(deferredInstallPrompt) || isIOS || isAndroid);
+    }
+
+    // When supported, ask Chromium whether this PWA is already installed on this device.
+    // Other browsers fall back to standalone mode and the installation event marker.
+    async function detectInstalledPwa() {
+        if (typeof navigator.getInstalledRelatedApps === "function") {
+            try {
+                const relatedApps = await navigator.getInstalledRelatedApps();
+                relatedAppInstalled = Array.isArray(relatedApps) &&
+                    relatedApps.some(function (app) { return app.platform === "webapp"; });
+                // Refresh the marker from the current device state, including after uninstall.
+                writeStorage(installedKey, relatedAppInstalled ? "1" : "0");
+            } catch (_) {
+                // Leave the stored marker untouched if the browser blocks the query.
+            }
+        }
+        installationCheckComplete = true;
+        scheduleInstallPrompt();
     }
 
     // iOS does not expose the Chromium install prompt API; guide users through Share.
@@ -960,6 +980,7 @@ console.log(
         });
     }
 
-    // Mobile fallback instructions are supported even when the browser lacks a native event.
-    if (isIOS || isAndroid) scheduleInstallPrompt();
+    // Check installation state first, then show the mobile fallback quickly (1.8 s).
+    // Desktop browsers only show this dialog when they provide beforeinstallprompt.
+    detectInstalledPwa();
 })();
