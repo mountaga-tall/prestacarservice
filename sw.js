@@ -1,9 +1,9 @@
 /* ==========================================================
    PRESTACAR SERVICES
-   SERVICE WORKER V48 — official-logo icons + offline navigation
+   SERVICE WORKER V49 — fast PWA install prompt + installed detection
 ========================================================== */
 
-const CACHE_NAME = "prestacar-services-v48";
+const CACHE_NAME = "prestacar-services-v49";
 const OFFLINE_URL = "./offline.html";
 
 const APP_SHELL = [
