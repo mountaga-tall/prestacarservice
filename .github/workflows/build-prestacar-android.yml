@@ -49,15 +49,24 @@ jobs:
             echo "sdkmanager was not found in $SDK_ROOT"
             exit 1
           fi
+          CMDLINE_BIN="$(dirname "$SDKMANAGER")"
           echo "ANDROID_HOME=$SDK_ROOT" >> "$GITHUB_ENV"
           echo "ANDROID_SDK_ROOT=$SDK_ROOT" >> "$GITHUB_ENV"
-          echo "$(dirname "$SDKMANAGER")" >> "$GITHUB_PATH"
+          echo "$CMDLINE_BIN" >> "$GITHUB_PATH"
           echo "Using Android SDK at $SDK_ROOT"
+          echo "Using sdkmanager at $SDKMANAGER"
 
-      - name: Install Android 16 SDK
+      - name: Install Android 16 SDK and Bubblewrap build tools
         run: |
           yes | sdkmanager --licenses >/dev/null || true
-          sdkmanager --install "platform-tools" "platforms;android-36" "build-tools;36.0.0"
+          sdkmanager --install "platform-tools" "platforms;android-36" "build-tools;36.1.0"
+          SDK_ROOT="$ANDROID_HOME"
+          CMDLINE_BIN="$(find "$SDK_ROOT/cmdline-tools" -type f -name sdkmanager -print -quit | xargs dirname)"
+          mkdir -p "$SDK_ROOT/bin"
+          ln -sfn "$CMDLINE_BIN/sdkmanager" "$SDK_ROOT/bin/sdkmanager"
+          test -x "$SDK_ROOT/platform-tools/adb"
+          test -x "$SDK_ROOT/build-tools/36.1.0/zipalign"
+          echo "SDK ready for Bubblewrap."
 
       - name: Install Bubblewrap
         run: npm install --global @bubblewrap/cli@latest
