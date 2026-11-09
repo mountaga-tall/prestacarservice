@@ -66,7 +66,7 @@ jobs:
         run: |
           mkdir -p "$HOME/.bubblewrap"
           printf '{"jdkPath":"%s","androidSdkPath":"%s"}\n' "$JAVA_HOME" "$ANDROID_HOME" > "$HOME/.bubblewrap/config.json"
-          bubblewrap doctor
+          cat "$HOME/.bubblewrap/config.json"
 
       - name: Generate Android TWA project
         working-directory: android-twa
@@ -86,7 +86,7 @@ jobs:
           BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.BUBBLEWRAP_KEYSTORE_PASSWORD }}
           BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.BUBBLEWRAP_KEY_PASSWORD }}
         run: |
-          if [ -n "$ANDROID_KEYSTORE_BASE64" ]; then
+          if [ -n "$ANDROID_KEYSTORE_BASE64" ] && [ -n "$BUBBLEWRAP_KEYSTORE_PASSWORD" ] && [ -n "$BUBBLEWRAP_KEY_PASSWORD" ]; then
             echo "$ANDROID_KEYSTORE_BASE64" | base64 --decode > android.keystore
             bubblewrap build --manifest=twa-manifest.json --signingKeyPath=./android.keystore --signingKeyAlias=prestacar
             cp app-release-bundle.aab dist-prestacar-release.aab
@@ -95,7 +95,7 @@ jobs:
             bubblewrap build --manifest=twa-manifest.json --skipSigning
             cp app/build/outputs/bundle/release/app-release.aab dist-prestacar-unsigned.aab
             echo "SIGNED=false" > build-status.txt
-            echo "Build succeeded, but the AAB is unsigned. Add the three signing secrets before uploading to Google Play."
+            echo "Build succeeded, but the AAB is unsigned. Add all three signing secrets before uploading to Google Play."
           fi
 
       - name: Upload Android App Bundle
