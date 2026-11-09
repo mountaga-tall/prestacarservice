@@ -1,0 +1,92 @@
+name: Build Prestacar Android (TWA)
+
+on:
+  push:
+    paths:
+      - "android-twa/**"
+      - ".github/workflows/build-prestacar-android.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: prestacar-android-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Generate Android App Bundle
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android 16 SDK
+        run: |
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager --install "platform-tools" "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Install Bubblewrap
+        run: npm install --global @bubblewrap/cli@latest
+
+      - name: Configure Bubblewrap toolchain
+        run: |
+          mkdir -p "$HOME/.bubblewrap"
+          printf '{"jdkPath":"%s","androidSdkPath":"%s"}\n' "$JAVA_HOME" "$ANDROID_HOME" > "$HOME/.bubblewrap/config.json"
+          bubblewrap doctor
+
+      - name: Generate Android TWA project
+        working-directory: android-twa
+        run: bubblewrap update --skipVersionUpgrade --manifest=twa-manifest.json
+
+      - name: Verify Android 16 target
+        working-directory: android-twa
+        run: |
+          grep -Eq 'compileSdkVersion 36' app/build.gradle
+          grep -Eq 'targetSdkVersion 36' app/build.gradle
+          echo "Android compileSdkVersion and targetSdkVersion are both 36."
+
+      - name: Build Android App Bundle
+        working-directory: android-twa
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.BUBBLEWRAP_KEYSTORE_PASSWORD }}
+          BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.BUBBLEWRAP_KEY_PASSWORD }}
+        run: |
+          if [ -n "$ANDROID_KEYSTORE_BASE64" ]; then
+            echo "$ANDROID_KEYSTORE_BASE64" | base64 --decode > android.keystore
+            bubblewrap build --manifest=twa-manifest.json --signingKeyPath=./android.keystore --signingKeyAlias=prestacar
+            cp app-release-bundle.aab dist-prestacar-release.aab
+            echo "SIGNED=true" > build-status.txt
+          else
+            bubblewrap build --manifest=twa-manifest.json --skipSigning
+            cp app/build/outputs/bundle/release/app-release.aab dist-prestacar-unsigned.aab
+            echo "SIGNED=false" > build-status.txt
+            echo "Build succeeded, but the AAB is unsigned. Add the three signing secrets before uploading to Google Play."
+          fi
+
+      - name: Upload Android App Bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: prestacar-android-aab-${{ github.run_number }}
+          path: |
+            android-twa/dist-prestacar-*.aab
+            android-twa/build-status.txt
+          if-no-files-found: error
+          retention-days: 14
