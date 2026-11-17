@@ -44,6 +44,10 @@ jobs:
             --jdkPath="$JAVA_HOME" \
             --androidSdkPath="$ANDROID_HOME"
 
+      - name: Validate the live PWA against TWA quality criteria
+        working-directory: android
+        run: bubblewrap validate --url=https://prestacarservice.com/fr/
+
       - name: Generate Android project from TWA configuration
         working-directory: android
         run: bubblewrap update --skipVersionUpgrade
