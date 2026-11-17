@@ -1,0 +1,9 @@
+# Never commit Android upload/signing keys or local SDK configuration.
+*.jks
+*.keystore
+local.properties
+
+# Local Gradle and generated build output.
+.gradle/
+build/
+app/build/

@@ -1,0 +1,32 @@
+{
+  "packageId": "com.prestacarservice.app",
+  "host": "prestacarservice.com",
+  "name": "Prestacar Services",
+  "launcherName": "Prestacar",
+  "display": "standalone",
+  "displayOverride": [],
+  "themeColor": "#ff2448",
+  "themeColorDark": "#ff2448",
+  "navigationColor": "#070a12",
+  "navigationColorDark": "#070a12",
+  "navigationDividerColor": "#00000000",
+  "navigationDividerColorDark": "#00000000",
+  "backgroundColor": "#070a12",
+  "enableNotifications": false,
+  "startUrl": "/fr/",
+  "iconUrl": "https://prestacarservice.com/icons/prestacar-512.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "upload-key.jks",
+    "alias": "prestacar-upload"
+  },
+  "appVersion": "1.0.0",
+  "appVersionCode": 1,
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://prestacarservice.com/manifest.json",
+  "fallbackType": "customtabs",
+  "orientation": "default",
+  "minSdkVersion": 23,
+  "fingerprints": [],
+  "additionalTrustedOrigins": []
+}
