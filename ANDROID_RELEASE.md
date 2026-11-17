@@ -56,6 +56,12 @@ Sous macOS :
 base64 < upload-key.jks | tr -d '\n'
 ```
 
+Sous Windows PowerShell, pour copier directement la chaîne Base64 dans le presse-papiers :
+
+```powershell
+[Convert]::ToBase64String([IO.File]::ReadAllBytes("$HOME\upload-key.jks")) | Set-Clipboard
+```
+
 Copier la sortie Base64 dans le secret GitHub ; ne pas la mettre dans un fichier du dépôt.
 
 ## 3. Générer le fichier AAB
