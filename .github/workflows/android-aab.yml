@@ -81,12 +81,51 @@ jobs:
           console.log('Lighthouse mobile performance:', Math.round(performance * 100));
           console.log('Lighthouse PWA score:', Math.round(pwa * 100));
 
+          const printAudit = (audit) => {
+            console.log('- ' + audit.title + ': ' + (audit.displayValue || 'score ' + audit.score));
+            if (audit.description) {
+              console.log('  ' + audit.description.replace(/\\[.*?\\]\\(.*?\\)/g, '').slice(0, 300));
+            }
+          };
+
+          const pwaFailures = (report.categories.pwa.auditRefs || [])
+            .map((ref) => report.audits[ref.id])
+            .filter((audit) => audit && audit.score !== null &&
+              audit.score < 1 && audit.scoreDisplayMode !== 'notApplicable');
+
+          if (pwaFailures.length) {
+            console.log('PWA checks to fix:');
+            pwaFailures.forEach(printAudit);
+          }
+
+          const performanceFailures = (report.categories.performance.auditRefs || [])
+            .filter((ref) => ref.weight > 0)
+            .map((ref) => ({ weight: ref.weight, audit: report.audits[ref.id] }))
+            .filter((item) => item.audit && item.audit.score !== null &&
+              item.audit.score < 1 && item.audit.scoreDisplayMode !== 'notApplicable')
+            .sort((a, b) => b.weight - a.weight)
+            .slice(0, 8);
+
+          if (performanceFailures.length) {
+            console.log('Highest-impact performance opportunities:');
+            performanceFailures.forEach((item) => printAudit(item.audit));
+          }
+
           if (performance < 0.8 || pwa < 1) {
             throw new Error('TWA quality criteria not met: performance must be at least 80 and PWA must be 100.');
           }
 
           console.log('PWA meets Bubblewrap TWA thresholds.');
           NODE
+
+      - name: Upload Lighthouse report for review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: prestacar-lighthouse-report
+          path: lighthouse-report.json
+          if-no-files-found: warn
+          retention-days: 7
 
       - name: Generate Android project from TWA configuration
         working-directory: android
