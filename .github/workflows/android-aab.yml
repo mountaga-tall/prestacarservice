@@ -2,6 +2,11 @@ name: Build Prestacar Android App Bundle
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/android-aab.yml"
 
 permissions:
   contents: read
