@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.prestacarservice.app",
+      "sha256_cert_fingerprints": [
+        "39:03:38:B6:96:29:0C:EC:97:C9:21:5E:D3:34:C6:A9:8F:8B:01:15:85:73:31:1B:D2:C8:95:C8:48:EB:51:49"
+      ]
+    }
+  }
+]
