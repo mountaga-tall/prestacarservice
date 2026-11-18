@@ -9,6 +9,7 @@ on:
       - ".github/workflows/android-aab.yml"
       - "manifest.json"
       - "icons/prestacar-maskable.svg"
+      - "android/twa-manifest.json"
 
 permissions:
   contents: read
