@@ -1,15 +1,16 @@
 /* ==========================================================
    PRESTACAR SERVICES
-   SERVICE WORKER V49 — fast PWA install prompt + installed detection
+   SERVICE WORKER V50 — fast PWA install prompt + installed detection
 ========================================================== */
 
-const CACHE_NAME = "prestacar-services-v49";
+const CACHE_NAME = "prestacar-services-v50";
 const OFFLINE_URL = "./offline.html";
 
 const APP_SHELL = [
     "./",
     "./index.html",
     "./offline.html",
+    "./privacy/",
     "./styles.css",
     "./script.js",
     "./manifest.json",
