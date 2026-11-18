@@ -41,13 +41,20 @@ jobs:
       - name: Install Android 16 build platform
         run: |
           yes | sdkmanager --licenses >/dev/null
-          sdkmanager "platforms;android-36" "build-tools;36.0.0"
+          sdkmanager "platforms;android-36" "build-tools;36.1.0"
 
       - name: Install Bubblewrap CLI
         run: npm install --global @bubblewrap/cli
 
       - name: Configure Bubblewrap toolchain
         run: |
+          # Bubblewrap's SDK helper still checks the legacy $ANDROID_HOME/tools path.
+          # Link it to the current cmdline-tools installation on GitHub's Ubuntu runner.
+          if [ ! -d "$ANDROID_HOME/tools" ]; then
+            CMDLINE_TOOLS_DIR="$(find "$ANDROID_HOME/cmdline-tools" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -n 1)"
+            test -n "$CMDLINE_TOOLS_DIR"
+            ln -s "$CMDLINE_TOOLS_DIR" "$ANDROID_HOME/tools"
+          fi
           mkdir -p "$HOME/.bubblewrap"
           printf '{"jdkPath":"%s","androidSdkPath":"%s"}\n' "$JAVA_HOME" "$ANDROID_HOME" > "$HOME/.bubblewrap/config.json"
           bubblewrap doctor
