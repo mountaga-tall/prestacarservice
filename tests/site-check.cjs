@@ -217,6 +217,23 @@ for (const item of shellItems) {
 }
 assert.ok(/name\.startsWith\("prestacar-services-"\)/.test(worker), "Service worker must only delete its own old caches.");
 
+// Ensure the Google Play privacy policy is a real page and available from the installed PWA.
+const privacyPolicy = htmlByPath.get("privacy/index.html");
+assert.ok(privacyPolicy, "Google Play privacy page must be present.");
+for (const requiredText of [
+    "Politique de confidentialité",
+    "WhatsApp",
+    "Google Fonts",
+    "contact@prestacarservice.com",
+    'id="en"',
+    'id="es"'
+]) {
+    assert.ok(privacyPolicy.includes(requiredText), "Privacy policy is missing required disclosure: " + requiredText);
+}
+assert.ok(script.includes('link.href = "/privacy/"'), "The app footer must link to the privacy policy.");
+assert.ok(shellItems.includes("./privacy/"), "Privacy policy must be included in the PWA app shell.");
+
+
 const slogans = {
     "fr/index.html": "<h1>Donnez vie à vos idées</h1>",
     "en/index.html": "<h1>Bring your ideas to life</h1>",
