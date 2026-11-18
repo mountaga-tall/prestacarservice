@@ -48,9 +48,9 @@ jobs:
 
       - name: Configure Bubblewrap toolchain
         run: |
-          bubblewrap updateConfig \
-            --jdkPath="$JAVA_HOME" \
-            --androidSdkPath="$ANDROID_HOME"
+          mkdir -p "$HOME/.bubblewrap"
+          printf '{"jdkPath":"%s","androidSdkPath":"%s"}\n' "$JAVA_HOME" "$ANDROID_HOME" > "$HOME/.bubblewrap/config.json"
+          bubblewrap doctor
 
       - name: Validate the live PWA against TWA quality criteria
         working-directory: android
