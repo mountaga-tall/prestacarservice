@@ -541,6 +541,32 @@ document
 
 
 /* ==========================================================
+   PRESTACAR PRIVACY POLICY LINK — available throughout the app
+========================================================== */
+(function addPrestacarPrivacyPolicyLink() {
+    const footerContainer = document.querySelector(".footer-bottom .container");
+    if (!footerContainer || footerContainer.querySelector("[data-prestacar-privacy-link]")) return;
+
+    const language = (document.documentElement.lang || "fr").slice(0, 2).toLowerCase();
+    const labels = {
+        fr: "Politique de confidentialité",
+        en: "Privacy policy",
+        es: "Política de privacidad"
+    };
+
+    const wrapper = document.createElement("span");
+    wrapper.className = "footer-privacy-link";
+    const link = document.createElement("a");
+    link.href = "/privacy/";
+    link.textContent = labels[language] || labels.fr;
+    link.setAttribute("data-prestacar-privacy-link", "true");
+    link.setAttribute("aria-label", link.textContent);
+    wrapper.appendChild(link);
+    footerContainer.appendChild(wrapper);
+})();
+
+
+/* ==========================================================
    SERVICE WORKER
 ========================================================== */
 
