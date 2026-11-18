@@ -60,8 +60,33 @@ jobs:
           bubblewrap doctor
 
       - name: Validate the live PWA against TWA quality criteria
-        working-directory: android
-        run: bubblewrap validate --url=https://prestacarservice.com/fr/
+        run: |
+          # Lighthouse 11.7.1 is pinned because it still contains Bubblewrap's PWA
+          # category; Lighthouse 12 removed that category.
+          npx --yes lighthouse@11.7.1 https://prestacarservice.com/fr/ \
+            --only-categories=performance,pwa,accessibility \
+            --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" \
+            --output=json \
+            --output-path=./lighthouse-report.json
+          node <<'NODE'
+          const fs = require('node:fs');
+          const report = JSON.parse(fs.readFileSync('lighthouse-report.json', 'utf8'));
+          const performance = report.categories?.performance?.score;
+          const pwa = report.categories?.pwa?.score;
+
+          if (typeof performance !== 'number' || typeof pwa !== 'number') {
+            throw new Error('Lighthouse report is missing the required performance or PWA category.');
+          }
+
+          console.log('Lighthouse mobile performance:', Math.round(performance * 100));
+          console.log('Lighthouse PWA score:', Math.round(pwa * 100));
+
+          if (performance < 0.8 || pwa < 1) {
+            throw new Error('TWA quality criteria not met: performance must be at least 80 and PWA must be 100.');
+          }
+
+          console.log('PWA meets Bubblewrap TWA thresholds.');
+          NODE
 
       - name: Generate Android project from TWA configuration
         working-directory: android
@@ -94,7 +119,7 @@ jobs:
           BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
-          bubblewrap build \
+          bubblewrap build --skipPwaValidation \
             --signingKeyPath=upload-key.jks \
             --signingKeyAlias="$ANDROID_KEY_ALIAS"
 
@@ -105,5 +130,6 @@ jobs:
           path: |
             android/app-release-bundle.aab
             android/app-release-signed.apk
+            lighthouse-report.json
           if-no-files-found: error
           retention-days: 14
