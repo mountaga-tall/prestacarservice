@@ -34,6 +34,9 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          # The legacy "tools" SDK package no longer exists in current SDK repositories.
+          packages: platform-tools
 
       - name: Install Android 16 build platform
         run: |
